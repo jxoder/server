@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json.schemastore.org/nest-cli",
+  "monorepo": true,
+  "defaultLibraryPrefix": "@slibs",
+  "compilerOptions": {
+    "webpack": true,
+    "tsConfigPath": "tsconfig.build.json"
+  },
+  "projects": {
+    "main-app": {
+      "type": "application",
+      "root": "apps/main-app",
+      "entryFile": "main",
+      "sourceRoot": "apps/main-app/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/main-app/tsconfig.app.json"
+      }
+    },
+    "common": {
+      "type": "library",
+      "root": "libs/common",
+      "entryFile": "index",
+      "sourceRoot": "libs/common/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/common/tsconfig.lib.json"
+      }
+    }
+  }
+}
