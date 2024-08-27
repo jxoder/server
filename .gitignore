@@ -1,4 +1,8 @@
+# IDE ignore 
 .idea
-dist
+.vscode
 
+# Source directory ignore
+dist
 node_modules
+
