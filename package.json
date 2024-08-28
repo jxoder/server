@@ -57,7 +57,8 @@
       "./jest.setup.ts"
     ],
     "moduleNameMapper": {
-      "^@slibs/common(|/.*)$": "<rootDir>/libs/common/src/$1"
+      "^@slibs/common(|/.*)$": "<rootDir>/libs/common/src/$1",
+      "^@slibs/api(|/.*)$": "<rootDir>/libs/api/src/$1"
     }
   }
 }

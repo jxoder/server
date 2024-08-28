@@ -1,7 +1,7 @@
 import { get } from 'env-var'
 
 export abstract class CommonConfig {
-  abstract readonly APP_NAME: string
+  static readonly APP_NAME: string
   static readonly ENV = get('ENV')
     .default('local')
     .asEnum(['test', 'local', 'dev', 'prod'])
