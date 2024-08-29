@@ -50,6 +50,12 @@
       ],
       "@slibs/user/*": [
         "libs/user/src/*"
+      ],
+      "@slibs/testing": [
+        "libs/testing/src"
+      ],
+      "@slibs/testing/*": [
+        "libs/testing/src/*"
       ]
     }
   }

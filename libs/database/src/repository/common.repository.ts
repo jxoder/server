@@ -7,6 +7,7 @@ import {
   Repository,
   SelectQueryBuilder,
 } from 'typeorm'
+import { QueryErrorCatcher } from '../decorator'
 
 export abstract class CommonRepository<ENTITY extends ObjectLiteral, PK_TYPE> {
   protected readonly logger = new Logger(this.constructor.name)
@@ -19,6 +20,7 @@ export abstract class CommonRepository<ENTITY extends ObjectLiteral, PK_TYPE> {
     return this.repository.create(partial as ENTITY)
   }
 
+  @QueryErrorCatcher()
   async insert(partial: Partial<ENTITY>): Promise<PK_TYPE> {
     const inst = this.create(partial)
     const inserted = await this.repository.insert(inst)
