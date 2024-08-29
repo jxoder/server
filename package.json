@@ -6,7 +6,11 @@
     "start:dev": "nest start --watch",
     "build": "nest build",
     "test": "jest --runInBand --detectOpenHandles",
-    "test:watch": "jest --watch --runInBand"
+    "test:watch": "jest --watch --runInBand",
+    "typeorm": "ts-node -r dotenv/config -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
+    "migration:gen": "pnpm typeorm migration:generate migrations/migration -p -d ormconfig.ts",
+    "migration:run": "pnpm typeorm migration:run -d",
+    "migration:revert": "pnpm typeorm migration:revert -d"
   },
   "dependencies": {
     "@nestjs/common": "10.4.1",
@@ -15,6 +19,7 @@
     "@nestjs/typeorm": "10.0.2",
     "dotenv": "16.4.5",
     "env-var": "7.5.0",
+    "pg": "8.12.0",
     "rxjs": "7.8.1",
     "typeorm": "0.3.20",
     "typeorm-naming-strategies": "4.1.0",
@@ -37,6 +42,7 @@
     "supertest": "7.0.0",
     "ts-jest": "29.2.5",
     "ts-loader": "9.5.1",
+    "ts-node": "10.9.2",
     "typescript": "5.5.4"
   },
   "jest": {
@@ -65,7 +71,8 @@
     "moduleNameMapper": {
       "^@slibs/common(|/.*)$": "<rootDir>/libs/common/src/$1",
       "^@slibs/api(|/.*)$": "<rootDir>/libs/api/src/$1",
-      "^@slibs/database(|/.*)$": "<rootDir>/libs/database/src/$1"
+      "^@slibs/database(|/.*)$": "<rootDir>/libs/database/src/$1",
+      "^@slibs/user(|/.*)$": "<rootDir>/libs/user/src/$1"
     }
   }
 }
