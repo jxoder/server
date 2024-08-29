@@ -4,12 +4,7 @@
     "jsx": "react",
     "target": "es2022",
     "module": "commonjs",
-    "lib": [
-      "dom",
-      "es6",
-      "es2017",
-      "esnext.asynciterable"
-    ],
+    "lib": ["dom", "es6", "es2017", "esnext.asynciterable"],
     "skipLibCheck": true,
     "moduleResolution": "node",
     "removeComments": true,
@@ -27,18 +22,12 @@
     "experimentalDecorators": true,
     "resolveJsonModule": true,
     "paths": {
-      "@slibs/common": [
-        "libs/common/src"
-      ],
-      "@slibs/common/*": [
-        "libs/common/src/*"
-      ],
-      "@slibs/api": [
-        "libs/api/src"
-      ],
-      "@slibs/api/*": [
-        "libs/api/src/*"
-      ]
+      "@slibs/common": ["libs/common/src"],
+      "@slibs/common/*": ["libs/common/src/*"],
+      "@slibs/api": ["libs/api/src"],
+      "@slibs/api/*": ["libs/api/src/*"],
+      "@slibs/database": ["libs/database/src"],
+      "@slibs/database/*": ["libs/database/src/*"]
     }
   }
 }
