@@ -5,7 +5,7 @@ ARG APP_NAME
 
 WORKDIR /usr/src/app
 COPY package*.json pnpm-lock.yaml ./
-RUN apk add --no-cache build-base && npm install -g pnpm && pnpm install
+RUN apk add --no-cache build-base python3 py3-pip make g++ && npm install -g pnpm && pnpm install
 COPY . .
 RUN pnpm build ${APP_NAME} && pnpm prune --production
 
