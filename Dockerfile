@@ -1,6 +1,8 @@
 # syntax=docker/dockerfile:1.2
 FROM node:20-alpine as builder
 
+ARG APP_NAME
+
 WORKDIR /usr/src/app
 COPY package*.json pnpm-lock.yaml ./
 RUN apk add --no-cache build-base && npm install -g pnpm && pnpm install
