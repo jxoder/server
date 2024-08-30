@@ -1,4 +1,6 @@
 export * from './api.module'
 export * from './config'
+export * from './decorator'
 export * from './dto'
 export * from './interface'
+export * from './swagger'

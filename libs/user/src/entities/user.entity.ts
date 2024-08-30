@@ -1,5 +1,6 @@
 import { CommonEntity } from '@slibs/database'
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger'
 import { USER_ROLE, USER_ROLE_LEVEL } from '../constants'
 
 const Description = {
@@ -10,6 +11,7 @@ const Description = {
 
 @Entity()
 export class User extends CommonEntity {
+  @ApiProperty({ example: 1, description: Description.id })
   @PrimaryGeneratedColumn({
     type: 'int',
     unsigned: true,
@@ -17,6 +19,7 @@ export class User extends CommonEntity {
   })
   readonly id: number
 
+  @ApiPropertyOptional({ example: 'swagger', description: Description.name })
   @Column({
     type: 'varchar',
     comment: Description.name,
@@ -25,6 +28,11 @@ export class User extends CommonEntity {
   })
   name: string | null
 
+  @ApiProperty({
+    example: USER_ROLE.USER,
+    enum: USER_ROLE,
+    description: Description.role,
+  })
   @Column({ type: 'enum', enum: USER_ROLE, comment: Description.role })
   role: USER_ROLE
 

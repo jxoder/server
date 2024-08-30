@@ -1,5 +1,6 @@
 import {
   ArgumentsHost,
+  BadRequestException,
   Catch,
   ExceptionFilter,
   HttpException,
@@ -7,6 +8,7 @@ import {
   Logger,
 } from '@nestjs/common'
 import { CommonConfig, CommonException } from '@slibs/common'
+import requestIp from 'request-ip'
 
 interface IErrorResonse {
   code: number
@@ -34,10 +36,10 @@ export class AppErrorFilter implements ExceptionFilter {
 
     const error = this.handleError(exception)
 
-    const message = `Method: ${request.method} Path: ${request.path} Code: ${error.code} Error: ${error.message}`
+    const message = `Method: ${request.method} Path: ${request.path} Code: ${error.code} Error: ${error.message}; IP: ${requestIp.getClientIp(request)}`
 
     CommonConfig.ENV !== 'test' && this.logger.error(message)
-    CommonConfig.ENV === 'local' && this.logger.debug(exception)
+    CommonConfig.ENV === 'local' && console.error(exception)
 
     response.status(
       Object.values(HttpStatus).includes(error.code)
@@ -49,6 +51,18 @@ export class AppErrorFilter implements ExceptionFilter {
   }
 
   private handleError(ex: unknown): IErrorResonse {
+    // class-validator error
+    if (ex instanceof BadRequestException) {
+      const response = ex.getResponse() as {
+        message: Array<string>
+        error: string
+      }
+      return {
+        code: ex.getStatus(),
+        message: response.message?.[0] ?? response.error,
+      }
+    }
+
     if (ex instanceof HttpException) {
       return { code: ex.getStatus(), message: ex.message }
     }
