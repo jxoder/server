@@ -6,6 +6,7 @@ import {
   NestInterceptor,
 } from '@nestjs/common'
 import { Observable, tap } from 'rxjs'
+import requestIp from 'request-ip'
 
 @Injectable()
 export class RouterLoggerInterceptor implements NestInterceptor {
@@ -30,7 +31,7 @@ export class RouterLoggerInterceptor implements NestInterceptor {
         }
 
         const et = new Date().getTime()
-        const message = `Method: ${request.method}; Path: ${request.path}; Execution time: ${et - st}ms`
+        const message = `Method: ${request.method}; Path: ${request.path}; Execution time: ${et - st}ms; IP: ${requestIp.getClientIp(request)}; `
         this.logger.log(message)
       }),
     )
