@@ -1,6 +1,10 @@
-import { Module } from '@nestjs/common'
+import {
+  ClassSerializerInterceptor,
+  Module,
+  ValidationPipe,
+} from '@nestjs/common'
 import { HealthCheckController } from './controller'
-import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core'
+import { APP_FILTER, APP_INTERCEPTOR, APP_PIPE } from '@nestjs/core'
 import { RouterLoggerInterceptor } from './interceptor'
 import { AppErrorFilter } from './filter'
 
@@ -10,7 +14,12 @@ import { AppErrorFilter } from './filter'
       provide: APP_INTERCEPTOR,
       useClass: RouterLoggerInterceptor,
     },
+    { provide: APP_INTERCEPTOR, useClass: ClassSerializerInterceptor },
     { provide: APP_FILTER, useClass: AppErrorFilter },
+    {
+      provide: APP_PIPE,
+      useValue: new ValidationPipe({ transform: true, whitelist: true }),
+    },
   ],
   controllers: [HealthCheckController],
 })
