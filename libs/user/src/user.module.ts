@@ -3,10 +3,16 @@ import { DatabaseModule } from '@slibs/database'
 import { EmailAccount, User } from './entities'
 import { EmailAccountRepository, UserRepository } from './repository'
 import { EmailAccountService } from './service'
+import { UserJWTStrategy } from './strategy'
 
 @Module({
   imports: [DatabaseModule.forFeature([User, EmailAccount])],
-  providers: [UserRepository, EmailAccountRepository, EmailAccountService],
+  providers: [
+    UserRepository,
+    EmailAccountRepository,
+    EmailAccountService,
+    UserJWTStrategy,
+  ],
   exports: [EmailAccountService],
 })
 export class UserModule {}
