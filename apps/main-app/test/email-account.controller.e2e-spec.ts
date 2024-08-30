@@ -1,6 +1,5 @@
 import { INestApplication } from '@nestjs/common'
-import { createApiClient, createApiServer, initPGVector } from '@slibs/testing'
-import { StartedTestContainer } from 'testcontainers'
+import { createApiClient, createApiServer } from '@slibs/testing'
 import { MainAppModule } from '../src/main-app.module'
 import { DataSource } from 'typeorm'
 import { ERROR_CODE } from '@slibs/common'
@@ -9,10 +8,8 @@ import { SignedUserResponse } from '../src/module/user/response'
 
 describe('email-account.controller (e2e)', () => {
   let app: INestApplication
-  let postgres: StartedTestContainer
 
   beforeAll(async () => {
-    postgres = await initPGVector()
     app = await createApiServer({ imports: [MainAppModule] })
     await app.init()
   })
@@ -22,7 +19,6 @@ describe('email-account.controller (e2e)', () => {
   })
 
   afterAll(async () => {
-    await postgres.stop()
     await app.close()
   })
 

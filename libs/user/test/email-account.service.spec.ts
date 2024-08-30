@@ -1,17 +1,13 @@
 import { Test, TestingModule } from '@nestjs/testing'
 import { DatabaseModule } from '@slibs/database'
 import { UserModule, EmailAccountService, USER_ROLE } from '@slibs/user'
-import { initPGVector } from '@slibs/testing'
-import { StartedTestContainer } from 'testcontainers'
 import { DataSource } from 'typeorm'
 import { EmailAccountRepository } from '@slibs/user/repository'
 
 describe('email-account.service', () => {
-  let container: StartedTestContainer
   let module: TestingModule
 
   beforeAll(async () => {
-    container = await initPGVector()
     module = await Test.createTestingModule({
       imports: [DatabaseModule.forRoot(), UserModule],
     }).compile()
@@ -19,7 +15,6 @@ describe('email-account.service', () => {
 
   afterAll(async () => {
     await module.close()
-    await container.stop()
   })
 
   beforeEach(async () => {
