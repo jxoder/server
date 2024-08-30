@@ -78,6 +78,15 @@
       "compilerOptions": {
         "tsConfigPath": "libs/telegram/tsconfig.lib.json"
       }
+    },
+    "mylab": {
+      "type": "library",
+      "root": "libs/mylab",
+      "entryFile": "index",
+      "sourceRoot": "libs/mylab/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/mylab/tsconfig.lib.json"
+      }
     }
   }
 }

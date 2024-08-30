@@ -1,6 +1,6 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger'
 import { CommonEntity } from '@slibs/database'
-import { USER_ROLE } from '@slibs/user'
+import { USER_ROLE, USER_ROLE_LEVEL } from '@slibs/user'
 import { Column, Entity, PrimaryColumn } from 'typeorm'
 
 const Description = {
@@ -50,4 +50,8 @@ export class TelegramUser extends CommonEntity {
     comment: Description.role,
   })
   role: USER_ROLE
+
+  get roleLv() {
+    return USER_ROLE_LEVEL[this.role]
+  }
 }

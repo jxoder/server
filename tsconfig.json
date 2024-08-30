@@ -62,6 +62,12 @@
       ],
       "@slibs/telegram/*": [
         "libs/telegram/src/*"
+      ],
+      "@slibs/mylab": [
+        "libs/mylab/src"
+      ],
+      "@slibs/mylab/*": [
+        "libs/mylab/src/*"
       ]
     }
   }
