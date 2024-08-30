@@ -60,6 +60,15 @@
       "compilerOptions": {
         "tsConfigPath": "libs/testing/tsconfig.lib.json"
       }
+    },
+    "telegram": {
+      "type": "library",
+      "root": "libs/telegram",
+      "entryFile": "index",
+      "sourceRoot": "libs/telegram/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/telegram/tsconfig.lib.json"
+      }
     }
   }
 }

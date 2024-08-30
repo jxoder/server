@@ -56,6 +56,12 @@
       ],
       "@slibs/testing/*": [
         "libs/testing/src/*"
+      ],
+      "@slibs/telegram": [
+        "libs/telegram/src"
+      ],
+      "@slibs/telegram/*": [
+        "libs/telegram/src/*"
       ]
     }
   }
