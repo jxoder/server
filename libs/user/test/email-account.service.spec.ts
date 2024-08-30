@@ -4,6 +4,7 @@ import { UserModule, EmailAccountService, USER_ROLE } from '@slibs/user'
 import { initPGVector } from '@slibs/testing'
 import { StartedTestContainer } from 'testcontainers'
 import { DataSource } from 'typeorm'
+import { EmailAccountRepository } from '@slibs/user/repository'
 
 describe('email-account.service', () => {
   let container: StartedTestContainer
@@ -26,12 +27,16 @@ describe('email-account.service', () => {
   })
 
   it('should be defined', async () => {
+    const repository = module.get(EmailAccountRepository)
     const service = module.get(EmailAccountService)
+    expect(repository).toBeDefined()
     expect(service).toBeDefined()
   })
 
   it('email sign & login', async () => {
+    const repository = module.get(EmailAccountRepository)
     const service = module.get(EmailAccountService)
+
     const EMAIL = 'sample@example.com'
     const PASSWORD = 'password'
 
@@ -58,5 +63,8 @@ describe('email-account.service', () => {
     // success
     const user = await service.login({ email: EMAIL, password: PASSWORD })
     expect(user.role).toEqual(USER_ROLE.USER) // default role
+
+    const account = await repository.findOneBy({ email: EMAIL })
+    expect(account?.loggedAt).not.toBeNull()
   })
 })
