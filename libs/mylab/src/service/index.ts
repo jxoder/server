@@ -1,1 +1,1 @@
-export * from './onoff-gpu.service'
+export * from './mylab-telegram.service'
