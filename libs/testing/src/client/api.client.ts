@@ -7,7 +7,11 @@ export class ApiClient {
 
   constructor(protected app: INestApplication) {}
 
-  async get(url: string) {
+  setAccessToken(token: string | undefined) {
+    this._userAccessToken = token
+  }
+
+  async get<RESPONSE>(url: string) {
     const req = request(this.app.getHttpServer()).get(url)
 
     if (this._userAccessToken) {
@@ -16,7 +20,7 @@ export class ApiClient {
 
     const res = await req
 
-    return new TestResponse(res)
+    return new TestResponse<RESPONSE>(res)
   }
 
   async post<RESPONSE>(url: string, payload: any) {

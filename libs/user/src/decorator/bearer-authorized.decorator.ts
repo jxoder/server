@@ -1,6 +1,9 @@
-import { applyDecorators, UseGuards } from '@nestjs/common'
+import { applyDecorators, UseGuards, SetMetadata } from '@nestjs/common'
 import { UserJWTGuard } from '../guard'
+import { USER_ROLE } from '../constants'
 
-export const BearerAuthorized = (): MethodDecorator => {
-  return applyDecorators(UseGuards(UserJWTGuard))
+export const BearerAuthorized = (
+  minRole = USER_ROLE.ANONYMOUS,
+): MethodDecorator => {
+  return applyDecorators(SetMetadata('role', minRole), UseGuards(UserJWTGuard))
 }
