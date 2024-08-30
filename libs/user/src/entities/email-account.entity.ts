@@ -23,7 +23,6 @@ const Description = {
 export class EmailAccount extends CommonEntity {
   @PrimaryGeneratedColumn({
     type: 'int',
-    unsigned: true,
     comment: Description.id,
   })
   readonly id: number

@@ -14,7 +14,6 @@ export class User extends CommonEntity {
   @ApiProperty({ example: 1, description: Description.id })
   @PrimaryGeneratedColumn({
     type: 'int',
-    unsigned: true,
     comment: Description.id,
   })
   readonly id: number

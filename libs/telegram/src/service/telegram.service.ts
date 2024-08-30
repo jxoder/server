@@ -1,17 +1,24 @@
-import { Ctx, Hears, Start, Update, InjectBot } from 'nestjs-telegraf'
-import { Telegraf, Context } from 'telegraf'
+import { Injectable } from '@nestjs/common'
+import { InjectBot } from 'nestjs-telegraf'
+import { Telegraf } from 'telegraf'
+import { ITelegramContext } from '../interface'
+import { TelegramUserRepository } from '../repository'
+import { USER_ROLE } from '@slibs/user'
 
-@Update()
+@Injectable()
 export class TelegramService {
-  constructor(@InjectBot() private readonly bot: Telegraf<Context>) {}
+  constructor(
+    @InjectBot() private readonly bot: Telegraf<ITelegramContext>,
+    private readonly telegramUserRepository: TelegramUserRepository,
+  ) {}
 
-  @Start()
-  async start(@Ctx() ctx: any) {
-    await ctx.reply('Hello World!')
-  }
+  async sendMessage(message: string) {
+    const user = await this.telegramUserRepository.findOneBy({
+      role: USER_ROLE.ADMIN,
+    })
 
-  @Hears('hi')
-  async hear(@Ctx() ctx: any) {
-    await ctx.reply('Hey there!')
+    if (!user) return
+
+    return this.bot.telegram.sendMessage(user.id, message)
   }
 }

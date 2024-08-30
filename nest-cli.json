@@ -16,6 +16,15 @@
         "tsConfigPath": "apps/main-app/tsconfig.app.json"
       }
     },
+    "telegram-app": {
+      "type": "application",
+      "root": "apps/telegram-app",
+      "entryFile": "main",
+      "sourceRoot": "apps/telegram-app/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/telegram-app/tsconfig.app.json"
+      }
+    },
     "common": {
       "type": "library",
       "root": "libs/common",
