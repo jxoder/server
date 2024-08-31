@@ -2,6 +2,7 @@ export enum ERROR_CODE {
   FATAL = -1,
 
   UNAUTHORIZED = 401,
+  FORBIDDEN = 403,
 
   // Common Error
   NO_UPDATE = 1_000,

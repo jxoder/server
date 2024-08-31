@@ -1,12 +1,15 @@
 import {
   ClassSerializerInterceptor,
+  MiddlewareConsumer,
   Module,
+  NestModule,
   ValidationPipe,
 } from '@nestjs/common'
 import { HealthCheckController } from './controller'
 import { APP_FILTER, APP_INTERCEPTOR, APP_PIPE } from '@nestjs/core'
 import { RouterLoggerInterceptor } from './interceptor'
 import { AppErrorFilter } from './filter'
+import { IPSecureMiddleware } from './middleware'
 
 @Module({
   providers: [
@@ -23,4 +26,8 @@ import { AppErrorFilter } from './filter'
   ],
   controllers: [HealthCheckController],
 })
-export class ApiModule {}
+export class ApiModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(IPSecureMiddleware).forRoutes('*')
+  }
+}

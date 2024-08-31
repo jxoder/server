@@ -50,6 +50,9 @@ importers:
       fs-extra:
         specifier: 11.2.0
         version: 11.2.0
+      ip-range-check:
+        specifier: 0.2.0
+        version: 0.2.0
       jsonwebtoken:
         specifier: 9.0.2
         version: 9.0.2
@@ -2056,6 +2059,9 @@ packages:
   inquirer@9.2.15:
     resolution: {integrity: sha512-vI2w4zl/mDluHt9YEQ/543VTCwPKWiHzKtm9dM2V0NdFcqEexDAjUHzO1oA60HRNaVifGXXM1tRRNluLVHa0Kg==}
     engines: {node: '>=18'}
+
+  ip-range-check@0.2.0:
+    resolution: {integrity: sha512-oaM3l/3gHbLlt/tCWLvt0mj1qUaI+STuRFnUvARGCujK9vvU61+2JsDpmkMzR4VsJhuFXWWgeKKVnwwoFfzCqw==}
 
   ipaddr.js@1.9.1:
     resolution: {integrity: sha512-0KI/607xoxSToH7GjN1FfSbLoU0+btTicjsQSWQlh/hZykN8KpmMf7uYwPW3R+akZ6R/w18ZlXSHBYXiYUPO3g==}
@@ -5972,6 +5978,10 @@ snapshots:
       string-width: 4.2.3
       strip-ansi: 6.0.1
       wrap-ansi: 6.2.0
+
+  ip-range-check@0.2.0:
+    dependencies:
+      ipaddr.js: 1.9.1
 
   ipaddr.js@1.9.1: {}
 

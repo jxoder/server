@@ -6,7 +6,7 @@ import {
   NestInterceptor,
 } from '@nestjs/common'
 import { Observable, tap } from 'rxjs'
-import requestIp from 'request-ip'
+import { IAppRequest } from '../interface'
 
 @Injectable()
 export class RouterLoggerInterceptor implements NestInterceptor {
@@ -17,7 +17,7 @@ export class RouterLoggerInterceptor implements NestInterceptor {
     next: CallHandler,
   ): Observable<any> | Promise<Observable<any>> {
     const rType = context.getType<string>()
-    const request = context.switchToHttp().getRequest()
+    const request = context.switchToHttp().getRequest<IAppRequest<any>>()
     const st = new Date().getTime()
 
     if (rType === 'graphql') {
@@ -31,7 +31,7 @@ export class RouterLoggerInterceptor implements NestInterceptor {
         }
 
         const et = new Date().getTime()
-        const message = `Method: ${request.method}; Path: ${request.path}; Execution time: ${et - st}ms; IP: ${requestIp.getClientIp(request)}; `
+        const message = `Method: ${request.method}; Path: ${request.path}; Execution time: ${et - st}ms; IP: ${request.ipAddress}; `
         this.logger.log(message)
       }),
     )

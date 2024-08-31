@@ -8,7 +8,7 @@ import {
   Logger,
 } from '@nestjs/common'
 import { CommonConfig, CommonException } from '@slibs/common'
-import requestIp from 'request-ip'
+import { IAppRequest } from '../interface'
 
 interface IErrorResonse {
   code: number
@@ -22,7 +22,7 @@ export class AppErrorFilter implements ExceptionFilter {
 
   catch(exception: unknown, host: ArgumentsHost) {
     const rType = host.getType<string>()
-    const request = host.switchToHttp().getRequest()
+    const request = host.switchToHttp().getRequest<IAppRequest<any>>()
     const response = host.switchToHttp().getResponse()
 
     if (rType === 'graphql') {
@@ -36,10 +36,10 @@ export class AppErrorFilter implements ExceptionFilter {
 
     const error = this.handleError(exception)
 
-    const message = `Method: ${request.method} Path: ${request.path} Code: ${error.code} Error: ${error.message}; IP: ${requestIp.getClientIp(request)}`
+    const message = `Method: ${request.method} Path: ${request.path} Code: ${error.code} Error: ${error.message}; IP: ${request.ipAddress}`
 
     CommonConfig.ENV !== 'test' && this.logger.error(message)
-    CommonConfig.ENV === 'local' && console.error(exception)
+    CommonConfig.DETAIL_ERROR_LOG_ENABLED && console.error(exception)
 
     response.status(
       Object.values(HttpStatus).includes(error.code)

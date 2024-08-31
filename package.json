@@ -27,6 +27,7 @@
     "dotenv": "16.4.5",
     "env-var": "7.5.0",
     "fs-extra": "11.2.0",
+    "ip-range-check": "0.2.0",
     "jsonwebtoken": "9.0.2",
     "lodash": "4.17.21",
     "nestjs-telegraf": "2.8.1",

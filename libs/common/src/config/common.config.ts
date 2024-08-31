@@ -8,4 +8,7 @@ export abstract class CommonConfig {
   static readonly LOG_LEVEL = get('LOG_LEVEL')
     .default('log')
     .asEnum(['debug', 'log', 'warn', 'error', 'fatal'])
+  static readonly DETAIL_ERROR_LOG_ENABLED = get('DETAIL_ERROR_LOG_ENABLED')
+    .default('false')
+    .asBool()
 }
