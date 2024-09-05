@@ -68,6 +68,12 @@
       ],
       "@slibs/mylab/*": [
         "libs/mylab/src/*"
+      ],
+      "@slibs/storage": [
+        "libs/storage/src"
+      ],
+      "@slibs/storage/*": [
+        "libs/storage/src/*"
       ]
     }
   }

@@ -25,6 +25,15 @@
         "tsConfigPath": "apps/telegram-app/tsconfig.app.json"
       }
     },
+    "test-app": {
+      "type": "application",
+      "root": "apps/test-app",
+      "entryFile": "main",
+      "sourceRoot": "apps/test-app/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/test-app/tsconfig.app.json"
+      }
+    },
     "common": {
       "type": "library",
       "root": "libs/common",
@@ -86,6 +95,15 @@
       "sourceRoot": "libs/mylab/src",
       "compilerOptions": {
         "tsConfigPath": "libs/mylab/tsconfig.lib.json"
+      }
+    },
+    "storage": {
+      "type": "library",
+      "root": "libs/storage",
+      "entryFile": "index",
+      "sourceRoot": "libs/storage/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/storage/tsconfig.lib.json"
       }
     }
   }

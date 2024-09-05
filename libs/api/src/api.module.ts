@@ -10,8 +10,15 @@ import { APP_FILTER, APP_INTERCEPTOR, APP_PIPE } from '@nestjs/core'
 import { RouterLoggerInterceptor } from './interceptor'
 import { AppErrorFilter } from './filter'
 import { IPSecureMiddleware } from './middleware'
+import { NestjsFormDataModule } from 'nestjs-form-data'
 
 @Module({
+  imports: [
+    NestjsFormDataModule.config({
+      isGlobal: true,
+      limits: { fileSize: 500 * 1024 * 1024 }, // 500MB
+    }),
+  ],
   providers: [
     {
       provide: APP_INTERCEPTOR,

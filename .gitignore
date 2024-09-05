@@ -5,6 +5,7 @@
 # Source directory ignore
 dist
 node_modules
+local_storage
 
 .env
 ormconfig.prod.ts

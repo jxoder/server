@@ -30,6 +30,8 @@
     "ip-range-check": "0.2.0",
     "jsonwebtoken": "9.0.2",
     "lodash": "4.17.21",
+    "minio": "8.0.1",
+    "nestjs-form-data": "1.9.91",
     "nestjs-telegraf": "2.8.1",
     "node-ssh": "12.0.5",
     "passport": "0.7.0",
@@ -41,7 +43,8 @@
     "telegraf": "4.16.3",
     "typeorm": "0.3.20",
     "typeorm-naming-strategies": "4.1.0",
-    "typeorm-transactional": "0.5.0"
+    "typeorm-transactional": "0.5.0",
+    "uuid": "10.0.0"
   },
   "devDependencies": {
     "@nestjs/cli": "10.4.4",
@@ -56,6 +59,7 @@
     "@types/ping": "0.4.4",
     "@types/request-ip": "0.0.41",
     "@types/supertest": "6.0.2",
+    "@types/uuid": "10.0.0",
     "@typescript-eslint/eslint-plugin": "6.18.1",
     "@typescript-eslint/parser": "6.18.1",
     "eslint": "8.56.0",
@@ -101,7 +105,8 @@
       "^@slibs/user(|/.*)$": "<rootDir>/libs/user/src/$1",
       "^@slibs/testing(|/.*)$": "<rootDir>/libs/testing/src/$1",
       "^@slibs/telegram(|/.*)$": "<rootDir>/libs/telegram/src/$1",
-      "^@slibs/mylab(|/.*)$": "<rootDir>/libs/mylab/src/$1"
+      "^@slibs/mylab(|/.*)$": "<rootDir>/libs/mylab/src/$1",
+      "^@slibs/storage(|/.*)$": "<rootDir>/libs/storage/src/$1"
     }
   }
 }
