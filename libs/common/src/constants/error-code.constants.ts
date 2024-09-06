@@ -12,4 +12,7 @@ export enum ERROR_CODE {
 
   // User Error
   INVALID_LOGIN_INFO = 10_000,
+
+  // PG-Qeuue Error
+  FAILED_ENQUEUE_TASK = 100_000,
 }

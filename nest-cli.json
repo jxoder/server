@@ -105,6 +105,15 @@
       "compilerOptions": {
         "tsConfigPath": "libs/storage/tsconfig.lib.json"
       }
+    },
+    "pg-queue": {
+      "type": "library",
+      "root": "libs/pg-queue",
+      "entryFile": "index",
+      "sourceRoot": "libs/pg-queue/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/pg-queue/tsconfig.lib.json"
+      }
     }
   }
 }

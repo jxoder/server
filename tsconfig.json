@@ -74,6 +74,12 @@
       ],
       "@slibs/storage/*": [
         "libs/storage/src/*"
+      ],
+      "@slibs/pg-queue": [
+        "libs/pg-queue/src"
+      ],
+      "@slibs/pg-queue/*": [
+        "libs/pg-queue/src/*"
       ]
     }
   }

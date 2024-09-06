@@ -1,0 +1,5 @@
+/**
+ * CONEXT
+ */
+export const PG_QUEUE_CLIENT = 'PG_QUEUE_CLIENT'
+export const PG_QUEUE_HANDLER = 'PG_QUEUE_HANDLER'
