@@ -14,6 +14,10 @@ export class MylabKvRepository extends CommonRepository<MyLabKv, string> {
     return 'key'
   }
 
+  async upsert(e: Partial<MyLabKv>, keys: Array<string>) {
+    return this.repository.upsert(e, keys)
+  }
+
   async get<TYPE>(key: string): Promise<TYPE | null> {
     const e = await this.repository.findOneBy({ key })
     if (!e) {

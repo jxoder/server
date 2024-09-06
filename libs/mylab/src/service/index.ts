@@ -1,1 +1,1 @@
-export * from './mylab-telegram.service'
+export * from './mylab-kv.service'
