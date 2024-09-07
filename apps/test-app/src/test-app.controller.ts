@@ -1,28 +1,25 @@
 import { Body, Controller, Post } from '@nestjs/common'
 import { AnyObjectPayload, UploadFilePayload } from './payload'
 import { ApiSwagger, FormDataRequest } from '@slibs/api'
-import { STORAGE_TYPE, StorageService } from '@slibs/storage'
 import { PGQueueService } from '@slibs/pg-queue'
+import { InjectStorage } from '@slibs/storage/decorator'
+import { StorageService } from '@slibs/storage'
 
 @Controller()
 export class TestAppController {
   constructor(
-    private storage: StorageService,
     private readonly queueService: PGQueueService,
+    @InjectStorage() private readonly storage: StorageService,
   ) {}
 
   @Post('storage/upload')
   @FormDataRequest()
   @ApiSwagger({ type: Object, summary: 'upload file' })
   async upload(@Body() payload: UploadFilePayload) {
-    const key = await this.storage.putObject(
-      'storage',
-      payload.file.buffer,
-      { contentType: payload.file.mimeType },
-      STORAGE_TYPE.MINIO,
-    )
+    const key = await this.storage.putObject('testing', payload.file.buffer, {
+      contentType: payload.file.mimeType,
+    })
     return { uploaded: key }
-    //
   }
 
   @Post('enqueue')

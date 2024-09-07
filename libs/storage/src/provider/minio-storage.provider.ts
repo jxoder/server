@@ -1,21 +1,16 @@
 import { Injectable } from '@nestjs/common'
 import { MinioStorageConfig } from '../config'
-import {
-  IStoragePutObjectOptions,
-  StorageBaseProvider,
-} from './storage-base.provider'
 import { Client } from 'minio'
 import { v4 as uuidV4 } from 'uuid'
 import { Readable } from 'stream'
+import { IStoragePutObjectOptions, StorageService } from '../service'
 
 @Injectable()
-export class MinioStorageProvider extends StorageBaseProvider {
+export class MinioStorageProvider extends StorageService {
   private client: Client
   private bucket = MinioStorageConfig.BUCKET!
-  type = MinioStorageConfig.TYPE
 
   async getObject(key: string): Promise<Readable> {
-    this.ensureInit()
     return this.client.getObject(this.bucket, key)
   }
 

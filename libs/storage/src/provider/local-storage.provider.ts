@@ -1,18 +1,14 @@
 import { Injectable } from '@nestjs/common'
-import {
-  IStoragePutObjectOptions,
-  StorageBaseProvider,
-} from './storage-base.provider'
 import { LocalStorageConfig } from '../config'
 import { ensureDir, createReadStream, rm, writeFile } from 'fs-extra'
 import path from 'path'
 import { v4 as uuidV4 } from 'uuid'
 import { Readable } from 'stream'
+import { IStoragePutObjectOptions, StorageService } from '../service'
 
 @Injectable()
-export class LocalStorageProvider extends StorageBaseProvider {
+export class LocalStorageProvider extends StorageService {
   private basePath = LocalStorageConfig.PATH
-  type = LocalStorageConfig.TYPE
 
   async getObject(key: string): Promise<Readable> {
     return createReadStream(path.join(this.basePath, key))

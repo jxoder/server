@@ -1,10 +1,15 @@
-import { Global, Module } from '@nestjs/common'
+import { Module } from '@nestjs/common'
 import { LocalStorageProvider, MinioStorageProvider } from './provider'
-import { StorageService } from './service'
+import { LOCAL_STORAGE_TOKEN, MINIO_STORAGE_TOKEN } from './constants'
 
-@Global()
 @Module({
-  providers: [LocalStorageProvider, MinioStorageProvider, StorageService],
-  exports: [StorageService],
+  providers: [
+    { provide: LOCAL_STORAGE_TOKEN, useClass: LocalStorageProvider },
+    { provide: MINIO_STORAGE_TOKEN, useClass: MinioStorageProvider },
+  ],
+  exports: [
+    { provide: LOCAL_STORAGE_TOKEN, useClass: LocalStorageProvider },
+    { provide: MINIO_STORAGE_TOKEN, useClass: MinioStorageProvider },
+  ],
 })
 export class StorageModule {}
