@@ -29,7 +29,6 @@ export class TestAppController {
       body.data?.name,
       body.data?.data ?? {},
     )
-    console.log(t)
     return t
   }
 }

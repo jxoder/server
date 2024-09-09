@@ -1,68 +1,87 @@
-import {
-  Inject,
-  Injectable,
-  Logger,
-  OnApplicationBootstrap,
-} from '@nestjs/common'
+import { Injectable, Logger, OnApplicationBootstrap } from '@nestjs/common'
 import { InstanceWrapper } from '@nestjs/core/injector/instance-wrapper'
-import { DiscoveryService } from '@nestjs/core'
+import { DiscoveryService, Reflector } from '@nestjs/core'
 import PGBoss from 'pg-boss'
-import { PGQueueWorkBase } from './pg-queue-work-base.service'
-import { PG_QUEUE_CLIENT, PG_QUEUE_HANDLER } from '../constants'
-import { IPGQueueWorkOptions } from '../interface'
+import { PG_QUEUE_PROCESSOR_TOKEN } from '../constants'
+import {
+  IPGQueueWorkerInstance,
+  IPGQueueWorkOptions,
+  PGQueue,
+} from '../interface'
 import { getDeadLetterName } from '../utils'
+import { InjectPGQueue } from '../decorator'
+import { pick } from 'lodash'
 
 @Injectable()
 export class PGQueueRegisterService implements OnApplicationBootstrap {
   private readonly logger = new Logger(this.constructor.name)
 
   constructor(
-    @Inject(PG_QUEUE_CLIENT) protected readonly boss: PGBoss,
+    @InjectPGQueue() private readonly queue: PGQueue,
     private readonly discoveryService: DiscoveryService,
+    private readonly reflector: Reflector,
   ) {}
 
   async onApplicationBootstrap() {
     // init pg-boss
-    await this.boss.start()
+    await this.queue.start()
 
     // scan pg-queue task handlers
-    const handlers = this.getHandlers()
-
-    // register work
+    const processors = this.getProcessors()
     await Promise.all(
-      handlers.map(async handler => {
-        const instance = handler.instance
-        const queueName = instance.handlerName
-        const customOptions = instance?.['_customOptions']
-
-        await this.upsertQueue({
-          name: queueName,
-          enableDeadLetter: customOptions.enableDeadLetter,
-        })
-
-        this.logger.log(`Register Work: ${queueName}`)
-        await this.registerWork(
-          instance.handlerName,
-          instance.handleTask.bind(instance),
-          instance?.['_workOptions'],
+      processors.map(async processor => {
+        const options = this.reflector.get<IPGQueueWorkOptions>(
+          PG_QUEUE_PROCESSOR_TOKEN,
+          processor.metatype,
         )
 
-        if (customOptions.enableDeadLetter) {
-          this.logger.log(`Register Dead Letter Work: ${queueName}`)
+        const workOptions = pick(options, [
+          'includeMetadata',
+          'priority',
+          'batchSize',
+          'pollingIntervalSeconds',
+        ])
+
+        const queueOptions = pick(options, [
+          'retryLimit',
+          'retryDelay',
+          'retryBackoff',
+        ])
+
+        this.logger.log(`Register Queue: ${options.name}`)
+        // init queue
+        await this.upsertQueue({
+          name: options.name,
+          retryOptions: queueOptions,
+          enableDeadLetter: options.enableDeadLetter,
+        })
+
+        await this.registerWork(
+          options.name,
+          processor.instance.handleTask.bind(processor.instance),
+          { name: options.name, ...workOptions },
+        )
+
+        if (options.enableDeadLetter && processor.instance?.handleDeadLetter) {
+          this.logger.log(`Register Dead Letter: ${options.name}`)
           await this.registerWork(
-            getDeadLetterName(queueName),
-            instance.handleDeadLetter.bind(instance),
+            getDeadLetterName(options.name),
+            processor.instance.handleDeadLetter.bind(processor.instance),
           )
         }
       }),
     )
   }
 
-  private getHandlers(): Array<InstanceWrapper<PGQueueWorkBase<any, any>>> {
+  private getProcessors(): Array<
+    InstanceWrapper<IPGQueueWorkerInstance<any, any>>
+  > {
     return this.discoveryService
       .getProviders()
       .filter(
-        provider => provider.instance?.['_triggerType'] === PG_QUEUE_HANDLER,
+        provider =>
+          provider.metatype &&
+          !!this.reflector.get(PG_QUEUE_PROCESSOR_TOKEN, provider.metatype),
       )
   }
 
@@ -71,7 +90,7 @@ export class PGQueueRegisterService implements OnApplicationBootstrap {
     fn: (id: string, job: any) => Promise<void>,
     options?: IPGQueueWorkOptions,
   ) {
-    await this.boss.work(
+    await this.queue.work(
       name,
       options ?? {},
       async (jobs: Array<PGBoss.Job<any>>) => {
@@ -81,6 +100,7 @@ export class PGQueueRegisterService implements OnApplicationBootstrap {
               const result = await fn(job.id, job.data)
               await this.completeJob(name, job.id, result)
             } catch (ex) {
+              this.logger.error(ex)
               await this.failJob(name, job.id, ex)
             }
           }),
@@ -103,10 +123,10 @@ export class PGQueueRegisterService implements OnApplicationBootstrap {
     }
 
     const { name } = options
-    const exists = await this.boss.getQueue(name)
+    const exists = await this.queue.getQueue(name)
     exists ||
-      (await this.boss.createQueue(name, { name, ...options.retryOptions }))
-    await this.boss.updateQueue(name, {
+      (await this.queue.createQueue(name, { name, ...options.retryOptions }))
+    await this.queue.updateQueue(name, {
       name,
       ...options.retryOptions,
       deadLetter: deadLetterName,
@@ -114,10 +134,10 @@ export class PGQueueRegisterService implements OnApplicationBootstrap {
   }
 
   async completeJob(name: string, id: string, result: any) {
-    return this.boss.complete(name, id, result)
+    return this.queue.complete(name, id, result)
   }
 
   async failJob(name: string, id: string, error: any) {
-    return this.boss.fail(name, id, error)
+    return this.queue.fail(name, id, error)
   }
 }

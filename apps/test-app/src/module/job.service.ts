@@ -1,16 +1,17 @@
-import { Injectable } from '@nestjs/common'
-import { PGQueueService, PGQueueWorkBase } from '@slibs/pg-queue'
+import { Logger } from '@nestjs/common'
+import { PGQueueProcessor, IPGQueueWorkerInstance } from '@slibs/pg-queue'
 
-@Injectable()
-export class JobService extends PGQueueWorkBase<any, any> {
-  constructor(private readonly queueService: PGQueueService) {
-    super('job', { enableDeadLetter: true, batchSize: 10 })
-  }
+@PGQueueProcessor({ name: 'job', enableDeadLetter: true })
+export class JobService implements IPGQueueWorkerInstance<any, any> {
+  private readonly logger = new Logger(this.constructor.name)
 
   async handleTask(id: string, data: any) {
-    console.log(id, data)
-    // throw new Error('ERROR')
+    this.logger.log(`run ${id}, ${data}`)
 
     return { ok: 1 }
+  }
+
+  async handleDeadLetter(id: string, data: any): Promise<void> {
+    this.logger.error(`dead letter ${id}, ${data}`)
   }
 }
