@@ -8,6 +8,7 @@ import { OllamaConfig } from './config'
 export class OllamaModule {
   static forRoot(config?: Omit<Config, 'host'>): DynamicModule {
     return {
+      global: true,
       module: this,
       providers: [
         {

@@ -1,12 +1,15 @@
 import { Command, Ctx, InjectBot, Update } from 'nestjs-telegraf'
 import { TelegramBaseService } from './base'
-import { Telegraf } from 'telegraf'
-import { ITelegramContext, TelegramUserService } from '@slibs/telegram'
+import {
+  ITelegramContext,
+  TelegramBot,
+  TelegramUserService,
+} from '@slibs/telegram'
 
 @Update()
 export class TelegramAppCommandService extends TelegramBaseService {
   constructor(
-    @InjectBot() bot: Telegraf<ITelegramContext>,
+    @InjectBot() bot: TelegramBot,
     telegramUserService: TelegramUserService,
   ) {
     super(bot, telegramUserService)

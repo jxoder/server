@@ -25,6 +25,15 @@
         "tsConfigPath": "apps/telegram-app/tsconfig.app.json"
       }
     },
+    "gpu-app": {
+      "type": "application",
+      "root": "apps/gpu-app",
+      "entryFile": "main",
+      "sourceRoot": "apps/gpu-app/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/gpu-app/tsconfig.app.json"
+      }
+    },
     "test-app": {
       "type": "application",
       "root": "apps/test-app",
