@@ -27,7 +27,7 @@ const PGBossClient = new PGBoss({
     PGQueueRegisterService,
   ],
   exports: [
-    { provide: PG_QUEUE_CLIENT_TOKEN, useValue: PGBossClient },
+    { provide: PG_QUEUE_CLIENT_TOKEN, useExisting: PG_QUEUE_CLIENT_TOKEN },
     PGQueueService,
   ],
 })
