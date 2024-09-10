@@ -34,6 +34,7 @@
     "nestjs-form-data": "1.9.91",
     "nestjs-telegraf": "2.8.1",
     "node-ssh": "12.0.5",
+    "ollama": "0.5.9",
     "passport": "0.7.0",
     "passport-custom": "1.1.1",
     "pg": "8.12.0",
@@ -108,7 +109,8 @@
       "^@slibs/telegram(|/.*)$": "<rootDir>/libs/telegram/src/$1",
       "^@slibs/mylab(|/.*)$": "<rootDir>/libs/mylab/src/$1",
       "^@slibs/storage(|/.*)$": "<rootDir>/libs/storage/src/$1",
-      "^@slibs/pg-queue(|/.*)$": "<rootDir>/libs/pg-queue/src/$1"
+      "^@slibs/pg-queue(|/.*)$": "<rootDir>/libs/pg-queue/src/$1",
+      "^@slibs/ollama(|/.*)$": "<rootDir>/libs/ollama/src/$1"
     }
   }
 }

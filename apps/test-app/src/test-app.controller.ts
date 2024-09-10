@@ -1,15 +1,22 @@
 import { Body, Controller, Post } from '@nestjs/common'
-import { AnyObjectPayload, UploadFilePayload } from './payload'
+import {
+  AnyObjectPayload,
+  SimpleStringPayload,
+  UploadFilePayload,
+} from './payload'
 import { ApiSwagger, FormDataRequest } from '@slibs/api'
 import { PGQueueService } from '@slibs/pg-queue'
 import { InjectStorage } from '@slibs/storage/decorator'
 import { StorageService } from '@slibs/storage'
+import { InjectOllama } from '@slibs/ollama'
+import { Ollama } from 'ollama'
 
 @Controller()
 export class TestAppController {
   constructor(
     private readonly queueService: PGQueueService,
     @InjectStorage() private readonly storage: StorageService,
+    @InjectOllama() private readonly ollama: Ollama,
   ) {}
 
   @Post('storage/upload')
@@ -30,5 +37,16 @@ export class TestAppController {
       body.data?.data ?? {},
     )
     return t
+  }
+
+  @Post('ollama/chat')
+  @ApiSwagger({ type: String, summary: 'ollama chat' })
+  async ollamaChat(@Body() body: SimpleStringPayload) {
+    const res = await this.ollama.chat({
+      model: 'llama3.1',
+      messages: [{ role: 'user', content: body.text }],
+    })
+
+    return res.message.content
   }
 }

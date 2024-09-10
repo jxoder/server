@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger'
-import { IsObject, IsOptional } from 'class-validator'
+import { IsObject, IsOptional, IsString } from 'class-validator'
 import { IsFile, MemoryStoredFile } from 'nestjs-form-data'
 
 export class UploadFilePayload {
@@ -13,4 +13,10 @@ export class AnyObjectPayload {
   @IsOptional()
   @IsObject()
   data: any
+}
+
+export class SimpleStringPayload {
+  @ApiProperty({ type: 'string' })
+  @IsString()
+  text: string
 }

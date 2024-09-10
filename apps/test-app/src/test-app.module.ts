@@ -5,6 +5,7 @@ import { TestAppController } from './test-app.controller'
 import { StorageModule } from '@slibs/storage'
 import { PGQueueModule } from '@slibs/pg-queue'
 import { JobModule } from './module/job.module'
+import { OllamaModule } from '@slibs/ollama'
 
 @Module({
   imports: [
@@ -12,7 +13,8 @@ import { JobModule } from './module/job.module'
     DatabaseModule.forRoot(),
     StorageModule,
     PGQueueModule,
-    JobModule,
+    // JobModule,
+    OllamaModule,
   ],
   controllers: [TestAppController],
 })

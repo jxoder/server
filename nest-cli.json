@@ -114,6 +114,15 @@
       "compilerOptions": {
         "tsConfigPath": "libs/pg-queue/tsconfig.lib.json"
       }
+    },
+    "ollama": {
+      "type": "library",
+      "root": "libs/ollama",
+      "entryFile": "index",
+      "sourceRoot": "libs/ollama/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/ollama/tsconfig.lib.json"
+      }
     }
   }
 }
