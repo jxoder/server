@@ -15,4 +15,7 @@ export enum ERROR_CODE {
 
   // PG-Qeuue Error
   FAILED_ENQUEUE_TASK = 100_000,
+
+  // AI
+  INVALID_AI_MODEL = 200_000,
 }

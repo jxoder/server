@@ -8,15 +8,14 @@ import { ApiSwagger, FormDataRequest } from '@slibs/api'
 import { PGQueueService } from '@slibs/pg-queue'
 import { InjectStorage } from '@slibs/storage/decorator'
 import { StorageService } from '@slibs/storage'
-import { InjectOllama } from '@slibs/ollama'
-import { Ollama } from 'ollama'
+import { InjectOllama, OllamaClient } from '@slibs/ollama'
 
 @Controller()
 export class TestAppController {
   constructor(
     private readonly queueService: PGQueueService,
     @InjectStorage() private readonly storage: StorageService,
-    @InjectOllama() private readonly ollama: Ollama,
+    @InjectOllama() private readonly ollama: OllamaClient,
   ) {}
 
   @Post('storage/upload')
