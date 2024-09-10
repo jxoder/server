@@ -13,7 +13,7 @@ import { OllamaModule } from '@slibs/ollama'
     DatabaseModule.forRoot(),
     StorageModule,
     PGQueueModule,
-    // JobModule,
+    JobModule,
     OllamaModule,
   ],
   controllers: [TestAppController],

@@ -117,7 +117,7 @@ export class PGQueueRegisterService implements OnApplicationBootstrap {
     const deadLetterName = getDeadLetterName(options.name)
     if (options.enableDeadLetter) {
       await this.upsertQueue({
-        name: options.name,
+        name: deadLetterName,
         retryOptions: options.retryOptions,
       })
     }
@@ -126,11 +126,10 @@ export class PGQueueRegisterService implements OnApplicationBootstrap {
     const exists = await this.queue.getQueue(name)
     exists ||
       (await this.queue.createQueue(name, { name, ...options.retryOptions }))
-    await this.queue.updateQueue(name, {
-      name,
-      ...options.retryOptions,
-      deadLetter: deadLetterName,
-    })
+
+    const updateOptions: PGBoss.Queue = { name, ...options.retryOptions }
+    options.enableDeadLetter && (updateOptions.deadLetter = deadLetterName)
+    await this.queue.updateQueue(name, updateOptions)
   }
 
   async completeJob(name: string, id: string, result: any) {
