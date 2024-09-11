@@ -15,11 +15,11 @@ export class TelegramAppCommandService extends TelegramBaseService {
     super(bot, telegramUserService)
   }
 
-  @Command('admin')
+  @Command('gpu')
   async adminCommand(@Ctx() ctx: ITelegramContext) {
     await this.ensureAdmin(ctx)
 
-    await ctx.reply('Admin Command', {
+    await ctx.reply('gpu control', {
       reply_markup: {
         inline_keyboard: [
           [

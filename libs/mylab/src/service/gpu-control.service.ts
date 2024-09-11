@@ -7,7 +7,7 @@ import { AssertUtils, ERROR_CODE } from '@slibs/common'
 import { MylabKvRepository } from '../repository'
 
 @Injectable()
-export class GPUProvider {
+export class GPUControlService {
   private readonly logger = new Logger(this.constructor.name)
 
   constructor(private readonly kvRepository: MylabKvRepository) {}
