@@ -10,7 +10,9 @@
     "typeorm": "ts-node -r dotenv/config -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
     "migration:gen": "pnpm typeorm migration:generate migrations/migration -p -d ormconfig.ts",
     "migration:run": "pnpm typeorm migration:run -d",
-    "migration:revert": "pnpm typeorm migration:revert -d"
+    "migration:revert": "pnpm typeorm migration:revert -d",
+    "res:up": "docker-compose -f res/docker-compose.yml up -d",
+    "res:down": "docker-compose -f res/docker-compose.yml down"
   },
   "dependencies": {
     "@nestjs/common": "10.4.1",
@@ -19,6 +21,11 @@
     "@nestjs/platform-express": "10.4.1",
     "@nestjs/swagger": "7.4.0",
     "@nestjs/typeorm": "10.0.2",
+    "@bull-board/api": "5.15.1",
+    "@bull-board/express": "5.15.1",
+    "@bull-board/nestjs": "5.15.1",
+    "@nestjs/bullmq": "10.1.0",
+    "bullmq": "5.4.5",
     "axios": "1.7.5",
     "bcrypt": "5.1.1",
     "class-transformer": "0.5.1",
@@ -110,7 +117,8 @@
       "^@slibs/mylab(|/.*)$": "<rootDir>/libs/mylab/src/$1",
       "^@slibs/storage(|/.*)$": "<rootDir>/libs/storage/src/$1",
       "^@slibs/pg-queue(|/.*)$": "<rootDir>/libs/pg-queue/src/$1",
-      "^@slibs/ollama(|/.*)$": "<rootDir>/libs/ollama/src/$1"
+      "^@slibs/ollama(|/.*)$": "<rootDir>/libs/ollama/src/$1",
+      "^@slibs/redis-queue(|/.*)$": "<rootDir>/libs/redis-queue/src/$1"
     }
   }
 }

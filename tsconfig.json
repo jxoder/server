@@ -86,6 +86,12 @@
       ],
       "@slibs/ollama/*": [
         "libs/ollama/src/*"
+      ],
+      "@slibs/redis-queue": [
+        "libs/redis-queue/src"
+      ],
+      "@slibs/redis-queue/*": [
+        "libs/redis-queue/src/*"
       ]
     }
   }

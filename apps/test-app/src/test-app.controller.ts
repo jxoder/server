@@ -5,17 +5,18 @@ import {
   UploadFilePayload,
 } from './payload'
 import { ApiSwagger, FormDataRequest } from '@slibs/api'
-import { PGQueueService } from '@slibs/pg-queue'
-import { InjectStorage } from '@slibs/storage/decorator'
-import { StorageService } from '@slibs/storage'
+import { InjectStorage, StorageService } from '@slibs/storage'
 import { InjectOllama, OllamaClient } from '@slibs/ollama'
+import { InjectQueue } from '@nestjs/bullmq'
+import { Queue } from 'bullmq'
 
 @Controller()
 export class TestAppController {
   constructor(
-    private readonly queueService: PGQueueService,
     @InjectStorage() private readonly storage: StorageService,
     @InjectOllama() private readonly ollama: OllamaClient,
+    @InjectQueue('test') private readonly queue: Queue,
+    @InjectQueue('test2') private readonly queue2: Queue,
   ) {}
 
   @Post('storage/upload')
@@ -31,11 +32,12 @@ export class TestAppController {
   @Post('enqueue')
   @ApiSwagger({ type: Object, summary: 'enqueue ' })
   async enqueue(@Body() body: AnyObjectPayload) {
-    const t = await this.queueService.send(
-      body.data?.name,
-      body.data?.data ?? {},
-    )
-    return t
+    await this.queue.add('test2', body, {
+      attempts: 2, // retry count
+      backoff: 1000, // retry delay
+      lifo: true, // last in first out
+    })
+    return { ok: 1 }
   }
 
   @Post('ollama/chat')

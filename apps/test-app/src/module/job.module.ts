@@ -1,5 +1,7 @@
 import { Module } from '@nestjs/common'
 import { JobService } from './job.service'
 
-@Module({ providers: [JobService] })
+@Module({
+  providers: [JobService],
+})
 export class JobModule {}

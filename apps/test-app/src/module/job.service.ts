@@ -1,17 +1,13 @@
-import { Logger } from '@nestjs/common'
-import { PGQueueProcessor, IPGQueueWorkerInstance } from '@slibs/pg-queue'
+import { Processor } from '@nestjs/bullmq'
+import { RedisQueueProcessor } from '@slibs/redis-queue'
+import { Job } from 'bullmq'
 
-@PGQueueProcessor({ name: 'job', enableDeadLetter: true })
-export class JobService implements IPGQueueWorkerInstance<any, any> {
-  private readonly logger = new Logger(this.constructor.name)
-
-  async handleTask(id: string, data: any) {
-    this.logger.log(`run ${id}, ${data}`)
-
+@Processor('test', {
+  concurrency: 1,
+})
+export class JobService extends RedisQueueProcessor<any, any> {
+  async process(job: Job, token?: string): Promise<any> {
+    console.log('processing job', job.id, job.name, token)
     return { ok: 1 }
-  }
-
-  async handleDeadLetter(id: string, data: any): Promise<void> {
-    this.logger.error(`dead letter ${id}, ${data}`)
   }
 }
