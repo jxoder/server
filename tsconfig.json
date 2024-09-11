@@ -92,6 +92,12 @@
       ],
       "@slibs/redis-queue/*": [
         "libs/redis-queue/src/*"
+      ],
+      "@slibs/openai": [
+        "libs/openai/src"
+      ],
+      "@slibs/openai/*": [
+        "libs/openai/src/*"
       ]
     }
   }

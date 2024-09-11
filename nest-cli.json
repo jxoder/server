@@ -115,15 +115,6 @@
         "tsConfigPath": "libs/storage/tsconfig.lib.json"
       }
     },
-    "pg-queue": {
-      "type": "library",
-      "root": "libs/pg-queue",
-      "entryFile": "index",
-      "sourceRoot": "libs/pg-queue/src",
-      "compilerOptions": {
-        "tsConfigPath": "libs/pg-queue/tsconfig.lib.json"
-      }
-    },
     "ollama": {
       "type": "library",
       "root": "libs/ollama",
@@ -131,6 +122,15 @@
       "sourceRoot": "libs/ollama/src",
       "compilerOptions": {
         "tsConfigPath": "libs/ollama/tsconfig.lib.json"
+      }
+    },
+    "openai": {
+      "type": "library",
+      "root": "libs/openai",
+      "entryFile": "index",
+      "sourceRoot": "libs/openai/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/openai/tsconfig.lib.json"
       }
     },
     "redis-queue": {
