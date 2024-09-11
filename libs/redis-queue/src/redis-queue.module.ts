@@ -35,6 +35,7 @@ export class RedisQueueModule extends ConfigurableModuleClass {
           connection: {
             host: RedisQueueConfig.REDIS_HOST,
             port: RedisQueueConfig.REDIS_PORT,
+            password: RedisQueueConfig.REDIS_PASSWORD,
           },
         }),
         ...bullModules,
