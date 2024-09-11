@@ -13,10 +13,13 @@ export interface IVerifiedUserJWT {
 
 export class UserJWTUtils {
   static sign(payload: ISignUserJWTPayload): Promise<string> {
-    return JWTUtils.sign(payload, {
-      secret: UserConfig.JWT_SECRET,
-      expiresIn: UserConfig.JWT_EXPIRES_IN,
-    })
+    return JWTUtils.sign(
+      { ...payload, type: 'User' },
+      {
+        secret: UserConfig.JWT_SECRET,
+        expiresIn: UserConfig.JWT_EXPIRES_IN,
+      },
+    )
   }
 
   static verify(token: string): Promise<IVerifiedUserJWT> {
