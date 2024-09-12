@@ -10,8 +10,8 @@ import { RedisQueueModule } from '@slibs/redis-queue'
     ApiModule,
     DatabaseModule.forRoot(),
     AppUserModule,
-    AdminModule.forRoot(),
-    RedisQueueModule.forRoot(),
+    // AdminModule.forRoot(),
+    // RedisQueueModule.forRoot(),
   ],
 })
 export class MainAppModule {}
