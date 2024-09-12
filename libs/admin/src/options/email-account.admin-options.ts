@@ -27,7 +27,7 @@ export const EmailAccountAdminoOptions: IAdminResourceOptions = {
       properties: {
         showEmail: {
           components: {
-            edit: registerComponent('SHOW_EMAIL', 'common/ShowEmail.tsx'),
+            edit: registerComponent('SHOW_EMAIL', 'EmailAccount/ShowEmail.tsx'),
           },
         },
         newPassword: {
