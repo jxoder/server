@@ -98,6 +98,12 @@
       ],
       "@slibs/openai/*": [
         "libs/openai/src/*"
+      ],
+      "@slibs/admin": [
+        "libs/admin/src"
+      ],
+      "@slibs/admin/*": [
+        "libs/admin/src/*"
       ]
     }
   }
