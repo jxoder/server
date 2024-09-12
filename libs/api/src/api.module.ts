@@ -5,12 +5,16 @@ import {
   NestModule,
   ValidationPipe,
 } from '@nestjs/common'
-import { HealthCheckController } from './controller'
+import session from 'express-session'
+import Connect from 'connect-pg-simple'
+import { NestjsFormDataModule } from 'nestjs-form-data'
 import { APP_FILTER, APP_INTERCEPTOR, APP_PIPE } from '@nestjs/core'
+import { ConnectStringUtils } from '@slibs/database'
+import { HealthCheckController } from './controller'
 import { RouterLoggerInterceptor } from './interceptor'
 import { AppErrorFilter } from './filter'
 import { IPSecureMiddleware } from './middleware'
-import { NestjsFormDataModule } from 'nestjs-form-data'
+import { ApiSecureConfig } from './config'
 
 @Module({
   imports: [
@@ -36,5 +40,24 @@ import { NestjsFormDataModule } from 'nestjs-form-data'
 export class ApiModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
     consumer.apply(IPSecureMiddleware).forRoutes('*')
+    consumer
+      .apply(session(ApiModule.getSessionStorageOptions()))
+      .forRoutes('admin')
+  }
+
+  static getSessionStorageOptions() {
+    const ConnectSession = Connect(session)
+    return {
+      store: new ConnectSession({
+        conObject: {
+          connectionString: ConnectStringUtils.postgres(),
+        },
+        tableName: 'pg_session',
+      }),
+      resave: false,
+      saveUninitialized: false,
+      name: 'session',
+      secret: ApiSecureConfig.SESSION_SECRET,
+    }
   }
 }
