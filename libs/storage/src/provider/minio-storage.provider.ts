@@ -4,6 +4,7 @@ import { Client } from 'minio'
 import { v4 as uuidV4 } from 'uuid'
 import { Readable } from 'stream'
 import { IStoragePutObjectOptions, StorageService } from '../service'
+import * as fileType from 'file-type'
 
 @Injectable()
 export class MinioStorageProvider extends StorageService {
@@ -20,11 +21,12 @@ export class MinioStorageProvider extends StorageService {
     options?: IStoragePutObjectOptions,
   ): Promise<string> {
     this.ensureInit()
+    const ft = await fileType.fromBuffer(data)
     const p = `${key}/${uuidV4()}`
-    const metadata = options?.contentType
-      ? { 'Content-Type': options.contentType }
-      : {}
-    await this.client.putObject(this.bucket, p, data, undefined, metadata)
+    const k = ft?.ext ? `${p.slice(0, -(ft.ext.length + 1))}.${ft.ext}` : p
+    const contentType = options?.contentType || ft?.mime
+    const metadata = contentType ? { 'Content-Type': contentType } : {}
+    await this.client.putObject(this.bucket, k, data, undefined, metadata)
 
     return p
   }

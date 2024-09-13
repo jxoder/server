@@ -104,6 +104,18 @@
       ],
       "@slibs/admin/*": [
         "libs/admin/src/*"
+      ],
+      "@slibs/comfy": [
+        "libs/comfy/src"
+      ],
+      "@slibs/comfy/*": [
+        "libs/comfy/src/*"
+      ],
+      "@slibs/app-shared": [
+        "libs/app-shared/src"
+      ],
+      "@slibs/app-shared/*": [
+        "libs/app-shared/src/*"
       ]
     }
   }

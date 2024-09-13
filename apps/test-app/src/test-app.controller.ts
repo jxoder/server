@@ -9,14 +9,14 @@ import { InjectStorage, StorageService } from '@slibs/storage'
 import { InjectOllama, OllamaClient } from '@slibs/ollama'
 import { InjectQueue } from '@nestjs/bullmq'
 import { Queue } from 'bullmq'
+import { GPU_JOB_NAME, QUEUE_NAME } from '@slibs/app-shared'
 
 @Controller()
 export class TestAppController {
   constructor(
     @InjectStorage() private readonly storage: StorageService,
     @InjectOllama() private readonly ollama: OllamaClient,
-    @InjectQueue('test') private readonly queue: Queue,
-    @InjectQueue('test2') private readonly queue2: Queue,
+    @InjectQueue(QUEUE_NAME.GPU) private readonly gpuQueue: Queue,
   ) {}
 
   @Post('storage/upload')
@@ -32,8 +32,9 @@ export class TestAppController {
   @Post('enqueue')
   @ApiSwagger({ type: Object, summary: 'enqueue ' })
   async enqueue(@Body() body: AnyObjectPayload) {
-    await this.queue.add('test2', body, {
-      attempts: 2, // retry count
+    console.log(body)
+    await this.gpuQueue.add(GPU_JOB_NAME.COMFY, body.data, {
+      // attempts: 1, // retry count
       backoff: 1000, // retry delay
       lifo: true, // last in first out
     })

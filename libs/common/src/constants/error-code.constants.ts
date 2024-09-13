@@ -18,4 +18,7 @@ export enum ERROR_CODE {
 
   // AI
   INVALID_AI_MODEL = 200_000,
+
+  // Comfy
+  INVALID_COMFY_PAYLOAD = 201_000,
 }

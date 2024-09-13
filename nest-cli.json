@@ -150,6 +150,24 @@
       "compilerOptions": {
         "tsConfigPath": "libs/admin/tsconfig.lib.json"
       }
+    },
+    "comfy": {
+      "type": "library",
+      "root": "libs/comfy",
+      "entryFile": "index",
+      "sourceRoot": "libs/comfy/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/comfy/tsconfig.lib.json"
+      }
+    },
+    "app-shared": {
+      "type": "library",
+      "root": "libs/app-shared",
+      "entryFile": "index",
+      "sourceRoot": "libs/app-shared/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/app-shared/tsconfig.lib.json"
+      }
     }
   }
 }
