@@ -1,4 +1,4 @@
-import { OnWorkerEvent, Processor } from '@nestjs/bullmq'
+import { InjectQueue, OnWorkerEvent, Processor } from '@nestjs/bullmq'
 import { QUEUE_NAME } from '@slibs/app-shared'
 import {
   COMFY_WORKFLOW,
@@ -7,10 +7,10 @@ import {
   ComfyWorkFlowPayload,
   ComfyService,
 } from '@slibs/comfy'
-import { AssertUtils, ERROR_CODE } from '@slibs/common'
+import { AssertUtils, ERROR_CODE, PeriodicTaskUtils } from '@slibs/common'
 import { RedisQueueProcessor } from '@slibs/redis-queue'
 import { InjectStorage, StorageService } from '@slibs/storage'
-import { Job } from 'bullmq'
+import { Job, Queue } from 'bullmq'
 
 @Processor(QUEUE_NAME.GPU, { concurrency: 1 })
 export class ComfyProcessor extends RedisQueueProcessor<
@@ -18,10 +18,30 @@ export class ComfyProcessor extends RedisQueueProcessor<
   any
 > {
   constructor(
+    @InjectQueue(QUEUE_NAME.GPU) private readonly queue: Queue,
     @InjectStorage() private readonly storage: StorageService,
     private readonly comfyService: ComfyService,
   ) {
     super()
+  }
+
+  onModuleInit() {
+    PeriodicTaskUtils.register(async () => {
+      const isPause = await this.queue.isPaused()
+      const isConnected = this.comfyService.isConnected()
+
+      if (isPause && isConnected) {
+        await new Promise(resolve => setTimeout(resolve, 1000))
+        await this.queue.resume()
+        this.logger.warn('comfy service is connected, resume queue')
+      }
+
+      if (!isPause && !isConnected) {
+        await new Promise(resolve => setTimeout(resolve, 1000))
+        await this.queue.pause()
+        this.logger.warn('comfy service is not connected, pause queue')
+      }
+    }, 1000)
   }
 
   async process(

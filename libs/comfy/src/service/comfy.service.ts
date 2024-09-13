@@ -25,7 +25,15 @@ export class ComfyService implements OnModuleInit {
     return this.comfy.CLIENT_ID
   }
 
+  isConnected() {
+    return this.comfy.connected
+  }
+
   async invoke(wf: ComfyUIWorkflowType): Promise<Array<Buffer>> {
+    if (!this.comfy.connected) {
+      throw new Error('comfy not connected')
+    }
+
     const { prompt_id } = await this.comfy.postPrompt(wf)
     return new Promise((resolve, reject) => {
       this.emitter.on('prompt.complete', () => {
@@ -75,7 +83,7 @@ export class ComfyService implements OnModuleInit {
   }
 
   getOutputsFromHistory(history: IComfyUIWorkflowHistory) {
-    const files = Object.values(history.outputs)
+    const files = Object.values(history?.outputs ?? {})
       .map(o => o.images)
       .flat()
 
@@ -84,18 +92,22 @@ export class ComfyService implements OnModuleInit {
 
   async onModuleInit() {
     PeriodicTaskUtils.register(
-      () => {
+      async () => {
         if (this.comfy.connected) {
           return
         }
-        this.comfy.connect()
+
+        const r = await this.comfy.getSystemStats().catch(_ => null)
+        if (r) {
+          this.comfy.connect()
+        }
       },
       random(500, 2000),
     )
   }
 
   @ComfyOnEvent('comfy.message')
-  async onMessage(data: RawData) {
+  private async onMessage(data: RawData) {
     try {
       const msg = JSON.parse(data.toString()) as ComfyUIWsMessage
       switch (msg.type) {
@@ -141,12 +153,12 @@ export class ComfyService implements OnModuleInit {
   }
 
   @ComfyOnEvent('comfy.open')
-  onConnect(_data: IComfyOnOpenEvent) {
+  private onConnect(_data: IComfyOnOpenEvent) {
     this.logger.log(`Connected with clientId: ${this.comfy.CLIENT_ID}`)
   }
 
   @ComfyOnEvent('comfy.close')
-  onClose(_data: IComfyOnCloseEvent) {
+  private onClose(_data: IComfyOnCloseEvent) {
     this.logger.warn(`Connection closed`)
   }
 }
