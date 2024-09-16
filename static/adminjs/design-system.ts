@@ -1,2 +1,14 @@
-// @ts-ignore 타입오류가 발생하는데, node 환경이 아니라 무시.
-export { Input, Label, Text } from '@adminjs/design-system'
+/**
+ * @storybook
+ * https://adminjs-storybook.web.app
+ */
+export {
+  Input,
+  Label,
+  Text,
+  Box,
+  H1,
+  Card,
+  Button,
+  // @ts-ignore 타입 오류가 발생되는데 runtime 에서 동작함.
+} from '@adminjs/design-system'

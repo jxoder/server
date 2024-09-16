@@ -13,7 +13,7 @@ import { RandomUtils } from '@slibs/common'
 import { IAdminResourceOptions, IAdminUser } from './interface'
 import { EmailAccountAdminoOptions, UserAdminOptions } from './options'
 import { sortBy } from 'lodash'
-import { componentLoader } from './components'
+import { componentLoader, registerComponent } from './components'
 
 @Module({})
 export class AdminModule {
@@ -23,6 +23,9 @@ export class AdminModule {
     this.options.set(RandomUtils.uuidV4(), UserAdminOptions)
     this.options.set(RandomUtils.uuidV4(), EmailAccountAdminoOptions)
     AdminJS.registerAdapter({ Database, Resource })
+    AdminJS.ACTIONS.show.showInDrawer = true
+    AdminJS.ACTIONS.new.showInDrawer = true
+    AdminJS.ACTIONS.edit.showInDrawer = true
     return {
       global: true,
       module: this,
@@ -36,6 +39,16 @@ export class AdminModule {
               rootPath: '/admin',
               resources: sortBy([...this.options.values()]).map(o => o.option),
               componentLoader: componentLoader,
+              branding: {
+                companyName: 'J-NH',
+              },
+
+              dashboard: {
+                component: registerComponent(
+                  'DASHBOARD',
+                  'Dashboard/Dashboard.tsx',
+                ),
+              },
             },
             auth: {
               authenticate: async (email: string, password: string) => {

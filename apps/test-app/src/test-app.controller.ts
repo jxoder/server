@@ -1,4 +1,11 @@
-import { Body, Controller, Post } from '@nestjs/common'
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Post,
+  StreamableFile,
+} from '@nestjs/common'
 import {
   AnyObjectPayload,
   SimpleStringPayload,
@@ -10,6 +17,7 @@ import { InjectOllama, OllamaClient } from '@slibs/ollama'
 import { InjectQueue } from '@nestjs/bullmq'
 import { Queue } from 'bullmq'
 import { GPU_JOB_NAME, QUEUE_NAME } from '@slibs/app-shared'
+import { SharpService } from '@slibs/imaging'
 
 @Controller()
 export class TestAppController {
@@ -17,6 +25,7 @@ export class TestAppController {
     @InjectStorage() private readonly storage: StorageService,
     @InjectOllama() private readonly ollama: OllamaClient,
     @InjectQueue(QUEUE_NAME.GPU) private readonly gpuQueue: Queue,
+    private readonly sharpService: SharpService,
   ) {}
 
   @Post('storage/upload')
@@ -39,6 +48,25 @@ export class TestAppController {
       lifo: true, // last in first out
     })
     return { ok: 1 }
+  }
+
+  @Get('image/:dir/:key')
+  @ApiSwagger({ type: Object, summary: 'get image' })
+  async getImage(@Param('dir') dir: string, @Param('key') key: string) {
+    const buffer = await this.storage.streamToBuffer(
+      await this.storage.getObject(`${dir}/${key}`),
+    )
+
+    const { buffer: resizedBuffer, format } = await this.sharpService.resize(
+      buffer,
+      {
+        width: 1024,
+        height: 1024,
+        format: 'jpeg',
+      },
+    )
+
+    return new StreamableFile(resizedBuffer, { type: `image/${format}` })
   }
 
   @Post('ollama/chat')

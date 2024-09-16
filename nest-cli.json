@@ -168,6 +168,15 @@
       "compilerOptions": {
         "tsConfigPath": "libs/app-shared/tsconfig.lib.json"
       }
+    },
+    "imaging": {
+      "type": "library",
+      "root": "libs/imaging",
+      "entryFile": "index",
+      "sourceRoot": "libs/imaging/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/imaging/tsconfig.lib.json"
+      }
     }
   }
 }

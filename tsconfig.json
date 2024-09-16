@@ -116,6 +116,12 @@
       ],
       "@slibs/app-shared/*": [
         "libs/app-shared/src/*"
+      ],
+      "@slibs/imaging": [
+        "libs/imaging/src"
+      ],
+      "@slibs/imaging/*": [
+        "libs/imaging/src/*"
       ]
     }
   }
