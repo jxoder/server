@@ -12,7 +12,8 @@ export class GPUControlController {
   @HttpCode(200)
   @Post('check')
   async check() {
-    return this.gpuControlService.ping()
+    const ok = await this.gpuControlService.ping()
+    return { ok }
   }
 
   @AdminAuthorized()
