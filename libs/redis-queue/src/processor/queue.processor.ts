@@ -29,7 +29,7 @@ export abstract class RedisQueueProcessor<
   }
 
   @OnWorkerEvent('active')
-  onActive(job: Job<TASK_INPUT, TASK_OUTPUT>) {
+  async onActive(job: Job<TASK_INPUT, TASK_OUTPUT>) {
     const { id, name, queueName } = job
     this.logger.log(`active job ${name} with id ${id} in queue ${queueName}`)
   }

@@ -6,6 +6,7 @@ import { RedisQueueModule } from '@slibs/redis-queue'
 import { GPUProcessor } from './processor'
 import { QUEUE_NAME } from '@slibs/app-shared'
 import { StorageModule } from '@slibs/storage'
+import { AIImageModule } from '@slibs/ai-image'
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { StorageModule } from '@slibs/storage'
     StorageModule,
     RedisQueueModule.forRoot({ queues: [QUEUE_NAME.GPU] }),
     ComfyModule,
+    AIImageModule,
   ],
   providers: [GPUProcessor],
 })

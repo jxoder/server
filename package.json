@@ -141,7 +141,8 @@
       "^@slibs/admin(|/.*)$": "<rootDir>/libs/admin/src/$1",
       "^@slibs/comfy(|/.*)$": "<rootDir>/libs/comfy/src/$1",
       "^@slibs/app-shared(|/.*)$": "<rootDir>/libs/app-shared/src/$1",
-      "^@slibs/imaging(|/.*)$": "<rootDir>/libs/imaging/src/$1"
+      "^@slibs/imaging(|/.*)$": "<rootDir>/libs/imaging/src/$1",
+      "^@slibs/ai-image(|/.*)$": "<rootDir>/libs/ai-image/src/$1"
     }
   }
 }

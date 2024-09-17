@@ -1,8 +1,9 @@
 import { Logger } from '@nestjs/common'
 import { AssertUtils, ERROR_CODE } from '@slibs/common'
-import { omitBy } from 'lodash'
+import { isArray, omitBy } from 'lodash'
 import {
   FindOptionsWhere,
+  FindOptionsWhereProperty,
   ObjectLiteral,
   Repository,
   SelectQueryBuilder,
@@ -52,10 +53,10 @@ export abstract class CommonRepository<ENTITY extends ObjectLiteral, PK_TYPE> {
     )
 
     await this.repository
-      .createQueryBuilder('e')
+      .createQueryBuilder()
       .update()
       .set({ ...partial })
-      .where(`e.${this.pkField} = :pk`, { pk })
+      .where(`${this.pkField} = :pk`, { pk })
       .execute()
   }
 
@@ -65,5 +66,42 @@ export abstract class CommonRepository<ENTITY extends ObjectLiteral, PK_TYPE> {
       .delete()
       .where(`e.${this.pkField} = :pk`, { pk })
       .execute()
+  }
+
+  async query(payload: {
+    filters?: FindOptionsWhereProperty<ENTITY>
+    order?: { [key: string]: 'DESC' | 'ASC' }
+    pageOpt?: { page?: number; size?: number }
+    decorator?: (qb: SelectQueryBuilder<ENTITY>) => void
+  }): Promise<[ENTITY[], number]> {
+    const skip = (payload.pageOpt?.page ?? 1) - 1
+    const take = payload.pageOpt?.size ?? 10
+
+    let qb = this.repository.createQueryBuilder('e')
+
+    if (payload.decorator) {
+      payload.decorator(qb)
+    }
+
+    qb = qb.select()
+
+    Object.entries(payload.filters ?? {}).forEach(([key, value]) => {
+      if (isArray(value)) {
+        qb.andWhere(`e.${key} IN (:...${key})`, { [key]: value })
+      }
+      qb.andWhere(`e.${key} = :${key}`, { [key]: value })
+    })
+
+    qb = qb.skip(skip).take(take)
+
+    if (!payload.order) {
+      qb = qb.orderBy(`e.${this.pkField}`, 'DESC')
+    } else {
+      Object.entries(payload.order).map(([key, value]) => {
+        qb = qb.addOrderBy(key, value)
+      })
+    }
+
+    return qb.getManyAndCount()
   }
 }

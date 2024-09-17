@@ -13,7 +13,7 @@ import { random } from 'lodash'
 import { AssertUtils, ERROR_CODE, PeriodicTaskUtils } from '@slibs/common'
 import { RawData } from 'ws'
 import { EventEmitter } from 'stream'
-import { COMFY_WORKFLOW, ComfyWorkflowBase } from './workflow'
+import { COMFY_WORKFLOW } from './workflow'
 
 @Injectable()
 export class ComfyService implements OnModuleInit {

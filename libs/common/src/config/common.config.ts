@@ -11,4 +11,8 @@ export abstract class CommonConfig {
   static readonly DETAIL_ERROR_LOG_ENABLED = get('DETAIL_ERROR_LOG_ENABLED')
     .default('false')
     .asBool()
+
+  static readonly FILE_BASE_URL = get('FILE_BASE_URL')
+    .default('http://localhost:4000')
+    .asString()
 }
