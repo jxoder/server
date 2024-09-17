@@ -7,16 +7,34 @@ import { AssertUtils, ERROR_CODE } from '@slibs/common'
 export class SharpService {
   async resize(
     buffer: Buffer,
-    options: { width: number; height: number; format?: SharpFormat },
+    options: { width: number; format?: SharpFormat },
   ) {
-    const metadata = await sharp(buffer).metadata()
-    console.log(metadata)
-    AssertUtils.ensure(metadata.format, ERROR_CODE.FATAL)
+    const shrp = sharp(buffer)
+    const metadata = await shrp.metadata()
+    AssertUtils.ensure(
+      metadata.format && metadata.width && metadata.height,
+      ERROR_CODE.FATAL,
+    )
 
-    const shrp = sharp(buffer).resize(options.width, options.height)
+    // @ts-ignore comfyui metadata 삭제.
+    shrp.withMetadata({ comments: [] })
 
-    // 이걸로 comfy ui metadat 를 overwrite 할 수 있을듯?
-    // shrp.withMetadata({})
+    // 원본 사이즈보다 크게 resize 불가능.
+    if (options.width >= metadata.width) {
+      return {
+        buffer,
+        format: metadata.format,
+      }
+    }
+
+    const rate = options.width / metadata.width
+    shrp.resize(
+      Math.floor(metadata.width * rate),
+      Math.floor(metadata.height * rate),
+      {
+        fit: 'contain',
+      },
+    )
 
     if (options.format) {
       shrp.toFormat(options.format)

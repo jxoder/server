@@ -7,6 +7,7 @@ import { OllamaModule } from '@slibs/ollama'
 import { RedisQueueModule } from '@slibs/redis-queue'
 import { QUEUE_NAME } from '@slibs/app-shared'
 import { ImagingModule } from '@slibs/imaging'
+import { JobOne, JobTwo } from './processor'
 
 @Module({
   imports: [
@@ -14,9 +15,10 @@ import { ImagingModule } from '@slibs/imaging'
     DatabaseModule.forRoot(),
     StorageModule,
     OllamaModule.forRoot(),
-    RedisQueueModule.forRoot({ queues: [QUEUE_NAME.GPU] }),
+    RedisQueueModule.forRoot({ queues: [QUEUE_NAME.GPU, 'test'] }),
     ImagingModule,
   ],
+  providers: [JobOne, JobTwo],
   controllers: [TestAppController],
 })
 export class TestAppModule {}

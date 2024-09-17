@@ -40,11 +40,6 @@ import { ApiSecureConfig } from './config'
 export class ApiModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
     consumer.apply(IPSecureMiddleware).forRoutes('*')
-
-    // session router
-    consumer
-      .apply(session(ApiModule.getSessionStorageOptions()))
-      .forRoutes('admin', 'admin-api')
   }
 
   static getSessionStorageOptions() {

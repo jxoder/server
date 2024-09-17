@@ -76,7 +76,13 @@ const GpuSection: React.FC = () => {
   }, [loading])
 
   return (
-    <Box bg="white" p="xl" boxShadow="card" borderRadius="default">
+    <Box
+      bg="white"
+      p="xl"
+      boxShadow="card"
+      borderRadius="default"
+      style={{ marginBottom: 20 }}
+    >
       <Text style={{ fontWeight: 'bold' }}>GPU Server</Text>
       <div>
         <div style={{ marginBottom: 10 }}>

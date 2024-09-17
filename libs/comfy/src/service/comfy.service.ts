@@ -3,16 +3,17 @@ import { ComfyOnEvent, InjectComfy } from '../decorator'
 import { ComfyClient } from '../client'
 import {
   COMFY_UI_WS_MESSAGE_TYPE,
-  ComfyUIWorkflowType,
   ComfyUIWsMessage,
+  ComfyWorkflowPayload,
   IComfyOnCloseEvent,
   IComfyOnOpenEvent,
   IComfyUIWorkflowHistory,
 } from '../interface'
 import { random } from 'lodash'
-import { PeriodicTaskUtils } from '@slibs/common'
+import { AssertUtils, ERROR_CODE, PeriodicTaskUtils } from '@slibs/common'
 import { RawData } from 'ws'
 import { EventEmitter } from 'stream'
+import { COMFY_WORKFLOW, ComfyWorkflowBase } from './workflow'
 
 @Injectable()
 export class ComfyService implements OnModuleInit {
@@ -29,12 +30,17 @@ export class ComfyService implements OnModuleInit {
     return this.comfy.connected
   }
 
-  async invoke(wf: ComfyUIWorkflowType): Promise<Array<Buffer>> {
+  async invoke(payload: ComfyWorkflowPayload): Promise<Array<Buffer>> {
     if (!this.comfy.connected) {
       throw new Error('comfy not connected')
     }
 
-    const { prompt_id } = await this.comfy.postPrompt(wf)
+    const workflow = COMFY_WORKFLOW[payload.type]
+    AssertUtils.ensure(workflow, ERROR_CODE.INVALID_COMFY_PAYLOAD)
+
+    const prompt = await new workflow().prompt(payload, this.comfy.CLIENT_ID)
+
+    const { prompt_id } = await this.comfy.postPrompt(prompt)
     return new Promise((resolve, reject) => {
       this.emitter.on('prompt.complete', () => {
         this.comfy.getHistory(prompt_id).then(histories => {

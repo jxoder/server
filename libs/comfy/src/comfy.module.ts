@@ -12,7 +12,10 @@ import { ComfyService } from './service'
       provide: COMFY_CLIENT_TOKEN,
       inject: [EventEmitter2],
       useFactory: (eventEmitter: EventEmitter2) => {
-        return new ComfyClient({ host: ComfyConfig.BASE_HOST }, eventEmitter)
+        return new ComfyClient(
+          { host: ComfyConfig.BASE_HOST, authToken: ComfyConfig.AUTH_TOKEN },
+          eventEmitter,
+        )
       },
     },
     ComfyService,

@@ -8,6 +8,7 @@ export class AdminAuthGuard implements CanActivate {
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const request = context.switchToHttp().getRequest()
+    // TODO: session 정보는 캐싱되어 있기 때문에 user 정보는 DB에서 가져와서 처리해야 더 정확하게 role 처리할 수 있음.
     const user = request?.session?.adminUser
 
     if (!user) {

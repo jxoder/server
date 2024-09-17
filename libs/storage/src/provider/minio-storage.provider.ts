@@ -12,6 +12,7 @@ export class MinioStorageProvider extends StorageService {
   private bucket = MinioStorageConfig.BUCKET!
 
   async getObject(key: string): Promise<Readable> {
+    this.ensureInit()
     return this.client.getObject(this.bucket, key)
   }
 

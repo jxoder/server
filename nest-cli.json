@@ -16,15 +16,6 @@
         "tsConfigPath": "apps/main-app/tsconfig.app.json"
       }
     },
-    "telegram-app": {
-      "type": "application",
-      "root": "apps/telegram-app",
-      "entryFile": "main",
-      "sourceRoot": "apps/telegram-app/src",
-      "compilerOptions": {
-        "tsConfigPath": "apps/telegram-app/tsconfig.app.json"
-      }
-    },
     "gpu-app": {
       "type": "application",
       "root": "apps/gpu-app",
@@ -86,15 +77,6 @@
       "sourceRoot": "libs/testing/src",
       "compilerOptions": {
         "tsConfigPath": "libs/testing/tsconfig.lib.json"
-      }
-    },
-    "telegram": {
-      "type": "library",
-      "root": "libs/telegram",
-      "entryFile": "index",
-      "sourceRoot": "libs/telegram/src",
-      "compilerOptions": {
-        "tsConfigPath": "libs/telegram/tsconfig.lib.json"
       }
     },
     "mylab": {

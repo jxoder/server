@@ -1,5 +1,6 @@
 import { MigrationInterface, QueryRunner } from 'typeorm'
 
+// TODO: revert this migration. not used
 export class Migration1725030740690 implements MigrationInterface {
   name = 'Migration1725030740690'
 

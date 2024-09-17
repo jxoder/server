@@ -1,5 +1,4 @@
 export * from './comfy.module'
 export * from './interface'
-export * from './workflow'
 export * from './decorator'
 export * from './service'

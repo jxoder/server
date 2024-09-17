@@ -13,6 +13,10 @@ export abstract class StorageService {
   ): Promise<string>
   abstract deleteObject(key: string): Promise<void>
 
+  async getObjectBuffer(key: string): Promise<Buffer> {
+    return this.streamToBuffer(await this.getObject(key))
+  }
+
   async streamToBuffer(readable: Readable): Promise<Buffer> {
     const chunks = []
     for await (const chunk of readable) {

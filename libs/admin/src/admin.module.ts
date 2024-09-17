@@ -1,4 +1,9 @@
-import { DynamicModule, Module } from '@nestjs/common'
+import {
+  DynamicModule,
+  MiddlewareConsumer,
+  Module,
+  NestModule,
+} from '@nestjs/common'
 import { AdminModule as AdminJSModule } from '@adminjs/nestjs'
 import { Database, Resource } from '@adminjs/typeorm'
 import AdminJS from 'adminjs'
@@ -14,9 +19,10 @@ import { IAdminResourceOptions, IAdminUser } from './interface'
 import { EmailAccountAdminoOptions, UserAdminOptions } from './options'
 import { sortBy } from 'lodash'
 import { componentLoader, registerComponent } from './components'
+import session from 'express-session'
 
 @Module({})
-export class AdminModule {
+export class AdminModule implements NestModule {
   static options = new Map<string, IAdminResourceOptions>()
 
   static forRoot(): DynamicModule {
@@ -79,6 +85,9 @@ export class AdminModule {
               saveUninitialized:
                 ApiModule.getSessionStorageOptions().saveUninitialized,
               secret: ApiModule.getSessionStorageOptions().secret,
+              cookie: {
+                maxAge: 1000 * 60 * 60 * 3, // 3 hours
+              },
             },
           }),
         }),
@@ -90,5 +99,11 @@ export class AdminModule {
   static forFeature(resources: Array<IAdminResourceOptions>) {
     resources.forEach(r => this.options.set(RandomUtils.uuidV4(), r))
     return this
+  }
+
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+      .apply(session(ApiModule.getSessionStorageOptions()))
+      .forRoutes('admin', 'admin-api')
   }
 }

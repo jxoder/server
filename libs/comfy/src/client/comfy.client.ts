@@ -12,6 +12,7 @@ import {
 
 interface IClientOptions {
   host: string
+  authToken?: string
 }
 
 export class ComfyClient {
@@ -34,6 +35,7 @@ export class ComfyClient {
   connect() {
     const socket = new WebSocket(
       `ws://${this.options.host}/ws?clientId=${this._ID}`,
+      { headers: this.headers() },
     )
 
     socket.on('open', () => {
@@ -132,8 +134,18 @@ export class ComfyClient {
     return `http://${this.options.host}`
   }
 
+  private headers() {
+    if (this.options.authToken) {
+      return { Authorization: `Basic ${this.options.authToken}` }
+    }
+    return {}
+  }
+
   private async getAPI<T>(url: string, config?: AxiosRequestConfig) {
-    const res = await axios.get<T>(this.baseURL + url, config)
+    const res = await axios.get<T>(this.baseURL + url, {
+      ...config,
+      headers: { ...config?.headers, ...this.headers() },
+    })
     return res.data
   }
 
@@ -142,7 +154,10 @@ export class ComfyClient {
     data: any,
     config?: AxiosRequestConfig,
   ) {
-    const res = await axios.post<T>(this.baseURL + url, data, config)
+    const res = await axios.post<T>(this.baseURL + url, data, {
+      ...config,
+      headers: { ...config?.headers, ...this.headers() },
+    })
     return res.data
   }
 }

@@ -1,1 +1,1 @@
-export * from './comfy.processor'
+export * from './gpu.processor'
