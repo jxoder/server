@@ -7,4 +7,6 @@ export abstract class ApiConfig extends CommonConfig {
   static readonly HOST_URL = get('APP_HOST_URL')
     .default('http://localhost:4000')
     .asString()
+
+  static readonly ORIGINS = get('APP_ORIGINS').default('').asArray()
 }

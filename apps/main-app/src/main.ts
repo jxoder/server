@@ -7,11 +7,12 @@ import { NestExpressApplication } from '@nestjs/platform-express'
 import { setupSwagger } from '@slibs/api'
 
 async function bootstrap() {
-  const { HOST, PORT, LOG_LEVEL } = MainAppConfig
+  const { HOST, PORT, LOG_LEVEL, ORIGINS } = MainAppConfig
   const app = await NestFactory.create<NestExpressApplication>(MainAppModule, {
     logger: [LOG_LEVEL],
   })
   app.enableVersioning({ type: VersioningType.URI })
+  app.enableCors({ origin: ORIGINS })
 
   setupSwagger(app)
 
