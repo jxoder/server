@@ -20,7 +20,7 @@ const GpuSection: React.FC = () => {
 
     setLoading(true)
     try {
-      const res = await fetch('admin-api/gpu-control/check', {
+      const res = await fetch('private/gpu-control/check', {
         method: 'POST',
         headers: { Authorization: `Bearer ${admin?.accessToken}` },
       })
@@ -38,6 +38,7 @@ const GpuSection: React.FC = () => {
     } catch (e) {
       console.error(e)
       noti({ type: 'error', message: 'Failed to check GPU server' })
+      setAlive('unknown')
     } finally {
       setLoading(false)
     }
@@ -48,7 +49,7 @@ const GpuSection: React.FC = () => {
 
     setLoading(true)
     try {
-      const res = await fetch('admin-api/gpu-control/on', {
+      const res = await fetch('private/gpu-control/on', {
         method: 'POST',
         headers: { Authorization: `Bearer ${admin?.accessToken}` },
       })
@@ -64,6 +65,7 @@ const GpuSection: React.FC = () => {
     } catch (e) {
       console.error(e)
       noti({ type: 'error', message: 'Failed to turn on GPU server' })
+      setAlive('unknown')
     } finally {
       setLoading(false)
     }
@@ -74,7 +76,7 @@ const GpuSection: React.FC = () => {
 
     setLoading(true)
     try {
-      const res = await fetch('admin-api/gpu-control/off', {
+      const res = await fetch('private/gpu-control/off', {
         method: 'POST',
         headers: { Authorization: `Bearer ${admin?.accessToken}` },
       })
@@ -90,6 +92,7 @@ const GpuSection: React.FC = () => {
     } catch (e) {
       console.error(e)
       noti({ type: 'error', message: 'Failed to turn off GPU server' })
+      setAlive('unknown')
     } finally {
       setLoading(false)
     }

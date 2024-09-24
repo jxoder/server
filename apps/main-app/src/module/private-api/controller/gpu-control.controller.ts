@@ -4,7 +4,7 @@ import { GPUControlService } from '@slibs/mylab'
 import { BearerAuthorized, USER_ROLE } from '@slibs/user'
 
 @ApiExcludeController()
-@Controller({ path: 'admin-api/gpu-control' })
+@Controller({ path: 'private/gpu-control' })
 export class GPUControlController {
   constructor(private readonly gpuControlService: GPUControlService) {}
 
