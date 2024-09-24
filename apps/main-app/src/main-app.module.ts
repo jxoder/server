@@ -27,7 +27,9 @@ import { QUEUE_NAME } from '@slibs/app-shared'
       ACCESS_SECRET_KEY: MainAppConfig.MINIO_ACCESS_SECRET_KEY,
       USE_SSL: MainAppConfig.MINIO_USE_SSL,
     } as StorageConfigType),
-    ApiModule.config(),
+    ApiModule.config({
+      IP_BLACKLIST: MainAppConfig.APP_IP_BLACKLIST,
+    }),
     RedisQueueModule.forRoot({
       connection: {
         host: MainAppConfig.REDIS_HOST,
