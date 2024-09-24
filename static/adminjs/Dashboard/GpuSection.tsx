@@ -1,11 +1,12 @@
 import React from 'react'
-import { useNotice } from 'adminjs'
+import { useCurrentAdmin, useNotice } from 'adminjs'
 import { Box, Text, Button } from '../design-system'
 
 type STATUS = 'unknown' | 'alive' | 'down'
 
 const GpuSection: React.FC = () => {
   const noti = useNotice()
+  const [admin] = useCurrentAdmin()
 
   const [loading, setLoading] = React.useState<boolean>(false)
   const [alive, setAlive] = React.useState<STATUS>('unknown')
@@ -14,38 +15,49 @@ const GpuSection: React.FC = () => {
     handleCheck()
   }, [])
 
-  const handleCheck = React.useCallback(
-    async (init?: boolean) => {
-      if (loading) return
+  const handleCheck = React.useCallback(async () => {
+    if (loading) return
 
-      setLoading(true)
-      try {
-        const res = await fetch('admin-api/gpu-control/check', {
-          method: 'POST',
-        })
-        const data = await res.json()
+    setLoading(true)
+    try {
+      const res = await fetch('admin-api/gpu-control/check', {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${admin?.accessToken}` },
+      })
 
-        setAlive(data.ok ? 'alive' : 'down')
-        noti({
-          message: data.ok ? 'GPU server is alive' : 'GPU server is down',
-        })
-      } catch (e) {
-        console.error(e)
-        noti({ type: 'error', message: 'Failed to check GPU server' })
-      } finally {
-        setLoading(false)
+      const data = await res.json()
+
+      if (!res.ok) {
+        throw new Error(JSON.stringify(data))
       }
-    },
-    [loading],
-  )
+
+      setAlive(data.ok ? 'alive' : 'down')
+      noti({
+        message: data.ok ? 'GPU server is alive' : 'GPU server is down',
+      })
+    } catch (e) {
+      console.error(e)
+      noti({ type: 'error', message: 'Failed to check GPU server' })
+    } finally {
+      setLoading(false)
+    }
+  }, [loading])
 
   const handleTurnOn = React.useCallback(async () => {
     if (loading) return
 
     setLoading(true)
     try {
-      const res = await fetch('admin-api/gpu-control/on', { method: 'POST' })
-      if (res.status !== 200) throw new Error('error')
+      const res = await fetch('admin-api/gpu-control/on', {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${admin?.accessToken}` },
+      })
+      const data = await res.json()
+
+      if (!data.ok) {
+        throw new Error(JSON.stringify(data))
+      }
+
       noti({
         message: 'sucess to turn on GPU server, check again after a while',
       })
@@ -62,8 +74,16 @@ const GpuSection: React.FC = () => {
 
     setLoading(true)
     try {
-      const res = await fetch('admin-api/gpu-control/off', { method: 'POST' })
-      if (res.status !== 200) throw new Error('error')
+      const res = await fetch('admin-api/gpu-control/off', {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${admin?.accessToken}` },
+      })
+      const data = await res.json()
+
+      if (!res.ok) {
+        throw new Error(JSON.stringify(data))
+      }
+
       noti({
         message: 'sucess to turn off GPU server, check again after a while',
       })

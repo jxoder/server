@@ -8,7 +8,7 @@ import {
 import { ComfyService } from '@slibs/comfy'
 import { AssertUtils, ERROR_CODE, PeriodicTaskUtils } from '@slibs/common'
 import { RedisQueueProcessor } from '@slibs/redis-queue'
-import { InjectStorage, StorageService } from '@slibs/storage'
+import { InjectStorage, Storage } from '@slibs/storage'
 import { Job, Queue } from 'bullmq'
 import { random } from 'lodash'
 
@@ -19,7 +19,7 @@ export class GPUProcessor extends RedisQueueProcessor<
 > {
   constructor(
     @InjectQueue(QUEUE_NAME.GPU) private readonly queue: Queue,
-    @InjectStorage() private readonly storage: StorageService,
+    @InjectStorage() private readonly storage: Storage,
     private readonly comfyService: ComfyService,
     private readonly aiImageService: AIImageService,
   ) {

@@ -4,12 +4,7 @@
     "jsx": "react",
     "target": "es2022",
     "module": "commonjs",
-    "lib": [
-      "dom",
-      "es6",
-      "es2017",
-      "esnext.asynciterable"
-    ],
+    "lib": ["dom", "es6", "es2017", "esnext.asynciterable"],
     "skipLibCheck": true,
     "moduleResolution": "node",
     "removeComments": true,
@@ -27,102 +22,32 @@
     "experimentalDecorators": true,
     "resolveJsonModule": true,
     "paths": {
-      "@slibs/common": [
-        "libs/common/src"
-      ],
-      "@slibs/common/*": [
-        "libs/common/src/*"
-      ],
-      "@slibs/api": [
-        "libs/api/src"
-      ],
-      "@slibs/api/*": [
-        "libs/api/src/*"
-      ],
-      "@slibs/database": [
-        "libs/database/src"
-      ],
-      "@slibs/database/*": [
-        "libs/database/src/*"
-      ],
-      "@slibs/user": [
-        "libs/user/src"
-      ],
-      "@slibs/user/*": [
-        "libs/user/src/*"
-      ],
-      "@slibs/testing": [
-        "libs/testing/src"
-      ],
-      "@slibs/testing/*": [
-        "libs/testing/src/*"
-      ],
-      "@slibs/mylab": [
-        "libs/mylab/src"
-      ],
-      "@slibs/mylab/*": [
-        "libs/mylab/src/*"
-      ],
-      "@slibs/storage": [
-        "libs/storage/src"
-      ],
-      "@slibs/storage/*": [
-        "libs/storage/src/*"
-      ],
-      "@slibs/pg-queue": [
-        "libs/pg-queue/src"
-      ],
-      "@slibs/pg-queue/*": [
-        "libs/pg-queue/src/*"
-      ],
-      "@slibs/ollama": [
-        "libs/ollama/src"
-      ],
-      "@slibs/ollama/*": [
-        "libs/ollama/src/*"
-      ],
-      "@slibs/redis-queue": [
-        "libs/redis-queue/src"
-      ],
-      "@slibs/redis-queue/*": [
-        "libs/redis-queue/src/*"
-      ],
-      "@slibs/openai": [
-        "libs/openai/src"
-      ],
-      "@slibs/openai/*": [
-        "libs/openai/src/*"
-      ],
-      "@slibs/admin": [
-        "libs/admin/src"
-      ],
-      "@slibs/admin/*": [
-        "libs/admin/src/*"
-      ],
-      "@slibs/comfy": [
-        "libs/comfy/src"
-      ],
-      "@slibs/comfy/*": [
-        "libs/comfy/src/*"
-      ],
-      "@slibs/app-shared": [
-        "libs/app-shared/src"
-      ],
-      "@slibs/app-shared/*": [
-        "libs/app-shared/src/*"
-      ],
-      "@slibs/imaging": [
-        "libs/imaging/src"
-      ],
-      "@slibs/imaging/*": [
-        "libs/imaging/src/*"
-      ],
-      "@slibs/ai-image": [
-        "libs/ai-image/src"
-      ],
-      "@slibs/ai-image/*": [
-        "libs/ai-image/src/*"
-      ]
+      "@slibs/common": ["libs/core/common/src"],
+      "@slibs/common/*": ["libs/core/common/src/*"],
+      "@slibs/api": ["libs/core/api/src"],
+      "@slibs/api/*": ["libs/core/api/src/*"],
+      "@slibs/testing": ["libs/core/testing/src"],
+      "@slibs/testing/*": ["libs/core/testing/src/*"],
+      "@slibs/database": ["libs/system/database/src"],
+      "@slibs/database/*": ["libs/system/database/src/*"],
+      "@slibs/storage": ["libs/system/storage/src"],
+      "@slibs/storage/*": ["libs/system/storage/src/*"],
+      "@slibs/redis-queue": ["libs/system/redis-queue/src"],
+      "@slibs/redis-queue/*": ["libs/system/redis-queue/src/*"],
+      "@slibs/imaging": ["libs/system/imaging/src"],
+      "@slibs/imaging/*": ["libs/system/imaging/src/*"],
+      "@slibs/comfy": ["libs/external/comfy/src"],
+      "@slibs/comfy/*": ["libs/external/comfy/src/*"],
+      "@slibs/app-shared": ["libs/app-shared/src"],
+      "@slibs/app-shared/*": ["libs/app-shared/src/*"],
+      "@slibs/user": ["libs/biz/user/src"],
+      "@slibs/user/*": ["libs/biz/user/src/*"],
+      "@slibs/admin": ["libs/biz/admin/src"],
+      "@slibs/admin/*": ["libs/biz/admin/src/*"],
+      "@slibs/mylab": ["libs/biz/mylab/src"],
+      "@slibs/mylab/*": ["libs/biz/mylab/src/*"],
+      "@slibs/ai-image": ["libs/biz/ai-image/src"],
+      "@slibs/ai-image/*": ["libs/biz/ai-image/src/*"]
     }
   }
 }

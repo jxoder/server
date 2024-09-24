@@ -52,8 +52,6 @@
     "minio": "8.0.1",
     "nestjs-form-data": "1.9.91",
     "node-ssh": "12.0.5",
-    "ollama": "0.5.9",
-    "openai": "4.59.0",
     "passport": "0.7.0",
     "passport-custom": "1.1.1",
     "pg": "8.12.0",
@@ -127,22 +125,19 @@
       "./jest.setup.ts"
     ],
     "moduleNameMapper": {
-      "^@slibs/common(|/.*)$": "<rootDir>/libs/common/src/$1",
-      "^@slibs/api(|/.*)$": "<rootDir>/libs/api/src/$1",
-      "^@slibs/database(|/.*)$": "<rootDir>/libs/database/src/$1",
-      "^@slibs/user(|/.*)$": "<rootDir>/libs/user/src/$1",
-      "^@slibs/testing(|/.*)$": "<rootDir>/libs/testing/src/$1",
-      "^@slibs/mylab(|/.*)$": "<rootDir>/libs/mylab/src/$1",
-      "^@slibs/storage(|/.*)$": "<rootDir>/libs/storage/src/$1",
-      "^@slibs/pg-queue(|/.*)$": "<rootDir>/libs/pg-queue/src/$1",
-      "^@slibs/ollama(|/.*)$": "<rootDir>/libs/ollama/src/$1",
-      "^@slibs/redis-queue(|/.*)$": "<rootDir>/libs/redis-queue/src/$1",
-      "^@slibs/openai(|/.*)$": "<rootDir>/libs/openai/src/$1",
-      "^@slibs/admin(|/.*)$": "<rootDir>/libs/admin/src/$1",
-      "^@slibs/comfy(|/.*)$": "<rootDir>/libs/comfy/src/$1",
+      "^@slibs/common(|/.*)$": "<rootDir>/libs/core/common/src/$1",
+      "^@slibs/api(|/.*)$": "<rootDir>/libs/core/api/src/$1",
+      "^@slibs/testing(|/.*)$": "<rootDir>/libs/core/testing/src/$1",
+      "^@slibs/database(|/.*)$": "<rootDir>/libs/system/database/src/$1",
+      "^@slibs/storage(|/.*)$": "<rootDir>/libs/system/storage/src/$1",
+      "^@slibs/redis-queue(|/.*)$": "<rootDir>/libs/system/redis-queue/src/$1",
+      "^@slibs/imaging(|/.*)$": "<rootDir>/libs/system/imaging/src/$1",
+      "^@slibs/comfy(|/.*)$": "<rootDir>/libs/external/comfy/src/$1",
       "^@slibs/app-shared(|/.*)$": "<rootDir>/libs/app-shared/src/$1",
-      "^@slibs/imaging(|/.*)$": "<rootDir>/libs/imaging/src/$1",
-      "^@slibs/ai-image(|/.*)$": "<rootDir>/libs/ai-image/src/$1"
+      "^@slibs/user(|/.*)$": "<rootDir>/libs/biz/user/src/$1",
+      "^@slibs/admin(|/.*)$": "<rootDir>/libs/biz/admin/src/$1",
+      "^@slibs/mylab(|/.*)$": "<rootDir>/libs/biz/mylab/src/$1",
+      "^@slibs/ai-image(|/.*)$": "<rootDir>/libs/biz/ai-image/src/$1"
     }
   }
 }

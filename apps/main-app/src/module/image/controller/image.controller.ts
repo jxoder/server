@@ -3,13 +3,13 @@ import { ApiTags } from '@nestjs/swagger'
 import { ApiSwagger } from '@slibs/api'
 import { ParseOptionalIntPipe } from '@slibs/common'
 import { SharpService } from '@slibs/imaging'
-import { InjectStorage, StorageService } from '@slibs/storage'
+import { InjectStorage, Storage } from '@slibs/storage'
 
 @ApiTags('Images')
 @Controller({ path: 'images' })
 export class ImageController {
   constructor(
-    @InjectStorage() private readonly storage: StorageService,
+    @InjectStorage() private readonly storage: Storage,
     private readonly sharpService: SharpService,
   ) {}
 
