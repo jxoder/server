@@ -24,8 +24,8 @@ export interface IComfyUIWorkflowHistory {
 /**
  * ComfyUI Websocket Message
  */
-
 export type StringLikeNumber = string
+
 export enum COMFY_UI_WS_MESSAGE_TYPE {
   STATUS = 'status',
   EXECUTION_START = 'execution_start',
@@ -51,16 +51,19 @@ export interface IComfyUIStatusData {
 }
 export interface IComfyUIWsStatus extends IComfyUIWsMessageBase {
   type: COMFY_UI_WS_MESSAGE_TYPE.STATUS
-  data: IComfyUIStatusData
+  data: {
+    status: {
+      exec_info: {
+        queue_remaining: number
+      }
+    }
+    sid?: string
+  }
 }
 
-export interface IComfyUIWsExecutionStartData {
-  prompt_id: string
-  timestamp: number
-}
 export interface IComfyUIWsExecutionStart extends IComfyUIWsMessageBase {
   type: COMFY_UI_WS_MESSAGE_TYPE.EXECUTION_START
-  data: IComfyUIWsExecutionStartData
+  data: { prompt_id: string; timestamp: number }
 }
 
 export interface IComfyUIWsExecutionCached extends IComfyUIWsMessageBase {

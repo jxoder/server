@@ -3,8 +3,7 @@ import { ApiQuery, ApiTags } from '@nestjs/swagger'
 import { ApiSwagger, OkResponse } from '@slibs/api'
 import { BearerAuthorized, ReqUser, User, USER_ROLE } from '@slibs/user'
 import { RequestToComfyPayload } from '../payload'
-import { AIImageService } from '@slibs/ai-image'
-import { ComfyWorkflowPayload } from '@slibs/comfy'
+import { AIImageService, ComfyWorkflowPayload } from '@slibs/ai-image'
 import { ListableAIImageTask } from '../response'
 import { ParseOptionalIntPipe } from '@slibs/common'
 
@@ -25,25 +24,17 @@ export class AIImageController {
     return ListableAIImageTask.to(list, total, { p: page, s: 10 })
   }
 
-  @Post('request')
+  @Post('request/comfy')
   @BearerAuthorized(USER_ROLE.USER)
   @ApiSwagger({ type: OkResponse, summary: 'request generate ai image' })
-  async requestGenerateAIImage(
+  async requestToComfy(
     @Body() body: RequestToComfyPayload,
     @ReqUser() user: User,
   ): Promise<OkResponse> {
     await this.aiImageService.enqueue(
       {
         type: body.type,
-        ckpt_model: body.checkpointModel,
-        prompt: body.prompt,
-        negative_prompt: body.negativePrompt,
-        width: body.width,
-        height: body.height,
-        steps: body.steps,
-        cfg: body.cfg,
-        sampler_name: body.samplerName,
-        scheduler: body.scheduler,
+        ...body.payload,
       } as ComfyWorkflowPayload,
       user.id,
     )

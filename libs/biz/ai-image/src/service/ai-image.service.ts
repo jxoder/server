@@ -3,9 +3,11 @@ import { AIImageRepository, AIImageTaskRepository } from '../repository'
 import { InjectQueue } from '@nestjs/bullmq'
 import { GPU_JOB_NAME, QUEUE_NAME } from '@slibs/app-shared'
 import { Queue } from 'bullmq'
-import { ComfyWorkflowPayload } from '@slibs/comfy'
 import { Transactional } from 'typeorm-transactional'
 import { TASK_STATUS } from '../entities'
+import { COMFY_WORKFLOW } from './workflow'
+import { ComfyWorkflowPayload } from '../interface'
+import { AssertUtils, ERROR_CODE } from '@slibs/common'
 
 @Injectable()
 export class AIImageService {
@@ -17,6 +19,8 @@ export class AIImageService {
 
   @Transactional()
   async enqueue(payload: ComfyWorkflowPayload, userId?: number) {
+    const check = await COMFY_WORKFLOW[payload.type]?.validate(payload) // validate payload
+    AssertUtils.ensure(check, ERROR_CODE.BAD_REQUEST, 'invalid payload')
     const job = await this.queue.add(GPU_JOB_NAME.COMFY, { payload })
     await this.aiImageTaskRepository.insert({
       jobId: job.id,

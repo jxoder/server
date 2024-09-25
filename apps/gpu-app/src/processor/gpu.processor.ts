@@ -1,5 +1,9 @@
 import { InjectQueue, OnWorkerEvent, Processor } from '@nestjs/bullmq'
-import { AIImageService } from '@slibs/ai-image'
+import {
+  AIImageService,
+  COMFY_WORKFLOW,
+  ComfyWorkflowPayload,
+} from '@slibs/ai-image'
 import {
   GPU_JOB_NAME,
   IGPUProcessorPayload,
@@ -52,7 +56,19 @@ export class GPUProcessor extends RedisQueueProcessor<
     const { name, data } = job
     switch (name) {
       case GPU_JOB_NAME.COMFY: {
-        const outputs = await this.comfyService.invoke(data.payload)
+        const payload = data.payload as ComfyWorkflowPayload
+        const prompt = await COMFY_WORKFLOW[payload.type]?.prompt(payload)
+        AssertUtils.ensure(
+          prompt,
+          ERROR_CODE.INVALID_COMFY_PAYLOAD,
+          `invalid comfy payload: not found type`,
+        )
+        const outputs = await this.comfyService.invoke(prompt).catch(e => {
+          // comfy post prompt error catch
+          throw new Error(
+            `comfy invoke error detail: ${JSON.stringify(e.response.data)}`,
+          )
+        })
         const keys = await Promise.all(
           outputs.map(output => this.storage.putObject('comfy', output)),
         )

@@ -2,7 +2,12 @@ import { Module } from '@nestjs/common'
 import { ApiModule } from '@slibs/api'
 import { DatabaseModule } from '@slibs/database'
 import { StorageConfigType, StorageModule } from '@slibs/storage'
-import { AppUserModule, PrivateApiModule } from './module'
+import {
+  AppAIImageModule,
+  AppImageModule,
+  AppUserModule,
+  PrivateApiModule,
+} from './module'
 import { MainAppConfig } from './config'
 import { RedisQueueModule } from '@slibs/redis-queue'
 import { QUEUE_NAME } from '@slibs/app-shared'
@@ -52,15 +57,8 @@ import { QUEUE_NAME } from '@slibs/app-shared'
       },
     }),
     PrivateApiModule,
-
-    // RedisQueueModule.forRoot({ queues: [QUEUE_NAME.GPU] }),
-    // AdminApiModule,
-    // StorageModule,
-
-    // // modules
-    // AppUserModule,
-    // AppAIModule,
-    // AppImageModule,
+    AppAIImageModule,
+    AppImageModule,
   ],
 })
 export class MainAppModule {}

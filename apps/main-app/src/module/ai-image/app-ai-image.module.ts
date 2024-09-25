@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common'
 import { AIImageModule } from '@slibs/ai-image'
-import { AIImageController } from './controller'
+import { AIImageController, ComfyUIController } from './controller'
 
 @Module({
   imports: [AIImageModule],
-  controllers: [AIImageController],
+  controllers: [AIImageController, ComfyUIController],
 })
-export class AppAIModule {}
+export class AppAIImageModule {}

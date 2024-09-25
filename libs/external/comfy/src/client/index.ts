@@ -1,1 +1,1 @@
-export * from './comfy.client'
+export * from './comfy-ui.client'

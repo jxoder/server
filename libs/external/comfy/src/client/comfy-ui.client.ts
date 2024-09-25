@@ -13,9 +13,10 @@ import {
 interface IClientOptions {
   host: string
   authToken?: string
+  useSSL?: boolean
 }
 
-export class ComfyClient {
+export class ComfyUI {
   protected ws?: WebSocket
   private readonly _ID = RandomUtils.uuidV4()
 
@@ -33,16 +34,20 @@ export class ComfyClient {
   }
 
   connect() {
+    const protocol = this.options.useSSL ? 'wss' : 'ws'
     const socket = new WebSocket(
-      `ws://${this.options.host}/ws?clientId=${this._ID}`,
+      `${protocol}://${this.options.host}/ws?clientId=${this._ID}`,
       { headers: this.headers() },
     )
-
     socket.on('open', () => {
       this.ws = socket
       this.emit('comfy.open', {})
     })
     socket.on('close', () => {
+      if (!this.ws) {
+        // if error occurred,
+        return
+      }
       this.ws = undefined
       this.emit('comfy.close', {})
     })
@@ -130,8 +135,8 @@ export class ComfyClient {
   }
 
   protected get baseURL() {
-    // TODO: https 필요하면 그때 처리.
-    return `http://${this.options.host}`
+    const protocol = this.options.useSSL ? 'https' : 'http'
+    return `${protocol}://${this.options.host}`
   }
 
   private headers() {

@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-export const KSamplerName = z.enum([
+export const ZodSamplerName = z.enum([
   'euler',
   'dpmpp_sde',
   'dpmpp_sde_gpu',
@@ -11,4 +11,4 @@ export const KSamplerName = z.enum([
   'lcm',
 ])
 
-export const KSamplerSchedulerType = z.enum(['normal', 'karras', 'simple'])
+export const ZodScheduler = z.enum(['normal', 'karras', 'simple'])

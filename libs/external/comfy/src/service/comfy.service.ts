@@ -1,26 +1,26 @@
 import { Injectable, Logger, OnModuleInit } from '@nestjs/common'
-import { ComfyOnEvent, InjectComfy } from '../decorator'
-import { ComfyClient } from '../client'
+import { ComfyOnEvent, InjectComfyUI } from '../decorator'
+import { ComfyUI } from '../client'
 import {
   COMFY_UI_WS_MESSAGE_TYPE,
+  ComfyUIWorkflowType,
   ComfyUIWsMessage,
-  ComfyWorkflowPayload,
   IComfyOnCloseEvent,
+  IComfyOnErrorEvent,
   IComfyOnOpenEvent,
   IComfyUIWorkflowHistory,
 } from '../interface'
 import { random } from 'lodash'
-import { AssertUtils, ERROR_CODE, PeriodicTaskUtils } from '@slibs/common'
+import { PeriodicTaskUtils } from '@slibs/common'
 import { RawData } from 'ws'
 import { EventEmitter } from 'stream'
-import { COMFY_WORKFLOW } from './workflow'
 
 @Injectable()
 export class ComfyService implements OnModuleInit {
   private readonly logger = new Logger(this.constructor.name)
   private readonly emitter = new EventEmitter()
 
-  constructor(@InjectComfy() private readonly comfy: ComfyClient) {}
+  constructor(@InjectComfyUI() private readonly comfy: ComfyUI) {}
 
   getClientId() {
     return this.comfy.CLIENT_ID
@@ -30,17 +30,15 @@ export class ComfyService implements OnModuleInit {
     return this.comfy.connected
   }
 
-  async invoke(payload: ComfyWorkflowPayload): Promise<Array<Buffer>> {
+  async invoke(workflow: ComfyUIWorkflowType): Promise<Array<Buffer>> {
     if (!this.comfy.connected) {
       throw new Error('comfy not connected')
     }
 
-    const workflow = COMFY_WORKFLOW[payload.type]
-    AssertUtils.ensure(workflow, ERROR_CODE.INVALID_COMFY_PAYLOAD)
+    // override client_id
+    workflow['client_id'] = this.getClientId()
 
-    const prompt = await new workflow().prompt(payload, this.comfy.CLIENT_ID)
-
-    const { prompt_id } = await this.comfy.postPrompt(prompt)
+    const { prompt_id } = await this.comfy.postPrompt(workflow)
     return new Promise((resolve, reject) => {
       this.emitter.on('prompt.complete', () => {
         this.comfy.getHistory(prompt_id).then(histories => {
@@ -166,5 +164,10 @@ export class ComfyService implements OnModuleInit {
   @ComfyOnEvent('comfy.close')
   private onClose(_data: IComfyOnCloseEvent) {
     this.logger.warn(`Connection closed`)
+  }
+
+  @ComfyOnEvent('comfy.error')
+  private onError(error: IComfyOnErrorEvent) {
+    this.logger.error(`Connection error: ${error.error}`)
   }
 }

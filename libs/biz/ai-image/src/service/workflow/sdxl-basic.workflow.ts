@@ -1,5 +1,6 @@
 import { z } from 'zod'
 import { COMFY_WORKFLOW_TYPE, ISDXLBasicWorkflowPayload } from '../../interface'
+import { ZodSamplerName, ZodScheduler } from './common'
 import { ComfyWorkflowBase } from './base.workflow'
 import { random } from 'lodash'
 
@@ -12,12 +13,12 @@ const PayloadSchema = z.object({
   negative_prompt: z.string(),
 
   // optional
-  width: z.number().optional(),
-  height: z.number().optional(),
-  steps: z.number().optional(),
-  cfg: z.number().optional(),
-  sampler_name: z.string().optional(),
-  scheduler: z.string().optional(),
+  width: z.number(),
+  height: z.number(),
+  steps: z.number(),
+  cfg: z.number(),
+  sampler_name: ZodSamplerName,
+  scheduler: ZodScheduler,
 })
 
 export class SDXLBasicWorkflow extends ComfyWorkflowBase<ISDXLBasicWorkflowPayload> {
@@ -25,16 +26,15 @@ export class SDXLBasicWorkflow extends ComfyWorkflowBase<ISDXLBasicWorkflowPaylo
     super(COMFY_WORKFLOW_TYPE.SDXL_BASIC, PayloadSchema, {
       width: 1024,
       height: 1024,
-      steps: 25,
-      cfg: 7,
+      steps: 20,
+      cfg: 7.0,
       sampler_name: 'dpmpp_3m_sde',
       scheduler: 'karras',
     })
   }
 
-  workflowFn(payload: ISDXLBasicWorkflowPayload, clientId?: string) {
+  workflowFn(payload: ISDXLBasicWorkflowPayload) {
     return {
-      client_id: clientId,
       prompt: {
         '4': {
           inputs: {
