@@ -1,19 +1,24 @@
-import { Controller, Get, Query } from '@nestjs/common'
+import { Controller, Get, ParseEnumPipe, Query } from '@nestjs/common'
 import { ApiQuery, ApiTags } from '@nestjs/swagger'
 import {
   COMFY_MODEL_BASE,
   COMFY_MODEL_TYPE,
+  COMFY_WORKFLOW_TYPE,
   ComfyOptionService,
 } from '@slibs/ai-image'
 import { ApiSwagger } from '@slibs/api'
 import { ParseOptionalEnumPipe } from '@slibs/common'
 import { BearerAuthorized, ReqUser, User, USER_ROLE } from '@slibs/user'
 import { LessThanOrEqual } from 'typeorm'
+import { ComfyFormService } from '../service'
 
 @ApiTags('Comfy UI')
 @Controller({ path: 'comfy-ui', version: '1' })
 export class ComfyUIController {
-  constructor(private readonly comfyOptionService: ComfyOptionService) {}
+  constructor(
+    private readonly comfyOptionService: ComfyOptionService,
+    private readonly comfyFormService: ComfyFormService,
+  ) {}
 
   @Get('models')
   @BearerAuthorized(USER_ROLE.USER)
@@ -36,5 +41,15 @@ export class ComfyUIController {
       base,
       permLv: LessThanOrEqual(reqUser.roleLv),
     })
+  }
+
+  @Get('forms')
+  @BearerAuthorized(USER_ROLE.USER)
+  @ApiQuery({ name: 'type', enum: COMFY_WORKFLOW_TYPE, required: true })
+  async getComfyForms(
+    @Query('type', new ParseEnumPipe(COMFY_WORKFLOW_TYPE))
+    type: COMFY_WORKFLOW_TYPE,
+  ) {
+    return this.comfyFormService.getComfyForms(type)
   }
 }
