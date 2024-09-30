@@ -20,6 +20,7 @@ export enum COMFY_MODEL_TYPE {
 
 export enum COMFY_MODEL_BASE {
   SD = 'SD',
+  PONY = 'PONY',
   SDXL = 'SDXL',
   FLUX = 'FLUX',
 }

@@ -22,10 +22,11 @@ export class AIImageService {
     const check = await COMFY_WORKFLOW[payload.type]?.validate(payload) // validate payload
     AssertUtils.ensure(check, ERROR_CODE.BAD_REQUEST, 'invalid payload')
     const job = await this.queue.add(GPU_JOB_NAME.COMFY, { payload })
-    await this.aiImageTaskRepository.insert({
+    const inserted = await this.aiImageTaskRepository.insert({
       jobId: job.id,
       userId,
     })
+    return this.aiImageTaskRepository.findOneById(inserted)
   }
 
   @Transactional()
