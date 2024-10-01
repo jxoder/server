@@ -4,16 +4,16 @@ import axios from 'axios'
 import { writeFile } from 'fs-extra'
 import { NodeSSH } from 'node-ssh'
 import { AssertUtils, ERROR_CODE } from '@slibs/common'
-import { MylabKvRepository } from '../repository'
+import { MyLabConfig } from '../config'
 
 @Injectable()
 export class GPUControlService {
   private readonly logger = new Logger(this.constructor.name)
 
-  constructor(private readonly kvRepository: MylabKvRepository) {}
+  constructor() {}
 
   async ping(): Promise<boolean> {
-    const ipAdress = await this.kvRepository.get<string>('GPU_IP_ADDRESS')
+    const ipAdress = MyLabConfig.GPU_IP_ADDRESS
     AssertUtils.ensure(
       ipAdress,
       ERROR_CODE.NOT_FOUND,
@@ -25,13 +25,13 @@ export class GPUControlService {
   }
 
   async turnOn() {
-    const macAddress = await this.kvRepository.get<string>('GPU_MAC_ADDRESS')
+    const macAddress = MyLabConfig.GPU_MAC_ADDRESS
     AssertUtils.ensure(
       macAddress,
       ERROR_CODE.NOT_FOUND,
       'GPU_MAC_ADDRESS not found',
     )
-    const ipTimeAuth = await this.kvRepository.get<string>('IPTIME_AUTH')
+    const ipTimeAuth = MyLabConfig.IPTIME_AUTH
     AssertUtils.ensure(
       ipTimeAuth,
       ERROR_CODE.NOT_FOUND,
@@ -48,9 +48,9 @@ export class GPUControlService {
   }
 
   async turnOff() {
-    const sshKey = await this.kvRepository.get<string>('SSH_KEY')
+    const sshKey = MyLabConfig.SSH_KEY
     AssertUtils.ensure(sshKey, ERROR_CODE.NOT_FOUND, 'SSH_KEY not found')
-    const ipAdress = await this.kvRepository.get<string>('GPU_IP_ADDRESS')
+    const ipAdress = MyLabConfig.GPU_IP_ADDRESS
     AssertUtils.ensure(
       ipAdress,
       ERROR_CODE.NOT_FOUND,

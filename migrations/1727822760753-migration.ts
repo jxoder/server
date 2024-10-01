@@ -1,7 +1,7 @@
 import { MigrationInterface, QueryRunner } from 'typeorm'
 
-export class Migration1724931726462 implements MigrationInterface {
-  name = 'Migration1724931726462'
+export class Migration1727822760753 implements MigrationInterface {
+  name = 'Migration1727822760753'
 
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query(`
@@ -14,11 +14,11 @@ export class Migration1724931726462 implements MigrationInterface {
                 "id" SERIAL NOT NULL,
                 "name" character varying(40),
                 "role" "public"."user_role_enum" NOT NULL,
-                CONSTRAINT "PK_cace4a159ff9f2512dd42373760" PRIMARY KEY ("id")
+                CONSTRAINT "PK_cace4a159ff9f2512dd42373760" PRIMARY KEY ("id") 
             );
             COMMENT ON COLUMN "user"."created_at" IS 'created at';
             COMMENT ON COLUMN "user"."updated_at" IS 'updated at';
-            COMMENT ON COLUMN "user"."id" IS 'user id'; 
+            COMMENT ON COLUMN "user"."id" IS 'user id';
             COMMENT ON COLUMN "user"."name" IS 'nickname';
             COMMENT ON COLUMN "user"."role" IS 'role'
         `)

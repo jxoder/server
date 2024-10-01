@@ -1,12 +1,8 @@
 import { Module } from '@nestjs/common'
-import { GPUControlService, MyLabKvService } from './service'
-import { DatabaseModule } from '@slibs/database'
-import { MyLabKv } from './entities'
-import { MylabKvRepository } from './repository'
+import { GPUControlService } from './service'
 
 @Module({
-  imports: [DatabaseModule.forFeature([MyLabKv])],
-  providers: [MylabKvRepository, MyLabKvService, GPUControlService],
-  exports: [GPUControlService, MyLabKvService],
+  providers: [GPUControlService],
+  exports: [GPUControlService],
 })
 export class MylabModule {}
