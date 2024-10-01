@@ -9,7 +9,16 @@ describe('email-account.service', () => {
 
   beforeAll(async () => {
     module = await Test.createTestingModule({
-      imports: [DatabaseModule.forRoot(), UserModule],
+      imports: [
+        DatabaseModule.forRoot({
+          HOST: 'localhost',
+          PORT: 55432,
+          NAME: 'postgres',
+          USERNAME: 'postgres',
+          PASSWORD: 'postgres',
+        }),
+        UserModule.config({ JWT_SECRET: 'secret' }),
+      ],
     }).compile()
   })
 

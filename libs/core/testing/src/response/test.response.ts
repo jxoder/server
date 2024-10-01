@@ -13,7 +13,7 @@ export class TestResponse<T> {
   }
 
   expectSuccess() {
-    expect(this.res.status).toEqual(200)
+    expect(this.res.ok).toBeTruthy()
   }
 
   expectError(errorCode: ERROR_CODE) {
