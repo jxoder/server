@@ -25,15 +25,6 @@
         "tsConfigPath": "apps/gpu-app/tsconfig.app.json"
       }
     },
-    "test-app": {
-      "type": "application",
-      "root": "apps/test-app",
-      "entryFile": "main",
-      "sourceRoot": "apps/test-app/src",
-      "compilerOptions": {
-        "tsConfigPath": "apps/test-app/tsconfig.app.json"
-      }
-    },
     "common": {
       "type": "library",
       "root": "libs/common",
