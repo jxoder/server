@@ -7,6 +7,7 @@ dist
 node_modules
 local_storage
 .adminjs
+res/.local
 
 .env
 ormconfig.prod.ts

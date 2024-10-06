@@ -3,6 +3,7 @@ export enum FORM_TYPE {
   TEXTAREA = 'textarea',
   NUMBER = 'number',
   SELECT = 'select',
+  SLIDE = 'slide',
 }
 
 export interface IFormBase {
@@ -33,4 +34,17 @@ export interface IFormSelect extends IFormBase {
   defaultValue?: { label: string; value: string }
 }
 
-export type FormDataType = IFormText | IFormTextarea | IFormNumber | IFormSelect
+export interface IFormSlide extends IFormBase {
+  type: FORM_TYPE.SLIDE
+  defaultValue?: number
+  min: number
+  max: number
+  step?: number
+}
+
+export type FormDataType =
+  | IFormText
+  | IFormTextarea
+  | IFormNumber
+  | IFormSelect
+  | IFormSlide

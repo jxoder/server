@@ -1,24 +1,17 @@
 import { ApiProperty } from '@nestjs/swagger'
 import { CommonEntity } from '@slibs/database'
 import { Exclude } from 'class-transformer'
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
+import { Column, Entity, Index, PrimaryGeneratedColumn } from 'typeorm'
 
 const Description = {
   id: 'id',
   name: 'name',
-  type: 'model type (checkpoint, LoRA, ...)',
-  base: 'base type (SD, SDXL, FLUX...)',
+  type: 'model type',
   value: 'real entity value',
   permLv: 'permission level (user.roleLv)', // TODO: 나중에 좀더 고도화 필요.
 }
 
 export enum COMFY_MODEL_TYPE {
-  CHECKPOINT = 'CHECKPOINT',
-  LORA = 'LORA',
-  UNET = 'UNET',
-}
-
-export enum COMFY_MODEL_BASE {
   SD = 'SD',
   PONY = 'PONY',
   SDXL = 'SDXL',
@@ -26,6 +19,7 @@ export enum COMFY_MODEL_BASE {
 }
 
 @Entity()
+@Index(['value'], { unique: true })
 export class ComfyModel extends CommonEntity {
   @ApiProperty({ example: 1, description: Description.id })
   @PrimaryGeneratedColumn({ type: 'int', comment: Description.id })
@@ -44,20 +38,16 @@ export class ComfyModel extends CommonEntity {
   name: string
 
   @ApiProperty({
-    example: COMFY_MODEL_TYPE.CHECKPOINT,
+    example: 'unet/XXX',
     description: Description.type,
   })
   @Column({
-    type: 'enum',
-    enum: COMFY_MODEL_TYPE,
+    type: 'varchar',
     comment: Description.type,
+    length: 20,
     nullable: false,
   })
   type: COMFY_MODEL_TYPE
-
-  @ApiProperty({ example: COMFY_MODEL_BASE.SD, description: Description.base })
-  @Column({ type: 'enum', enum: COMFY_MODEL_BASE, comment: Description.base })
-  base: COMFY_MODEL_BASE
 
   @ApiProperty({
     example: 'SDXL/Juggernaut_X_RunDiffusion.safetensors',

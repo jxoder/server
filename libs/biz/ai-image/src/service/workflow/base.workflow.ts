@@ -16,7 +16,7 @@ export abstract class ComfyWorkflowBase<PAYLOAD> {
   ): Promise<ComfyUIWorkflowType> | ComfyUIWorkflowType
 
   async validate(input: any): Promise<PAYLOAD> {
-    const payload = merge(input, this.defaultValue ?? {})
+    const payload = merge(this.defaultValue ?? {}, input)
     const check = await this.payloadSchema.safeParseAsync(payload)
     AssertUtils.ensure(
       check.success,

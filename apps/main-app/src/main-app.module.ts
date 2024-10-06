@@ -57,8 +57,8 @@ import { QUEUE_NAME } from '@slibs/app-shared'
       },
     }),
     PrivateApiModule,
-    // AppAIImageModule,
-    // AppImageModule,
+    AppAIImageModule,
+    AppImageModule,
   ],
 })
 export class MainAppModule {}

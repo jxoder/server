@@ -4,10 +4,10 @@ import { InjectQueue } from '@nestjs/bullmq'
 import { GPU_JOB_NAME, QUEUE_NAME } from '@slibs/app-shared'
 import { Queue } from 'bullmq'
 import { Transactional } from 'typeorm-transactional'
-import { TASK_STATUS } from '../entities'
+import { AIImageTask, TASK_STATUS } from '../entities'
 import { COMFY_WORKFLOW } from './workflow'
 import { ComfyWorkflowPayload } from '../interface'
-import { AssertUtils, ERROR_CODE } from '@slibs/common'
+import { AssertUtils, DayUtils, ERROR_CODE } from '@slibs/common'
 
 @Injectable()
 export class AIImageService {
@@ -25,6 +25,7 @@ export class AIImageService {
     const inserted = await this.aiImageTaskRepository.insert({
       jobId: job.id,
       userId,
+      payload,
     })
     return this.aiImageTaskRepository.findOneById(inserted)
   }
@@ -42,6 +43,7 @@ export class AIImageService {
       await this.aiImageTaskRepository.update(job.id, {
         status: TASK_STATUS.SUCCESS,
         error: null,
+        updatedAt: DayUtils.getNowDate(),
       })
       return Promise.all(
         payload.imageKeys.map(key =>
@@ -53,6 +55,7 @@ export class AIImageService {
     return this.aiImageTaskRepository.update(job.id, {
       status: TASK_STATUS.FAILED,
       error: payload.error ?? 'no image keys',
+      updatedAt: DayUtils.getNowDate(),
     })
   }
 
@@ -63,6 +66,7 @@ export class AIImageService {
     }
     return this.aiImageTaskRepository.update(job.id, {
       status: TASK_STATUS.ACTIVE,
+      updatedAt: DayUtils.getNowDate(),
     })
   }
 
@@ -75,5 +79,14 @@ export class AIImageService {
         qb.leftJoinAndSelect('e.images', 'images')
       },
     })
+  }
+
+  async getTask(taskId: number): Promise<AIImageTask> {
+    const e = await this.aiImageTaskRepository.findOneById(taskId, qb => {
+      qb.leftJoinAndSelect(`e.images`, 'images')
+    })
+    AssertUtils.ensure(e, ERROR_CODE.NOT_FOUND, 'task not found')
+
+    return e
   }
 }

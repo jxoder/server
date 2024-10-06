@@ -20,6 +20,9 @@ export class AIImageTaskDTO {
   @ApiProperty({ example: ['image'], description: 'images' })
   images: string[]
 
+  @ApiProperty({ example: {}, description: 'payload' })
+  payload: object
+
   static to(task: AIImageTask): AIImageTaskDTO {
     return {
       id: task.id,
@@ -27,6 +30,7 @@ export class AIImageTaskDTO {
       error: task?.error,
       createdAt: task.createdAt.toISOString(),
       updatedAt: task.updatedAt.toISOString(),
+      payload: task.payload,
       images: task.images.map(i => i.url),
     }
   }

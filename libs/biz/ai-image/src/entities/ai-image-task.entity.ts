@@ -15,6 +15,7 @@ const Description = {
   status: 'status',
   error: 'error message',
 
+  payload: 'payload',
   images: 'images',
 
   userId: 'user id (not fk)',
@@ -34,7 +35,7 @@ export class AIImageTask extends CommonEntity {
   @PrimaryGeneratedColumn({ type: 'int', comment: Description.id })
   readonly id: number
 
-  @ApiProperty({ example: 'queue:job', description: Description.jobId })
+  @ApiProperty({ example: '1', description: Description.jobId })
   @Column({ type: 'varchar', comment: Description.jobId })
   jobId: string
 
@@ -49,6 +50,10 @@ export class AIImageTask extends CommonEntity {
     default: TASK_STATUS.WAITING,
   })
   status: TASK_STATUS
+
+  @ApiProperty({ type: Object, description: Description.payload })
+  @Column({ type: 'jsonb', comment: Description.payload, default: '{}' })
+  payload: object
 
   @ApiPropertyOptional({
     example: 'error message',

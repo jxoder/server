@@ -74,8 +74,8 @@ export abstract class CommonRepository<ENTITY extends ObjectLiteral, PK_TYPE> {
     pageOpt?: { page?: number; size?: number }
     decorator?: (qb: SelectQueryBuilder<ENTITY>) => void
   }): Promise<[ENTITY[], number]> {
-    const skip = (payload.pageOpt?.page ?? 1) - 1
     const take = payload.pageOpt?.size ?? 10
+    const skip = ((payload.pageOpt?.page ?? 1) - 1) * take
 
     let qb = this.repository.createQueryBuilder('e')
 

@@ -3,6 +3,8 @@ services:
     image: pgvector/pgvector:pg17
     ports:
       - '54322:5432'
+    volumes:
+      - .local/pgvector:/var/lib/postgresql/data
     environment:
       - POSTGRES_HOST_AUTH_METHOD=trust
 
@@ -10,3 +12,5 @@ services:
     image: redis:7.4
     ports:
       - '6379:6379'
+    volumes:
+      - .local/redis:/data

@@ -19,6 +19,12 @@ export class ComfyFormService {
       permLv: LessThanOrEqual(user.roleLv),
     })
 
+    const checkpoints = [
+      COMFY_MODEL_TYPE.SD,
+      COMFY_MODEL_TYPE.SDXL,
+      COMFY_MODEL_TYPE.PONY,
+    ]
+
     return {
       [COMFY_WORKFLOW_TYPE.SDXL_BASIC]: [
         {
@@ -26,34 +32,44 @@ export class ComfyFormService {
           label: 'model',
           name: 'ckpt_model',
           values: models
-            .filter(model => model.type === COMFY_MODEL_TYPE.CHECKPOINT)
+            .filter(model => checkpoints.includes(model.type))
             .map(model => ({ label: model.name, value: model.value })),
           required: true,
         },
         { type: FORM_TYPE.TEXTAREA, name: 'prompt', required: true },
         { type: FORM_TYPE.TEXTAREA, name: 'negative_prompt', required: true },
         {
-          type: FORM_TYPE.NUMBER,
+          type: FORM_TYPE.SLIDE,
           name: 'width',
           defaultValue: 1024,
+          min: 256,
+          max: 1024,
+          step: 128,
           required: false,
         },
         {
-          type: FORM_TYPE.NUMBER,
+          type: FORM_TYPE.SLIDE,
           name: 'height',
           defaultValue: 1024,
+          min: 256,
+          max: 1024,
+          step: 128,
           required: false,
         },
         {
-          type: FORM_TYPE.NUMBER,
+          type: FORM_TYPE.SLIDE,
           name: 'steps',
           defaultValue: 25,
+          min: 3,
+          max: 50,
           required: false,
         },
         {
-          type: FORM_TYPE.NUMBER,
+          type: FORM_TYPE.SLIDE,
           name: 'cfg',
           defaultValue: 7,
+          min: 1,
+          max: 9,
           required: false,
         },
         {
@@ -93,7 +109,7 @@ export class ComfyFormService {
           label: 'model',
           name: 'unet_model',
           values: models
-            .filter(model => model.type === COMFY_MODEL_TYPE.UNET)
+            .filter(model => model.type === COMFY_MODEL_TYPE.FLUX)
             .map(model => ({ label: model.name, value: model.value })),
           required: true,
         },
