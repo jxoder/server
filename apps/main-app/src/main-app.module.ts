@@ -43,23 +43,13 @@ import { PGEventModule } from '@slibs/pg-event'
         password: MainAppConfig.REDIS_PASSWORD,
       },
       queues: [QUEUE_NAME.GPU],
-      enabledDashboard: MainAppConfig.ENABLED_BULL_ADMIN,
     }),
     PGEventModule.forRoot({
       connectString: MainAppConfig.PG_CON_STRING,
     }),
 
     // Service module (Controllers)
-    AppUserModule.forRoot({
-      JWT_SECRET: 'secret',
-      JWT_EXPIRES_IN: 7 * 24 * 60 * 60, // 7days
-      adminConfig: {
-        cookieName: 'admin-cookie',
-        cookieSecret: MainAppConfig.ADMIN_COOKIE_SECRET,
-        sessionSecret: MainAppConfig.ADMIN_SESSION_SECRET,
-        pgConString: MainAppConfig.PG_CON_STRING,
-      },
-    }),
+    AppUserModule,
     PrivateApiModule,
     AppAIImageModule,
     AppImageModule,

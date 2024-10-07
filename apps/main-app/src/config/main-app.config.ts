@@ -42,20 +42,4 @@ export class MainAppConfig extends ApiConfig {
   static readonly MINIO_ACCESS_SECRET_KEY = get('MINIO_SECRET_KEY').asString()
   static readonly MINIO_BUCKET = get('MINIO_BUCKET').asString()
   static readonly MINIO_USE_SSL = get('MINIO_USE_SSL').asBool()
-
-  // User
-  static readonly USER_JWT_SECRET = get('USER_JWT_SECRET')
-    .default('secret')
-    .asString()
-
-  // Admin
-  static readonly ADMIN_COOKIE_SECRET = get('ADMIN_COOKIE_SECRET')
-    .default('cookie-secret')
-    .asString()
-  static readonly ADMIN_SESSION_SECRET = get('ADMIN_SESSION_SECRET')
-    .default('session-secret')
-    .asString()
-
-  // Bull
-  static readonly ENABLED_BULL_ADMIN = get('ENABLED_BULL_ADMIN').asBool()
 }
