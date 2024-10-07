@@ -7,9 +7,13 @@ import {
   AIImageTaskRepository,
 } from './repository'
 import { ComfyOptionService, AIImageService } from './service'
+import { PGEventModule } from '@slibs/pg-event'
 
 @Module({
-  imports: [DatabaseModule.forFeature([AIImage, AIImageTask, ComfyModel])],
+  imports: [
+    DatabaseModule.forFeature([AIImage, AIImageTask, ComfyModel]),
+    PGEventModule,
+  ],
   providers: [
     AIImageRepository,
     AIImageTaskRepository,

@@ -115,15 +115,6 @@
         "tsConfigPath": "libs/redis-queue/tsconfig.lib.json"
       }
     },
-    "admin": {
-      "type": "library",
-      "root": "libs/admin",
-      "entryFile": "index",
-      "sourceRoot": "libs/admin/src",
-      "compilerOptions": {
-        "tsConfigPath": "libs/admin/tsconfig.lib.json"
-      }
-    },
     "comfy": {
       "type": "library",
       "root": "libs/comfy",
@@ -158,6 +149,24 @@
       "sourceRoot": "libs/ai-image/src",
       "compilerOptions": {
         "tsConfigPath": "libs/ai-image/tsconfig.lib.json"
+      }
+    },
+    "pg-event": {
+      "type": "library",
+      "root": "libs/system/pg-event",
+      "entryFile": "index",
+      "sourceRoot": "libs/system/pg-event/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/system/pg-event/tsconfig.lib.json"
+      }
+    },
+    "admin-app": {
+      "type": "application",
+      "root": "apps/admin-app",
+      "entryFile": "main",
+      "sourceRoot": "apps/admin-app/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/admin-app/tsconfig.app.json"
       }
     }
   }

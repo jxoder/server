@@ -7,6 +7,7 @@ import { QUEUE_NAME } from '@slibs/app-shared'
 import { StorageConfigType, StorageModule } from '@slibs/storage'
 import { AIImageModule } from '@slibs/ai-image'
 import { GpuAppConfig } from './config'
+import { PGEventModule } from '@slibs/pg-event'
 
 @Module({
   imports: [
@@ -35,6 +36,7 @@ import { GpuAppConfig } from './config'
       },
       queues: [QUEUE_NAME.GPU],
     }),
+    PGEventModule.forRoot({ connectString: GpuAppConfig.PG_CON_STRING }),
     ComfyModule.config({
       BASE_HOST: GpuAppConfig.COMFY_HOST,
       AUTH_TOKEN: GpuAppConfig.COMFY_AUTH_TOKEN,

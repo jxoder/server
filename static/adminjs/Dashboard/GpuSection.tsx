@@ -1,12 +1,11 @@
 import React from 'react'
-import { useCurrentAdmin, useNotice } from 'adminjs'
+import { useNotice } from 'adminjs'
 import { Box, Text, Button } from '../design-system'
 
 type STATUS = 'unknown' | 'alive' | 'down'
 
 const GpuSection: React.FC = () => {
   const noti = useNotice()
-  const [admin] = useCurrentAdmin()
 
   const [loading, setLoading] = React.useState<boolean>(false)
   const [alive, setAlive] = React.useState<STATUS>('unknown')
@@ -20,9 +19,8 @@ const GpuSection: React.FC = () => {
 
     setLoading(true)
     try {
-      const res = await fetch('private/gpu-control/check', {
+      const res = await fetch('api/instance-control/check', {
         method: 'POST',
-        headers: { Authorization: `Bearer ${admin?.accessToken}` },
       })
 
       const data = await res.json()
@@ -49,9 +47,8 @@ const GpuSection: React.FC = () => {
 
     setLoading(true)
     try {
-      const res = await fetch('private/gpu-control/on', {
+      const res = await fetch('api/instance-control/on', {
         method: 'POST',
-        headers: { Authorization: `Bearer ${admin?.accessToken}` },
       })
       const data = await res.json()
 
@@ -76,9 +73,8 @@ const GpuSection: React.FC = () => {
 
     setLoading(true)
     try {
-      const res = await fetch('private/gpu-control/off', {
+      const res = await fetch('api/instance-control/off', {
         method: 'POST',
-        headers: { Authorization: `Bearer ${admin?.accessToken}` },
       })
       const data = await res.json()
 

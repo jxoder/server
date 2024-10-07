@@ -8,6 +8,7 @@ import { AIImageTask, TASK_STATUS } from '../entities'
 import { COMFY_WORKFLOW } from './workflow'
 import { ComfyWorkflowPayload } from '../interface'
 import { AssertUtils, DayUtils, ERROR_CODE } from '@slibs/common'
+import { InjectPGEvent, PGEvent } from '@slibs/pg-event'
 
 @Injectable()
 export class AIImageService {
@@ -15,6 +16,7 @@ export class AIImageService {
     @InjectQueue(QUEUE_NAME.GPU) private readonly queue: Queue,
     private readonly aiImageRepository: AIImageRepository,
     private readonly aiImageTaskRepository: AIImageTaskRepository,
+    @InjectPGEvent() private readonly pgEvent: PGEvent,
   ) {}
 
   @Transactional()

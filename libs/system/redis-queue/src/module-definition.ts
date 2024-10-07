@@ -1,4 +1,5 @@
 import { ConfigurableModuleBuilder } from '@nestjs/common'
+import { Request, Response, NextFunction } from 'express'
 
 interface IRedisConnection {
   host: string
@@ -9,6 +10,9 @@ interface IRedisConnection {
 export const { ConfigurableModuleClass, OPTIONS_TYPE } =
   new ConfigurableModuleBuilder<{
     connection: IRedisConnection
-    enabledDashboard?: boolean
     queues: Array<string>
+    dashboard?: {
+      route: string
+      middleware?: (req: Request, res: Response, next: NextFunction) => void
+    }
   }>().build()

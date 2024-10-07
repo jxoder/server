@@ -11,7 +11,7 @@ const Dashboard: React.FC = () => {
     <Box m="xl">
       {(admin as IAdmin).roleLv >= 15 && <GpuSection />}
       <Box bg="white" p="xl" boxShadow="card" borderRadius="default">
-        <Link href="/admin/bull" uppercase>
+        <Link href="/queues" uppercase>
           Go to Queue Dashboard
         </Link>
       </Box>

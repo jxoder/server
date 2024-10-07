@@ -18,6 +18,10 @@ export class GpuAppConfig extends CommonConfig {
   static readonly DB_SCHEMA = get('DB_SCHEMA').asString()
   static readonly DB_LOGGING = undefined
 
+  static readonly PG_CON_STRING = get('PG_CON_STRING')
+    .default('postgres://postgres:postgres@localhost:54322/postgres')
+    .asString()
+
   // Redis
   static readonly REDIS_HOST = get('REDIS_QUEUE_HOST')
     .default('0.0.0.0')

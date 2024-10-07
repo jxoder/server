@@ -20,6 +20,10 @@ export class MainAppConfig extends ApiConfig {
   static readonly DB_SCHEMA = get('DB_SCHEMA').asString()
   static readonly DB_LOGGING = undefined
 
+  static readonly PG_CON_STRING = get('PG_CON_STRING')
+    .default('postgres://postgres:postgres@localhost:54322/postgres')
+    .asString()
+
   // Redis
   static readonly REDIS_HOST = get('REDIS_QUEUE_HOST')
     .default('0.0.0.0')
@@ -50,11 +54,6 @@ export class MainAppConfig extends ApiConfig {
     .asString()
   static readonly ADMIN_SESSION_SECRET = get('ADMIN_SESSION_SECRET')
     .default('session-secret')
-    .asString()
-  static readonly ADMIN_SESSION_PG_CON_STRING = get(
-    'ADMIN_SESSION_PG_CON_STRING',
-  )
-    .default('postgres://postgres:postgres@localhost:54322/postgres')
     .asString()
 
   // Bull

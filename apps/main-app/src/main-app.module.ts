@@ -11,6 +11,7 @@ import {
 import { MainAppConfig } from './config'
 import { RedisQueueModule } from '@slibs/redis-queue'
 import { QUEUE_NAME } from '@slibs/app-shared'
+import { PGEventModule } from '@slibs/pg-event'
 
 @Module({
   imports: [
@@ -44,6 +45,9 @@ import { QUEUE_NAME } from '@slibs/app-shared'
       queues: [QUEUE_NAME.GPU],
       enabledDashboard: MainAppConfig.ENABLED_BULL_ADMIN,
     }),
+    PGEventModule.forRoot({
+      connectString: MainAppConfig.PG_CON_STRING,
+    }),
 
     // Service module (Controllers)
     AppUserModule.forRoot({
@@ -53,7 +57,7 @@ import { QUEUE_NAME } from '@slibs/app-shared'
         cookieName: 'admin-cookie',
         cookieSecret: MainAppConfig.ADMIN_COOKIE_SECRET,
         sessionSecret: MainAppConfig.ADMIN_SESSION_SECRET,
-        pgConString: MainAppConfig.ADMIN_SESSION_PG_CON_STRING,
+        pgConString: MainAppConfig.PG_CON_STRING,
       },
     }),
     PrivateApiModule,

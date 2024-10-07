@@ -16,7 +16,7 @@ importers:
         version: 5.1.0(adminjs@6.8.7(@types/babel__core@7.20.5))(express-formidable@1.2.0)(express-session@1.18.0)(express@4.21.0)(tslib@2.7.0)
       '@adminjs/nestjs':
         specifier: 5.1.1
-        version: 5.1.1(@nestjs/common@10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.4.1(@nestjs/common@10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/platform-express@10.4.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(adminjs@6.8.7(@types/babel__core@7.20.5))(rxjs@7.8.1)
+        version: 5.1.1(@nestjs/common@10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.4.1)(adminjs@6.8.7(@types/babel__core@7.20.5))(rxjs@7.8.1)
       '@adminjs/typeorm':
         specifier: 4.0.0
         version: 4.0.0(adminjs@6.8.7(@types/babel__core@7.20.5))(typeorm@0.3.20(ioredis@5.4.1)(pg@8.12.0)(ts-node@10.9.2(@types/node@22.5.0)(typescript@5.5.4)))
@@ -28,10 +28,10 @@ importers:
         version: 5.15.1
       '@bull-board/nestjs':
         specifier: 5.15.1
-        version: 5.15.1(@bull-board/api@5.15.1(@bull-board/ui@5.15.1))(@bull-board/express@5.15.1)(@nestjs/common@10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.4.1(@nestjs/common@10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/platform-express@10.4.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(reflect-metadata@0.2.2)(rxjs@7.8.1)
+        version: 5.15.1(@bull-board/api@5.15.1(@bull-board/ui@5.15.1))(@bull-board/express@5.15.1)(@nestjs/common@10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.4.1)(reflect-metadata@0.2.2)(rxjs@7.8.1)
       '@nestjs/bullmq':
         specifier: 10.1.0
-        version: 10.1.0(@nestjs/common@10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.4.1(@nestjs/common@10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/platform-express@10.4.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(bullmq@5.4.5)
+        version: 10.1.0(@nestjs/common@10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.4.1)(bullmq@5.4.5)
       '@nestjs/common':
         specifier: 10.4.1
         version: 10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1)
@@ -40,7 +40,7 @@ importers:
         version: 10.4.1(@nestjs/common@10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/platform-express@10.4.1)(reflect-metadata@0.2.2)(rxjs@7.8.1)
       '@nestjs/event-emitter':
         specifier: 2.0.4
-        version: 2.0.4(@nestjs/common@10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.4.1(@nestjs/common@10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/platform-express@10.4.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))
+        version: 2.0.4(@nestjs/common@10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.4.1)
       '@nestjs/passport':
         specifier: 10.0.3
         version: 10.0.3(@nestjs/common@10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(passport@0.7.0)
@@ -49,10 +49,10 @@ importers:
         version: 10.4.1(@nestjs/common@10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.4.1)
       '@nestjs/swagger':
         specifier: 7.4.0
-        version: 7.4.0(@nestjs/common@10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.4.1(@nestjs/common@10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/platform-express@10.4.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)
+        version: 7.4.0(@nestjs/common@10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.4.1)(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)
       '@nestjs/typeorm':
         specifier: 10.0.2
-        version: 10.0.2(@nestjs/common@10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.4.1(@nestjs/common@10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/platform-express@10.4.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(reflect-metadata@0.2.2)(rxjs@7.8.1)(typeorm@0.3.20(ioredis@5.4.1)(pg@8.12.0)(ts-node@10.9.2(@types/node@22.5.0)(typescript@5.5.4)))
+        version: 10.0.2(@nestjs/common@10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.4.1)(reflect-metadata@0.2.2)(rxjs@7.8.1)(typeorm@0.3.20(ioredis@5.4.1)(pg@8.12.0)(ts-node@10.9.2(@types/node@22.5.0)(typescript@5.5.4)))
       adminjs:
         specifier: 6.8.7
         version: 6.8.7(@types/babel__core@7.20.5)
@@ -112,7 +112,7 @@ importers:
         version: 8.0.1
       nestjs-form-data:
         specifier: 1.9.91
-        version: 1.9.91(@nestjs/common@10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.4.1(@nestjs/common@10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/platform-express@10.4.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1)
+        version: 1.9.91(@nestjs/common@10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.4.1)(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1)
       node-ssh:
         specifier: 12.0.5
         version: 12.0.5
@@ -128,6 +128,9 @@ importers:
       pg-boss:
         specifier: 10.1.1
         version: 10.1.1
+      pg-notify:
+        specifier: 1.0.5
+        version: 1.0.5
       ping:
         specifier: 0.4.4
         version: 0.4.4
@@ -167,7 +170,7 @@ importers:
         version: 10.4.4
       '@nestjs/testing':
         specifier: 10.4.1
-        version: 10.4.1(@nestjs/common@10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.4.1(@nestjs/common@10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/platform-express@10.4.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/platform-express@10.4.1(@nestjs/common@10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.4.1))
+        version: 10.4.1(@nestjs/common@10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.4.1)(@nestjs/platform-express@10.4.1)
       '@types/bcrypt':
         specifier: 5.0.2
         version: 5.0.2
@@ -4399,9 +4402,16 @@ packages:
   pg-connection-string@2.6.4:
     resolution: {integrity: sha512-v+Z7W/0EO707aNMaAEfiGnGL9sxxumwLl2fJvCQtMn9Fxsg+lPpPkdcyBSv/KFgpGdYkMfn+EI1Or2EHjpgLCA==}
 
+  pg-format@1.0.4:
+    resolution: {integrity: sha512-YyKEF78pEA6wwTAqOUaHIN/rWpfzzIuMh9KdAhc3rSLQ/7zkRFcCgYBAEGatDstLyZw4g0s9SNICmaTGnBVeyw==}
+    engines: {node: '>=4.0'}
+
   pg-int8@1.0.1:
     resolution: {integrity: sha512-WCtabS6t3c8SkpDBUlb1kjOs7l66xsGdKpIPZsg4wR+B3+u9UAum2odSsF9tnvxg80h4ZxLWMy4pRjOsFIqQpw==}
     engines: {node: '>=4.0.0'}
+
+  pg-notify@1.0.5:
+    resolution: {integrity: sha512-nxqY9yEy29nRrVPx0wyBMXEsxjb4sUHxpMMHvu5HYwtDx/mgwEd1MrdMqlZuMc3c4tmd2qgTDBCEDOEAo65NlA==}
 
   pg-numeric@1.0.2:
     resolution: {integrity: sha512-BM/Thnrw5jm2kKLE5uJkXqqExRUY/toLHda65XgFTBTFYZyopbKjBe29Ii3RbkvlsMoFwD+tHeGaCjjv0gHlyw==}
@@ -4962,6 +4972,9 @@ packages:
   schema-utils@3.3.0:
     resolution: {integrity: sha512-pN/yOAvcC+5rQ5nERGuwrjLlYvLTbCibnZ1I7B1LaiAz9BRBlE9GMgE/eqV30P7aJQUf7Ddimy/RsbYO/GrVGg==}
     engines: {node: '>= 10.13.0'}
+
+  secure-json-parse@2.7.0:
+    resolution: {integrity: sha512-6aU+Rwsezw7VR8/nyvKTx8QpWH9FrcYiXXlqC4z5d5XQBDRqtbfsRjnwGyqbi3gddNtWHuEk9OANUotL26qKUw==}
 
   semver@5.7.2:
     resolution: {integrity: sha512-cBznnQ9KjJqU67B52RMC65CMarK2600WFnbkcaiwWq3xy/5haFJlshgnpjovMVJ+Hff49d8GEn0b87C5pDQ10g==}
@@ -5808,24 +5821,24 @@ snapshots:
       '@carbon/icons-react': 11.48.0(react@18.3.1)
       '@hypnosphi/create-react-context': 0.3.1(prop-types@15.8.1)(react@18.3.1)
       '@tiptap/core': 2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217)
-      '@tiptap/extension-bubble-menu': 2.0.0-beta.217(@tiptap/core@2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217))(@tiptap/pm@2.0.0-beta.217(@tiptap/core@2.0.0-beta.217))
-      '@tiptap/extension-character-count': 2.0.0-beta.217(@tiptap/core@2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217))(@tiptap/pm@2.0.0-beta.217(@tiptap/core@2.0.0-beta.217))
-      '@tiptap/extension-code': 2.0.0-beta.217(@tiptap/core@2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217))
-      '@tiptap/extension-document': 2.0.0-beta.217(@tiptap/core@2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217))
-      '@tiptap/extension-floating-menu': 2.0.0-beta.217(@tiptap/core@2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217))(@tiptap/pm@2.0.0-beta.217(@tiptap/core@2.0.0-beta.217))
-      '@tiptap/extension-heading': 2.0.0-beta.217(@tiptap/core@2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217))
-      '@tiptap/extension-image': 2.0.0-beta.217(@tiptap/core@2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217))
-      '@tiptap/extension-link': 2.0.0-beta.217(@tiptap/core@2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217))(@tiptap/pm@2.0.0-beta.217(@tiptap/core@2.0.0-beta.217))
-      '@tiptap/extension-table': 2.0.0-beta.217(@tiptap/core@2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217))(@tiptap/pm@2.0.0-beta.217(@tiptap/core@2.0.0-beta.217))
-      '@tiptap/extension-table-cell': 2.0.0-beta.217(@tiptap/core@2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217))
-      '@tiptap/extension-table-header': 2.0.0-beta.217(@tiptap/core@2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217))
-      '@tiptap/extension-table-row': 2.0.0-beta.217(@tiptap/core@2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217))
-      '@tiptap/extension-text': 2.0.0-beta.217(@tiptap/core@2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217))
-      '@tiptap/extension-text-align': 2.0.0-beta.217(@tiptap/core@2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217))
-      '@tiptap/extension-typography': 2.0.0-beta.217(@tiptap/core@2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217))
+      '@tiptap/extension-bubble-menu': 2.0.0-beta.217(@tiptap/core@2.0.0-beta.217)(@tiptap/pm@2.0.0-beta.217)
+      '@tiptap/extension-character-count': 2.0.0-beta.217(@tiptap/core@2.0.0-beta.217)(@tiptap/pm@2.0.0-beta.217)
+      '@tiptap/extension-code': 2.0.0-beta.217(@tiptap/core@2.0.0-beta.217)
+      '@tiptap/extension-document': 2.0.0-beta.217(@tiptap/core@2.0.0-beta.217)
+      '@tiptap/extension-floating-menu': 2.0.0-beta.217(@tiptap/core@2.0.0-beta.217)(@tiptap/pm@2.0.0-beta.217)
+      '@tiptap/extension-heading': 2.0.0-beta.217(@tiptap/core@2.0.0-beta.217)
+      '@tiptap/extension-image': 2.0.0-beta.217(@tiptap/core@2.0.0-beta.217)
+      '@tiptap/extension-link': 2.0.0-beta.217(@tiptap/core@2.0.0-beta.217)(@tiptap/pm@2.0.0-beta.217)
+      '@tiptap/extension-table': 2.0.0-beta.217(@tiptap/core@2.0.0-beta.217)(@tiptap/pm@2.0.0-beta.217)
+      '@tiptap/extension-table-cell': 2.0.0-beta.217(@tiptap/core@2.0.0-beta.217)
+      '@tiptap/extension-table-header': 2.0.0-beta.217(@tiptap/core@2.0.0-beta.217)
+      '@tiptap/extension-table-row': 2.0.0-beta.217(@tiptap/core@2.0.0-beta.217)
+      '@tiptap/extension-text': 2.0.0-beta.217(@tiptap/core@2.0.0-beta.217)
+      '@tiptap/extension-text-align': 2.0.0-beta.217(@tiptap/core@2.0.0-beta.217)
+      '@tiptap/extension-typography': 2.0.0-beta.217(@tiptap/core@2.0.0-beta.217)
       '@tiptap/pm': 2.0.0-beta.217(@tiptap/core@2.0.0-beta.217)
-      '@tiptap/react': 2.0.0-beta.217(@tiptap/core@2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217))(@tiptap/pm@2.0.0-beta.217(@tiptap/core@2.0.0-beta.217))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@tiptap/starter-kit': 2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217(@tiptap/core@2.0.0-beta.217))
+      '@tiptap/react': 2.0.0-beta.217(@tiptap/core@2.0.0-beta.217)(@tiptap/pm@2.0.0-beta.217)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@tiptap/starter-kit': 2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217)
       date-fns: 2.15.0
       jw-paginate: 1.0.4
       lodash: 4.17.21
@@ -5900,7 +5913,7 @@ snapshots:
       path-to-regexp: 6.3.0
       tslib: 2.7.0
 
-  '@adminjs/nestjs@5.1.1(@nestjs/common@10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.4.1(@nestjs/common@10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/platform-express@10.4.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(adminjs@6.8.7(@types/babel__core@7.20.5))(rxjs@7.8.1)':
+  '@adminjs/nestjs@5.1.1(@nestjs/common@10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.4.1)(adminjs@6.8.7(@types/babel__core@7.20.5))(rxjs@7.8.1)':
     dependencies:
       '@nestjs/common': 10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1)
       '@nestjs/core': 10.4.1(@nestjs/common@10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/platform-express@10.4.1)(reflect-metadata@0.2.2)(rxjs@7.8.1)
@@ -6834,11 +6847,11 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@bull-board/nestjs@5.15.1(@bull-board/api@5.15.1(@bull-board/ui@5.15.1))(@bull-board/express@5.15.1)(@nestjs/common@10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.4.1(@nestjs/common@10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/platform-express@10.4.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(reflect-metadata@0.2.2)(rxjs@7.8.1)':
+  '@bull-board/nestjs@5.15.1(@bull-board/api@5.15.1(@bull-board/ui@5.15.1))(@bull-board/express@5.15.1)(@nestjs/common@10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.4.1)(reflect-metadata@0.2.2)(rxjs@7.8.1)':
     dependencies:
       '@bull-board/api': 5.15.1(@bull-board/ui@5.15.1)
       '@bull-board/express': 5.15.1
-      '@nestjs/bull-shared': 10.2.1(@nestjs/common@10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.4.1(@nestjs/common@10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/platform-express@10.4.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))
+      '@nestjs/bull-shared': 10.2.1(@nestjs/common@10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.4.1)
       '@nestjs/common': 10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1)
       '@nestjs/core': 10.4.1(@nestjs/common@10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/platform-express@10.4.1)(reflect-metadata@0.2.2)(rxjs@7.8.1)
       reflect-metadata: 0.2.2
@@ -7342,15 +7355,15 @@ snapshots:
   '@msgpackr-extract/msgpackr-extract-win32-x64@3.0.3':
     optional: true
 
-  '@nestjs/bull-shared@10.2.1(@nestjs/common@10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.4.1(@nestjs/common@10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/platform-express@10.4.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))':
+  '@nestjs/bull-shared@10.2.1(@nestjs/common@10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.4.1)':
     dependencies:
       '@nestjs/common': 10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1)
       '@nestjs/core': 10.4.1(@nestjs/common@10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/platform-express@10.4.1)(reflect-metadata@0.2.2)(rxjs@7.8.1)
       tslib: 2.6.3
 
-  '@nestjs/bullmq@10.1.0(@nestjs/common@10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.4.1(@nestjs/common@10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/platform-express@10.4.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(bullmq@5.4.5)':
+  '@nestjs/bullmq@10.1.0(@nestjs/common@10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.4.1)(bullmq@5.4.5)':
     dependencies:
-      '@nestjs/bull-shared': 10.2.1(@nestjs/common@10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.4.1(@nestjs/common@10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/platform-express@10.4.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))
+      '@nestjs/bull-shared': 10.2.1(@nestjs/common@10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.4.1)
       '@nestjs/common': 10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1)
       '@nestjs/core': 10.4.1(@nestjs/common@10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/platform-express@10.4.1)(reflect-metadata@0.2.2)(rxjs@7.8.1)
       bullmq: 5.4.5
@@ -7409,7 +7422,7 @@ snapshots:
     transitivePeerDependencies:
       - encoding
 
-  '@nestjs/event-emitter@2.0.4(@nestjs/common@10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.4.1(@nestjs/common@10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/platform-express@10.4.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))':
+  '@nestjs/event-emitter@2.0.4(@nestjs/common@10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.4.1)':
     dependencies:
       '@nestjs/common': 10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1)
       '@nestjs/core': 10.4.1(@nestjs/common@10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/platform-express@10.4.1)(reflect-metadata@0.2.2)(rxjs@7.8.1)
@@ -7451,7 +7464,7 @@ snapshots:
     transitivePeerDependencies:
       - chokidar
 
-  '@nestjs/swagger@7.4.0(@nestjs/common@10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.4.1(@nestjs/common@10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/platform-express@10.4.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)':
+  '@nestjs/swagger@7.4.0(@nestjs/common@10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.4.1)(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)':
     dependencies:
       '@microsoft/tsdoc': 0.15.0
       '@nestjs/common': 10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1)
@@ -7466,7 +7479,7 @@ snapshots:
       class-transformer: 0.5.1
       class-validator: 0.14.1
 
-  '@nestjs/testing@10.4.1(@nestjs/common@10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.4.1(@nestjs/common@10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/platform-express@10.4.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/platform-express@10.4.1(@nestjs/common@10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.4.1))':
+  '@nestjs/testing@10.4.1(@nestjs/common@10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.4.1)(@nestjs/platform-express@10.4.1)':
     dependencies:
       '@nestjs/common': 10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1)
       '@nestjs/core': 10.4.1(@nestjs/common@10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/platform-express@10.4.1)(reflect-metadata@0.2.2)(rxjs@7.8.1)
@@ -7474,7 +7487,7 @@ snapshots:
     optionalDependencies:
       '@nestjs/platform-express': 10.4.1(@nestjs/common@10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.4.1)
 
-  '@nestjs/typeorm@10.0.2(@nestjs/common@10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.4.1(@nestjs/common@10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/platform-express@10.4.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(reflect-metadata@0.2.2)(rxjs@7.8.1)(typeorm@0.3.20(ioredis@5.4.1)(pg@8.12.0)(ts-node@10.9.2(@types/node@22.5.0)(typescript@5.5.4)))':
+  '@nestjs/typeorm@10.0.2(@nestjs/common@10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.4.1)(reflect-metadata@0.2.2)(rxjs@7.8.1)(typeorm@0.3.20(ioredis@5.4.1)(pg@8.12.0)(ts-node@10.9.2(@types/node@22.5.0)(typescript@5.5.4)))':
     dependencies:
       '@nestjs/common': 10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1)
       '@nestjs/core': 10.4.1(@nestjs/common@10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/platform-express@10.4.1)(reflect-metadata@0.2.2)(rxjs@7.8.1)
@@ -7642,7 +7655,7 @@ snapshots:
     dependencies:
       '@tiptap/pm': 2.1.13
 
-  '@tiptap/extension-blockquote@2.6.6(@tiptap/core@2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217))':
+  '@tiptap/extension-blockquote@2.6.6(@tiptap/core@2.0.0-beta.217)':
     dependencies:
       '@tiptap/core': 2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217)
 
@@ -7650,7 +7663,7 @@ snapshots:
     dependencies:
       '@tiptap/core': 2.1.13(@tiptap/pm@2.1.13)
 
-  '@tiptap/extension-bold@2.6.6(@tiptap/core@2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217))':
+  '@tiptap/extension-bold@2.6.6(@tiptap/core@2.0.0-beta.217)':
     dependencies:
       '@tiptap/core': 2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217)
 
@@ -7658,7 +7671,7 @@ snapshots:
     dependencies:
       '@tiptap/core': 2.1.13(@tiptap/pm@2.1.13)
 
-  '@tiptap/extension-bubble-menu@2.0.0-beta.217(@tiptap/core@2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217))(@tiptap/pm@2.0.0-beta.217(@tiptap/core@2.0.0-beta.217))':
+  '@tiptap/extension-bubble-menu@2.0.0-beta.217(@tiptap/core@2.0.0-beta.217)(@tiptap/pm@2.0.0-beta.217)':
     dependencies:
       '@tiptap/core': 2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217)
       '@tiptap/pm': 2.0.0-beta.217(@tiptap/core@2.0.0-beta.217)
@@ -7671,7 +7684,7 @@ snapshots:
       '@tiptap/pm': 2.1.13
       tippy.js: 6.3.7
 
-  '@tiptap/extension-bullet-list@2.6.6(@tiptap/core@2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217))':
+  '@tiptap/extension-bullet-list@2.6.6(@tiptap/core@2.0.0-beta.217)':
     dependencies:
       '@tiptap/core': 2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217)
 
@@ -7679,7 +7692,7 @@ snapshots:
     dependencies:
       '@tiptap/core': 2.1.13(@tiptap/pm@2.1.13)
 
-  '@tiptap/extension-character-count@2.0.0-beta.217(@tiptap/core@2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217))(@tiptap/pm@2.0.0-beta.217(@tiptap/core@2.0.0-beta.217))':
+  '@tiptap/extension-character-count@2.0.0-beta.217(@tiptap/core@2.0.0-beta.217)(@tiptap/pm@2.0.0-beta.217)':
     dependencies:
       '@tiptap/core': 2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217)
       '@tiptap/pm': 2.0.0-beta.217(@tiptap/core@2.0.0-beta.217)
@@ -7689,7 +7702,7 @@ snapshots:
       '@tiptap/core': 2.1.13(@tiptap/pm@2.1.13)
       '@tiptap/pm': 2.1.13
 
-  '@tiptap/extension-code-block@2.6.6(@tiptap/core@2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217))(@tiptap/pm@2.0.0-beta.217(@tiptap/core@2.0.0-beta.217))':
+  '@tiptap/extension-code-block@2.6.6(@tiptap/core@2.0.0-beta.217)(@tiptap/pm@2.0.0-beta.217)':
     dependencies:
       '@tiptap/core': 2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217)
       '@tiptap/pm': 2.0.0-beta.217(@tiptap/core@2.0.0-beta.217)
@@ -7699,7 +7712,7 @@ snapshots:
       '@tiptap/core': 2.1.13(@tiptap/pm@2.1.13)
       '@tiptap/pm': 2.1.13
 
-  '@tiptap/extension-code@2.0.0-beta.217(@tiptap/core@2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217))':
+  '@tiptap/extension-code@2.0.0-beta.217(@tiptap/core@2.0.0-beta.217)':
     dependencies:
       '@tiptap/core': 2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217)
 
@@ -7707,7 +7720,7 @@ snapshots:
     dependencies:
       '@tiptap/core': 2.1.13(@tiptap/pm@2.1.13)
 
-  '@tiptap/extension-document@2.0.0-beta.217(@tiptap/core@2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217))':
+  '@tiptap/extension-document@2.0.0-beta.217(@tiptap/core@2.0.0-beta.217)':
     dependencies:
       '@tiptap/core': 2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217)
 
@@ -7715,7 +7728,7 @@ snapshots:
     dependencies:
       '@tiptap/core': 2.1.13(@tiptap/pm@2.1.13)
 
-  '@tiptap/extension-dropcursor@2.6.6(@tiptap/core@2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217))(@tiptap/pm@2.0.0-beta.217(@tiptap/core@2.0.0-beta.217))':
+  '@tiptap/extension-dropcursor@2.6.6(@tiptap/core@2.0.0-beta.217)(@tiptap/pm@2.0.0-beta.217)':
     dependencies:
       '@tiptap/core': 2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217)
       '@tiptap/pm': 2.0.0-beta.217(@tiptap/core@2.0.0-beta.217)
@@ -7725,7 +7738,7 @@ snapshots:
       '@tiptap/core': 2.1.13(@tiptap/pm@2.1.13)
       '@tiptap/pm': 2.1.13
 
-  '@tiptap/extension-floating-menu@2.0.0-beta.217(@tiptap/core@2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217))(@tiptap/pm@2.0.0-beta.217(@tiptap/core@2.0.0-beta.217))':
+  '@tiptap/extension-floating-menu@2.0.0-beta.217(@tiptap/core@2.0.0-beta.217)(@tiptap/pm@2.0.0-beta.217)':
     dependencies:
       '@tiptap/core': 2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217)
       '@tiptap/pm': 2.0.0-beta.217(@tiptap/core@2.0.0-beta.217)
@@ -7737,7 +7750,7 @@ snapshots:
       '@tiptap/pm': 2.1.13
       tippy.js: 6.3.7
 
-  '@tiptap/extension-gapcursor@2.6.6(@tiptap/core@2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217))(@tiptap/pm@2.0.0-beta.217(@tiptap/core@2.0.0-beta.217))':
+  '@tiptap/extension-gapcursor@2.6.6(@tiptap/core@2.0.0-beta.217)(@tiptap/pm@2.0.0-beta.217)':
     dependencies:
       '@tiptap/core': 2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217)
       '@tiptap/pm': 2.0.0-beta.217(@tiptap/core@2.0.0-beta.217)
@@ -7747,7 +7760,7 @@ snapshots:
       '@tiptap/core': 2.1.13(@tiptap/pm@2.1.13)
       '@tiptap/pm': 2.1.13
 
-  '@tiptap/extension-hard-break@2.6.6(@tiptap/core@2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217))':
+  '@tiptap/extension-hard-break@2.6.6(@tiptap/core@2.0.0-beta.217)':
     dependencies:
       '@tiptap/core': 2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217)
 
@@ -7755,7 +7768,7 @@ snapshots:
     dependencies:
       '@tiptap/core': 2.1.13(@tiptap/pm@2.1.13)
 
-  '@tiptap/extension-heading@2.0.0-beta.217(@tiptap/core@2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217))':
+  '@tiptap/extension-heading@2.0.0-beta.217(@tiptap/core@2.0.0-beta.217)':
     dependencies:
       '@tiptap/core': 2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217)
 
@@ -7763,7 +7776,7 @@ snapshots:
     dependencies:
       '@tiptap/core': 2.1.13(@tiptap/pm@2.1.13)
 
-  '@tiptap/extension-history@2.6.6(@tiptap/core@2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217))(@tiptap/pm@2.0.0-beta.217(@tiptap/core@2.0.0-beta.217))':
+  '@tiptap/extension-history@2.6.6(@tiptap/core@2.0.0-beta.217)(@tiptap/pm@2.0.0-beta.217)':
     dependencies:
       '@tiptap/core': 2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217)
       '@tiptap/pm': 2.0.0-beta.217(@tiptap/core@2.0.0-beta.217)
@@ -7773,7 +7786,7 @@ snapshots:
       '@tiptap/core': 2.1.13(@tiptap/pm@2.1.13)
       '@tiptap/pm': 2.1.13
 
-  '@tiptap/extension-horizontal-rule@2.6.6(@tiptap/core@2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217))(@tiptap/pm@2.0.0-beta.217(@tiptap/core@2.0.0-beta.217))':
+  '@tiptap/extension-horizontal-rule@2.6.6(@tiptap/core@2.0.0-beta.217)(@tiptap/pm@2.0.0-beta.217)':
     dependencies:
       '@tiptap/core': 2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217)
       '@tiptap/pm': 2.0.0-beta.217(@tiptap/core@2.0.0-beta.217)
@@ -7783,7 +7796,7 @@ snapshots:
       '@tiptap/core': 2.1.13(@tiptap/pm@2.1.13)
       '@tiptap/pm': 2.1.13
 
-  '@tiptap/extension-image@2.0.0-beta.217(@tiptap/core@2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217))':
+  '@tiptap/extension-image@2.0.0-beta.217(@tiptap/core@2.0.0-beta.217)':
     dependencies:
       '@tiptap/core': 2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217)
 
@@ -7791,7 +7804,7 @@ snapshots:
     dependencies:
       '@tiptap/core': 2.1.13(@tiptap/pm@2.1.13)
 
-  '@tiptap/extension-italic@2.6.6(@tiptap/core@2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217))':
+  '@tiptap/extension-italic@2.6.6(@tiptap/core@2.0.0-beta.217)':
     dependencies:
       '@tiptap/core': 2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217)
 
@@ -7799,7 +7812,7 @@ snapshots:
     dependencies:
       '@tiptap/core': 2.1.13(@tiptap/pm@2.1.13)
 
-  '@tiptap/extension-link@2.0.0-beta.217(@tiptap/core@2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217))(@tiptap/pm@2.0.0-beta.217(@tiptap/core@2.0.0-beta.217))':
+  '@tiptap/extension-link@2.0.0-beta.217(@tiptap/core@2.0.0-beta.217)(@tiptap/pm@2.0.0-beta.217)':
     dependencies:
       '@tiptap/core': 2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217)
       '@tiptap/pm': 2.0.0-beta.217(@tiptap/core@2.0.0-beta.217)
@@ -7811,7 +7824,7 @@ snapshots:
       '@tiptap/pm': 2.1.13
       linkifyjs: 4.1.3
 
-  '@tiptap/extension-list-item@2.6.6(@tiptap/core@2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217))':
+  '@tiptap/extension-list-item@2.6.6(@tiptap/core@2.0.0-beta.217)':
     dependencies:
       '@tiptap/core': 2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217)
 
@@ -7819,7 +7832,7 @@ snapshots:
     dependencies:
       '@tiptap/core': 2.1.13(@tiptap/pm@2.1.13)
 
-  '@tiptap/extension-ordered-list@2.6.6(@tiptap/core@2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217))':
+  '@tiptap/extension-ordered-list@2.6.6(@tiptap/core@2.0.0-beta.217)':
     dependencies:
       '@tiptap/core': 2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217)
 
@@ -7827,7 +7840,7 @@ snapshots:
     dependencies:
       '@tiptap/core': 2.1.13(@tiptap/pm@2.1.13)
 
-  '@tiptap/extension-paragraph@2.6.6(@tiptap/core@2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217))':
+  '@tiptap/extension-paragraph@2.6.6(@tiptap/core@2.0.0-beta.217)':
     dependencies:
       '@tiptap/core': 2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217)
 
@@ -7835,7 +7848,7 @@ snapshots:
     dependencies:
       '@tiptap/core': 2.1.13(@tiptap/pm@2.1.13)
 
-  '@tiptap/extension-strike@2.6.6(@tiptap/core@2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217))':
+  '@tiptap/extension-strike@2.6.6(@tiptap/core@2.0.0-beta.217)':
     dependencies:
       '@tiptap/core': 2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217)
 
@@ -7843,7 +7856,7 @@ snapshots:
     dependencies:
       '@tiptap/core': 2.1.13(@tiptap/pm@2.1.13)
 
-  '@tiptap/extension-table-cell@2.0.0-beta.217(@tiptap/core@2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217))':
+  '@tiptap/extension-table-cell@2.0.0-beta.217(@tiptap/core@2.0.0-beta.217)':
     dependencies:
       '@tiptap/core': 2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217)
 
@@ -7851,7 +7864,7 @@ snapshots:
     dependencies:
       '@tiptap/core': 2.1.13(@tiptap/pm@2.1.13)
 
-  '@tiptap/extension-table-header@2.0.0-beta.217(@tiptap/core@2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217))':
+  '@tiptap/extension-table-header@2.0.0-beta.217(@tiptap/core@2.0.0-beta.217)':
     dependencies:
       '@tiptap/core': 2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217)
 
@@ -7859,7 +7872,7 @@ snapshots:
     dependencies:
       '@tiptap/core': 2.1.13(@tiptap/pm@2.1.13)
 
-  '@tiptap/extension-table-row@2.0.0-beta.217(@tiptap/core@2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217))':
+  '@tiptap/extension-table-row@2.0.0-beta.217(@tiptap/core@2.0.0-beta.217)':
     dependencies:
       '@tiptap/core': 2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217)
 
@@ -7867,7 +7880,7 @@ snapshots:
     dependencies:
       '@tiptap/core': 2.1.13(@tiptap/pm@2.1.13)
 
-  '@tiptap/extension-table@2.0.0-beta.217(@tiptap/core@2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217))(@tiptap/pm@2.0.0-beta.217(@tiptap/core@2.0.0-beta.217))':
+  '@tiptap/extension-table@2.0.0-beta.217(@tiptap/core@2.0.0-beta.217)(@tiptap/pm@2.0.0-beta.217)':
     dependencies:
       '@tiptap/core': 2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217)
       '@tiptap/pm': 2.0.0-beta.217(@tiptap/core@2.0.0-beta.217)
@@ -7877,7 +7890,7 @@ snapshots:
       '@tiptap/core': 2.1.13(@tiptap/pm@2.1.13)
       '@tiptap/pm': 2.1.13
 
-  '@tiptap/extension-text-align@2.0.0-beta.217(@tiptap/core@2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217))':
+  '@tiptap/extension-text-align@2.0.0-beta.217(@tiptap/core@2.0.0-beta.217)':
     dependencies:
       '@tiptap/core': 2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217)
 
@@ -7885,7 +7898,7 @@ snapshots:
     dependencies:
       '@tiptap/core': 2.1.13(@tiptap/pm@2.1.13)
 
-  '@tiptap/extension-text@2.0.0-beta.217(@tiptap/core@2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217))':
+  '@tiptap/extension-text@2.0.0-beta.217(@tiptap/core@2.0.0-beta.217)':
     dependencies:
       '@tiptap/core': 2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217)
 
@@ -7893,7 +7906,7 @@ snapshots:
     dependencies:
       '@tiptap/core': 2.1.13(@tiptap/pm@2.1.13)
 
-  '@tiptap/extension-typography@2.0.0-beta.217(@tiptap/core@2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217))':
+  '@tiptap/extension-typography@2.0.0-beta.217(@tiptap/core@2.0.0-beta.217)':
     dependencies:
       '@tiptap/core': 2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217)
 
@@ -7944,11 +7957,11 @@ snapshots:
       prosemirror-transform: 1.10.0
       prosemirror-view: 1.34.2
 
-  '@tiptap/react@2.0.0-beta.217(@tiptap/core@2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217))(@tiptap/pm@2.0.0-beta.217(@tiptap/core@2.0.0-beta.217))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@tiptap/react@2.0.0-beta.217(@tiptap/core@2.0.0-beta.217)(@tiptap/pm@2.0.0-beta.217)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@tiptap/core': 2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217)
-      '@tiptap/extension-bubble-menu': 2.0.0-beta.217(@tiptap/core@2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217))(@tiptap/pm@2.0.0-beta.217(@tiptap/core@2.0.0-beta.217))
-      '@tiptap/extension-floating-menu': 2.0.0-beta.217(@tiptap/core@2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217))(@tiptap/pm@2.0.0-beta.217(@tiptap/core@2.0.0-beta.217))
+      '@tiptap/extension-bubble-menu': 2.0.0-beta.217(@tiptap/core@2.0.0-beta.217)(@tiptap/pm@2.0.0-beta.217)
+      '@tiptap/extension-floating-menu': 2.0.0-beta.217(@tiptap/core@2.0.0-beta.217)(@tiptap/pm@2.0.0-beta.217)
       '@tiptap/pm': 2.0.0-beta.217(@tiptap/core@2.0.0-beta.217)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
@@ -7962,27 +7975,27 @@ snapshots:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
-  '@tiptap/starter-kit@2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217(@tiptap/core@2.0.0-beta.217))':
+  '@tiptap/starter-kit@2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217)':
     dependencies:
       '@tiptap/core': 2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217)
-      '@tiptap/extension-blockquote': 2.6.6(@tiptap/core@2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217))
-      '@tiptap/extension-bold': 2.6.6(@tiptap/core@2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217))
-      '@tiptap/extension-bullet-list': 2.6.6(@tiptap/core@2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217))
-      '@tiptap/extension-code': 2.0.0-beta.217(@tiptap/core@2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217))
-      '@tiptap/extension-code-block': 2.6.6(@tiptap/core@2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217))(@tiptap/pm@2.0.0-beta.217(@tiptap/core@2.0.0-beta.217))
-      '@tiptap/extension-document': 2.0.0-beta.217(@tiptap/core@2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217))
-      '@tiptap/extension-dropcursor': 2.6.6(@tiptap/core@2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217))(@tiptap/pm@2.0.0-beta.217(@tiptap/core@2.0.0-beta.217))
-      '@tiptap/extension-gapcursor': 2.6.6(@tiptap/core@2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217))(@tiptap/pm@2.0.0-beta.217(@tiptap/core@2.0.0-beta.217))
-      '@tiptap/extension-hard-break': 2.6.6(@tiptap/core@2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217))
-      '@tiptap/extension-heading': 2.0.0-beta.217(@tiptap/core@2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217))
-      '@tiptap/extension-history': 2.6.6(@tiptap/core@2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217))(@tiptap/pm@2.0.0-beta.217(@tiptap/core@2.0.0-beta.217))
-      '@tiptap/extension-horizontal-rule': 2.6.6(@tiptap/core@2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217))(@tiptap/pm@2.0.0-beta.217(@tiptap/core@2.0.0-beta.217))
-      '@tiptap/extension-italic': 2.6.6(@tiptap/core@2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217))
-      '@tiptap/extension-list-item': 2.6.6(@tiptap/core@2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217))
-      '@tiptap/extension-ordered-list': 2.6.6(@tiptap/core@2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217))
-      '@tiptap/extension-paragraph': 2.6.6(@tiptap/core@2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217))
-      '@tiptap/extension-strike': 2.6.6(@tiptap/core@2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217))
-      '@tiptap/extension-text': 2.0.0-beta.217(@tiptap/core@2.0.0-beta.217(@tiptap/pm@2.0.0-beta.217))
+      '@tiptap/extension-blockquote': 2.6.6(@tiptap/core@2.0.0-beta.217)
+      '@tiptap/extension-bold': 2.6.6(@tiptap/core@2.0.0-beta.217)
+      '@tiptap/extension-bullet-list': 2.6.6(@tiptap/core@2.0.0-beta.217)
+      '@tiptap/extension-code': 2.0.0-beta.217(@tiptap/core@2.0.0-beta.217)
+      '@tiptap/extension-code-block': 2.6.6(@tiptap/core@2.0.0-beta.217)(@tiptap/pm@2.0.0-beta.217)
+      '@tiptap/extension-document': 2.0.0-beta.217(@tiptap/core@2.0.0-beta.217)
+      '@tiptap/extension-dropcursor': 2.6.6(@tiptap/core@2.0.0-beta.217)(@tiptap/pm@2.0.0-beta.217)
+      '@tiptap/extension-gapcursor': 2.6.6(@tiptap/core@2.0.0-beta.217)(@tiptap/pm@2.0.0-beta.217)
+      '@tiptap/extension-hard-break': 2.6.6(@tiptap/core@2.0.0-beta.217)
+      '@tiptap/extension-heading': 2.0.0-beta.217(@tiptap/core@2.0.0-beta.217)
+      '@tiptap/extension-history': 2.6.6(@tiptap/core@2.0.0-beta.217)(@tiptap/pm@2.0.0-beta.217)
+      '@tiptap/extension-horizontal-rule': 2.6.6(@tiptap/core@2.0.0-beta.217)(@tiptap/pm@2.0.0-beta.217)
+      '@tiptap/extension-italic': 2.6.6(@tiptap/core@2.0.0-beta.217)
+      '@tiptap/extension-list-item': 2.6.6(@tiptap/core@2.0.0-beta.217)
+      '@tiptap/extension-ordered-list': 2.6.6(@tiptap/core@2.0.0-beta.217)
+      '@tiptap/extension-paragraph': 2.6.6(@tiptap/core@2.0.0-beta.217)
+      '@tiptap/extension-strike': 2.6.6(@tiptap/core@2.0.0-beta.217)
+      '@tiptap/extension-text': 2.0.0-beta.217(@tiptap/core@2.0.0-beta.217)
     transitivePeerDependencies:
       - '@tiptap/pm'
 
@@ -10823,7 +10836,7 @@ snapshots:
 
   neo-async@2.6.2: {}
 
-  nestjs-form-data@1.9.91(@nestjs/common@10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.4.1(@nestjs/common@10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/platform-express@10.4.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1):
+  nestjs-form-data@1.9.91(@nestjs/common@10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.4.1)(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1):
     dependencies:
       '@nestjs/common': 10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1)
       '@nestjs/core': 10.4.1(@nestjs/common@10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/platform-express@10.4.1)(reflect-metadata@0.2.2)(rxjs@7.8.1)
@@ -11029,7 +11042,17 @@ snapshots:
 
   pg-connection-string@2.6.4: {}
 
+  pg-format@1.0.4: {}
+
   pg-int8@1.0.1: {}
+
+  pg-notify@1.0.5:
+    dependencies:
+      pg: 8.12.0
+      pg-format: 1.0.4
+      secure-json-parse: 2.7.0
+    transitivePeerDependencies:
+      - pg-native
 
   pg-numeric@1.0.2: {}
 
@@ -11615,6 +11638,8 @@ snapshots:
       '@types/json-schema': 7.0.15
       ajv: 6.12.6
       ajv-keywords: 3.5.2(ajv@6.12.6)
+
+  secure-json-parse@2.7.0: {}
 
   semver@5.7.2: {}
 
