@@ -5,8 +5,6 @@ import { get } from 'env-var'
 export class MainAppConfig extends ApiConfig {
   static readonly APP_NAME = 'main-app'
 
-  static APP_IP_BLACKLIST = get('APP_IP_BLACKLIST').default('').asArray()
-
   // Database
   static readonly DB_HOST = get('DB_HOST').default('0.0.0.0').asString()
   static readonly DB_PORT = get('DB_PORT').default(54322).asPortNumber()

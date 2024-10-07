@@ -9,7 +9,9 @@ export abstract class ApiConfig extends CommonConfig {
     .default('http://localhost:4000')
     .asString()
 
+  // secure
   static readonly ORIGINS = get('APP_ORIGINS').default('').asArray()
+  static APP_IP_BLACKLIST = get('APP_IP_BLACKLIST').default('').asArray()
 
   // api swagger config
   static readonly ENABLED_SWAGGER = get('ENABLED_SWAGGER')

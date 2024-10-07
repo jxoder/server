@@ -15,6 +15,7 @@ import { PGEventModule } from '@slibs/pg-event'
 
 @Module({
   imports: [
+    ApiModule,
     // System module
     DatabaseModule.forRoot({
       HOST: MainAppConfig.DB_HOST,
@@ -33,9 +34,6 @@ import { PGEventModule } from '@slibs/pg-event'
       ACCESS_SECRET_KEY: MainAppConfig.MINIO_ACCESS_SECRET_KEY,
       USE_SSL: MainAppConfig.MINIO_USE_SSL,
     } as StorageConfigType),
-    ApiModule.config({
-      IP_BLACKLIST: MainAppConfig.APP_IP_BLACKLIST,
-    }),
     RedisQueueModule.forRoot({
       connection: {
         host: MainAppConfig.REDIS_HOST,
