@@ -2,12 +2,7 @@ import { Module } from '@nestjs/common'
 import { ApiModule } from '@slibs/api'
 import { DatabaseModule } from '@slibs/database'
 import { StorageConfigType, StorageModule } from '@slibs/storage'
-import {
-  AppAIImageModule,
-  AppImageModule,
-  AppUserModule,
-  PrivateApiModule,
-} from './module'
+import { AppAIImageModule, AppImageModule, AppUserModule } from './module'
 import { MainAppConfig } from './config'
 import { RedisQueueModule } from '@slibs/redis-queue'
 import { QUEUE_NAME } from '@slibs/app-shared'
@@ -48,7 +43,6 @@ import { PGEventModule } from '@slibs/pg-event'
 
     // Service module (Controllers)
     AppUserModule,
-    PrivateApiModule,
     AppAIImageModule,
     AppImageModule,
   ],

@@ -136,7 +136,6 @@
       "^@slibs/comfy(|/.*)$": "<rootDir>/libs/external/comfy/src/$1",
       "^@slibs/app-shared(|/.*)$": "<rootDir>/libs/app-shared/src/$1",
       "^@slibs/user(|/.*)$": "<rootDir>/libs/biz/user/src/$1",
-      "^@slibs/mylab(|/.*)$": "<rootDir>/libs/biz/mylab/src/$1",
       "^@slibs/ai-image(|/.*)$": "<rootDir>/libs/biz/ai-image/src/$1"
     }
   }
