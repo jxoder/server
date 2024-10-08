@@ -126,11 +126,20 @@
     },
     "user": {
       "type": "library",
-      "root": "libs/user",
+      "root": "libs/biz/user",
       "entryFile": "index",
-      "sourceRoot": "libs/user/src",
+      "sourceRoot": "libs/biz/user/src",
       "compilerOptions": {
-        "tsConfigPath": "libs/user/tsconfig.lib.json"
+        "tsConfigPath": "libs/biz/user/tsconfig.lib.json"
+      }
+    },
+    "ai-image": {
+      "type": "library",
+      "root": "libs/biz/ai-image",
+      "entryFile": "index",
+      "sourceRoot": "libs/biz/ai-image/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/biz/ai-image/tsconfig.lib.json"
       }
     }
   }

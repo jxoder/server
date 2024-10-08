@@ -43,7 +43,9 @@
       "@slibs/app-shared": ["libs/app-shared/src"],
       "@slibs/app-shared/*": ["libs/app-shared/src/*"],
       "@slibs/user": ["libs/biz/user/src"],
-      "@slibs/user/*": ["libs/biz/user/src/*"]
+      "@slibs/user/*": ["libs/biz/user/src/*"],
+      "@slibs/ai-image": ["libs/biz/ai-image/src"],
+      "@slibs/ai-image/*": ["libs/biz/ai-image/src/*"]
     }
   }
 }
