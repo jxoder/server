@@ -12,8 +12,7 @@
     "migration:gen": "pnpm typeorm migration:generate migrations/migration -p -d ormconfig.ts",
     "migration:run": "pnpm typeorm migration:run -d",
     "migration:revert": "pnpm typeorm migration:revert -d",
-    "res:up": "docker-compose -f res/docker-compose.yml up -d",
-    "res:down": "docker-compose -f res/docker-compose.yml down"
+    "db": "docker-compose -f res/docker-compose.yml up"
   },
   "dependencies": {
     "@adminjs/design-system": "4.1.1",
