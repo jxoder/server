@@ -1,2 +1,1 @@
-export * from './api-swagger.decorator'
-export * from './form-data-request.decorator'
+export * from './api-form-data-request.decorator'

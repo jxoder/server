@@ -10,29 +10,27 @@ import { IAppRequest } from '../interface'
 
 @Injectable()
 export class RouterLoggerInterceptor implements NestInterceptor {
-  private readonly logger = new Logger('API')
+  private logger = new Logger('API')
 
   intercept(
     context: ExecutionContext,
     next: CallHandler,
   ): Observable<any> | Promise<Observable<any>> {
     const rType = context.getType<string>()
-    const request = context.switchToHttp().getRequest<IAppRequest<any>>()
-    const st = new Date().getTime()
 
-    if (rType === 'graphql') {
+    if (!rType.startsWith('http')) {
       return next.handle()
     }
 
+    const request = context.switchToHttp().getRequest<IAppRequest>()
+    const st = new Date().getTime()
+
     return next.handle().pipe(
       tap(() => {
-        if (request.path === '/favicon.ico') {
-          return
-        }
-
         const et = new Date().getTime()
-        const message = `Method: ${request.method}; Path: ${request.path}; Execution time: ${et - st}ms; IP: ${request.ipAddress}; `
-        this.logger.log(message)
+        this.logger.log(
+          `Method: ${request.method}; Path: ${request.path}; ExecutionTime: ${et - st}ms; IP: ${request.ipAddress}`,
+        )
       }),
     )
   }

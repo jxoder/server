@@ -1,12 +1,13 @@
 import { Injectable } from '@nestjs/common'
-import { JWTUtils } from '@slibs/common'
-import { UserConfig } from '../config'
+import { ConfigService } from '@nestjs/config'
+import { IUserConfig } from '../config'
+import { JwtUtils } from '@slibs/common'
 
-export interface ISignUserJWTPayload {
+export interface ISignedUserJwtPayload {
   id: number // ref user.id
 }
 
-export interface IVerifiedUserJWT {
+export interface IVerifiedUserJwt {
   id: number // ref user.id
   iat: number
   exp: number
@@ -15,20 +16,27 @@ export interface IVerifiedUserJWT {
 
 @Injectable()
 export class JwtAuthService {
+  constructor(private readonly configService: ConfigService) {}
+
   async signToken(
-    payload: ISignUserJWTPayload,
+    payload: ISignedUserJwtPayload,
     expiresIn?: number,
   ): Promise<string> {
-    return JWTUtils.sign(
+    const { JWT_SECRET, JWT_EXPIRES_IN } = this.configService.get<IUserConfig>(
+      'user',
+      { infer: true },
+    )
+
+    return JwtUtils.sign(
       { ...payload, type: 'User' },
-      {
-        secret: UserConfig.JWT_SECRET,
-        expiresIn: expiresIn ?? UserConfig.JWT_EXPIRES_IN,
-      },
+      { secret: JWT_SECRET, expiresIn: expiresIn ?? JWT_EXPIRES_IN },
     )
   }
 
-  async verifyToken(token: string): Promise<IVerifiedUserJWT> {
-    return JWTUtils.verify<IVerifiedUserJWT>(token, UserConfig.JWT_SECRET)
+  async verifyToken(token: string): Promise<IVerifiedUserJwt> {
+    const { JWT_SECRET } = this.configService.get<IUserConfig>('user', {
+      infer: true,
+    })
+    return JwtUtils.verify<IVerifiedUserJwt>(token, JWT_SECRET)
   }
 }

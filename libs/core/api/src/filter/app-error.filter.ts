@@ -1,17 +1,16 @@
 import {
   ArgumentsHost,
-  BadRequestException,
   Catch,
   ExceptionFilter,
   HttpException,
-  HttpStatus,
   Logger,
 } from '@nestjs/common'
-import { CommonConfig, CommonException } from '@slibs/common'
+import { CommonException } from '@slibs/common'
 import { IAppRequest } from '../interface'
 
-interface IErrorResonse {
+interface IErrorResponse {
   code: number
+  status: number
   message: string
   data?: any
 }
@@ -21,58 +20,47 @@ export class AppErrorFilter implements ExceptionFilter {
   private readonly logger = new Logger('Exception')
 
   catch(exception: unknown, host: ArgumentsHost) {
+    process.env.ENV === 'local' && console.error(exception)
     const rType = host.getType<string>()
-    const request = host.switchToHttp().getRequest<IAppRequest<any>>()
+
+    if (!rType.startsWith('http')) {
+      return // only handle http exceptions
+    }
+
+    const request = host.switchToHttp().getRequest<IAppRequest>()
     const response = host.switchToHttp().getResponse()
-
-    if (rType === 'graphql') {
-      return
-    }
-
-    if (request.path === '/favicon.ico') {
-      response.status(203)
-      return response.end()
-    }
 
     const error = this.handleError(exception)
 
-    const message = `Method: ${request.method} Path: ${request.path} Code: ${error.code} Error: ${error.message}; IP: ${request.ipAddress}`
+    process.env.ENV !== 'test' &&
+      this.logger.error(
+        `Method: ${request.method}; Path: ${request.path}; Error: ${error.message}; IP: ${request.ipAddress}`,
+      )
 
-    CommonConfig.ENV !== 'test' && this.logger.error(message)
-    CommonConfig.DETAIL_ERROR_LOG_ENABLED && console.error(exception)
-
-    response.status(
-      Object.values(HttpStatus).includes(error.code)
-        ? error.code
-        : HttpStatus.BAD_REQUEST,
-    )
-
-    return response.send(error)
+    return response.status(error.status).send(error)
   }
 
-  private handleError(ex: unknown): IErrorResonse {
-    // class-validator error
-    if (ex instanceof BadRequestException) {
-      const response = ex.getResponse() as {
-        message: Array<string>
-        error: string
-      }
+  private handleError(ex: unknown): IErrorResponse {
+    if (ex instanceof HttpException) {
       return {
         code: ex.getStatus(),
-        message: response.message?.[0] ?? response.error,
+        status: ex.getStatus(),
+        message: ex.message,
       }
-    }
-
-    if (ex instanceof HttpException) {
-      return { code: ex.getStatus(), message: ex.message }
     }
 
     if (ex instanceof CommonException) {
-      return { code: ex.code, message: ex.message, data: ex.data }
+      return {
+        code: ex.code,
+        status: ex.status,
+        message: ex.message,
+        data: ex.data,
+      }
     }
 
     return {
-      code: HttpStatus.INTERNAL_SERVER_ERROR,
+      code: 500,
+      status: 500,
       message: 'INTERNAL_SERVER_ERROR',
     }
   }

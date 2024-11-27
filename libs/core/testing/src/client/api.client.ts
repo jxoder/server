@@ -1,6 +1,6 @@
 import { INestApplication } from '@nestjs/common'
 import request from 'supertest'
-import { TestResponse } from '../response'
+import { TestResponse } from './test.response'
 
 export class ApiClient {
   private _userAccessToken: string | undefined

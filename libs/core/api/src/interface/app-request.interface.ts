@@ -1,10 +1,7 @@
-import { Request, Response } from 'express'
+import { Request } from 'express'
 
-export interface IAppRequest<U_TYPE> extends Request {
-  user?: U_TYPE
-  ipAddress?: string | null
-}
+export interface IAppRequest extends Request {
+  ipAddress?: string | null // client ip address
 
-export interface IAppResponse extends Response {
-  //
+  user?: any // user info
 }

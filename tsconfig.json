@@ -30,24 +30,14 @@
       "@slibs/testing/*": ["libs/core/testing/src/*"],
       "@slibs/database": ["libs/system/database/src"],
       "@slibs/database/*": ["libs/system/database/src/*"],
-      "@slibs/storage": ["libs/system/storage/src"],
-      "@slibs/storage/*": ["libs/system/storage/src/*"],
       "@slibs/redis-queue": ["libs/system/redis-queue/src"],
       "@slibs/redis-queue/*": ["libs/system/redis-queue/src/*"],
-      "@slibs/imaging": ["libs/system/imaging/src"],
-      "@slibs/imaging/*": ["libs/system/imaging/src/*"],
-      "@slibs/pg-event": ["libs/system/pg-event/src"],
-      "@slibs/pg-event/*": ["libs/syste/pg-event/src/*"],
-      "@slibs/comfy": ["libs/external/comfy/src"],
-      "@slibs/comfy/*": ["libs/external/comfy/src/*"],
-      "@slibs/app-shared": ["libs/app-shared/src"],
-      "@slibs/app-shared/*": ["libs/app-shared/src/*"],
+      "@slibs/redis": ["libs/system/redis/src"],
+      "@slibs/redis/*": ["libs/system/redis/src/*"],
+      "@slibs/storage": ["libs/system/storage/src"],
+      "@slibs/storage/*": ["libs/system/storage/src/*"],
       "@slibs/user": ["libs/biz/user/src"],
-      "@slibs/user/*": ["libs/biz/user/src/*"],
-      "@slibs/mylab": ["libs/biz/mylab/src"],
-      "@slibs/mylab/*": ["libs/biz/mylab/src/*"],
-      "@slibs/ai-image": ["libs/biz/ai-image/src"],
-      "@slibs/ai-image/*": ["libs/biz/ai-image/src/*"]
+      "@slibs/user/*": ["libs/biz/user/src/*"]
     }
   }
 }

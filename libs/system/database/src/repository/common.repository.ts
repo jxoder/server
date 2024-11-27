@@ -1,14 +1,13 @@
 import { Logger } from '@nestjs/common'
-import { AssertUtils, ERROR_CODE } from '@slibs/common'
-import { isArray, omitBy } from 'lodash'
 import {
   FindOptionsWhere,
-  FindOptionsWhereProperty,
   ObjectLiteral,
   Repository,
   SelectQueryBuilder,
 } from 'typeorm'
 import { QueryErrorCatcher } from '../decorator'
+import { ensureIf, ERROR_CODE } from '@slibs/common'
+import { omitBy } from 'lodash'
 
 export abstract class CommonRepository<ENTITY extends ObjectLiteral, PK_TYPE> {
   protected readonly logger = new Logger(this.constructor.name)
@@ -26,7 +25,7 @@ export abstract class CommonRepository<ENTITY extends ObjectLiteral, PK_TYPE> {
     const inst = this.create(partial)
     const inserted = await this.repository.insert(inst)
 
-    return inserted.identifiers[0][this.pkField]
+    return inserted.identifiers[0][this.pkField] as PK_TYPE
   }
 
   async findOneById(
@@ -47,9 +46,10 @@ export abstract class CommonRepository<ENTITY extends ObjectLiteral, PK_TYPE> {
   }
 
   async update(pk: PK_TYPE, partial: Partial<ENTITY>): Promise<void> {
-    AssertUtils.ensure(
+    ensureIf(
       Object.keys(omitBy(partial, v => v === undefined)).length > 0,
       ERROR_CODE.NO_UPDATE,
+      { httpStatus: 400 },
     )
 
     await this.repository
@@ -66,42 +66,5 @@ export abstract class CommonRepository<ENTITY extends ObjectLiteral, PK_TYPE> {
       .delete()
       .where(`e.${this.pkField} = :pk`, { pk })
       .execute()
-  }
-
-  async query(payload: {
-    filters?: FindOptionsWhereProperty<ENTITY>
-    order?: { [key: string]: 'DESC' | 'ASC' }
-    pageOpt?: { page?: number; size?: number }
-    decorator?: (qb: SelectQueryBuilder<ENTITY>) => void
-  }): Promise<[ENTITY[], number]> {
-    const take = payload.pageOpt?.size ?? 10
-    const skip = ((payload.pageOpt?.page ?? 1) - 1) * take
-
-    let qb = this.repository.createQueryBuilder('e')
-
-    if (payload.decorator) {
-      payload.decorator(qb)
-    }
-
-    qb = qb.select()
-
-    Object.entries(payload.filters ?? {}).forEach(([key, value]) => {
-      if (isArray(value)) {
-        qb.andWhere(`e.${key} IN (:...${key})`, { [key]: value })
-      }
-      qb.andWhere(`e.${key} = :${key}`, { [key]: value })
-    })
-
-    qb = qb.skip(skip).take(take)
-
-    if (!payload.order) {
-      qb = qb.orderBy(`e.${this.pkField}`, 'DESC')
-    } else {
-      Object.entries(payload.order).map(([key, value]) => {
-        qb = qb.addOrderBy(key, value)
-      })
-    }
-
-    return qb.getManyAndCount()
   }
 }

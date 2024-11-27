@@ -1,6 +1,6 @@
 import { sign, verify } from 'jsonwebtoken'
 
-export class JWTUtils {
+export class JwtUtils {
   static async sign(
     payload: object,
     opt: { expiresIn?: number; secret: string },

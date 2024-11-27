@@ -1,11 +1,12 @@
 # IDE ignore 
 .idea
 .vscode
+.cursorrules
 
 # Source directory ignore
 dist
 node_modules
-local_storage
+.local_storage
 .adminjs
 res/.local
 

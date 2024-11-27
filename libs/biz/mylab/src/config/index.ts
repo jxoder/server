@@ -1,1 +1,0 @@
-export * from './mylab.config'

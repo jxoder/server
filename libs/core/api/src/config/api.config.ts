@@ -1,27 +1,29 @@
-import { CommonConfig } from '@slibs/common'
+import { registerAs } from '@nestjs/config'
 import { get } from 'env-var'
 
-export abstract class ApiConfig extends CommonConfig {
-  // api base config
-  static readonly HOST = get('APP_HOST').default('0.0.0.0').asString()
-  static readonly PORT = get('APP_PORT').default(4000).asPortNumber()
-  static readonly HOST_URL = get('APP_HOST_URL')
-    .default('http://localhost:4000')
-    .asString()
+export interface IApiConfig {
+  HOST: string
+  PORT: number
+  HOST_URL: string
+  ORIGINS: Array<string>
 
-  static readonly ORIGINS = get('APP_ORIGINS').default('').asArray()
-
-  // api swagger config
-  static readonly ENABLED_SWAGGER = get('ENABLED_SWAGGER')
-    .default('false')
-    .asBool()
-  static readonly SWAGGER_TITLE = get('SWAGGER_TITLE')
-    .default('Local API')
-    .asString()
-  static readonly SWAGGER_DESCRIPTION = get('SWAGGER_DESCRIPTION')
-    .default('Local API Description')
-    .asString()
-  static readonly SWAGGER_VERSION = get('SWAGGER_VERSION')
-    .default('0.0.1')
-    .asString()
+  // swagger
+  ENABLED_SWAGGER: boolean
+  SWAGGER_TITLE: string
+  SWAGGER_DESCRIPTION: string
+  SWAGGER_VERSION: string
 }
+
+export const apiConfig = registerAs('api', () => ({
+  HOST: get('APP_HOST').default('0.0.0.0').asString(),
+  PORT: get('APP_PORT').default(4000).asPortNumber(),
+  HOST_URL: get('APP_HOST_URL').default('http://localhost:4000').asString(),
+  ORIGINS: get('APP_ORIGINS').default('').asArray(),
+
+  ENABLED_SWAGGER: get('ENABLED_SWAGGER').default('false').asBool(),
+  SWAGGER_TITLE: get('SWAGGER_TITLE').default('Local API').asString(),
+  SWAGGER_DESCRIPTION: get('SWAGGER_DESCRIPTION')
+    .default('API Documentation')
+    .asString(),
+  SWAGGER_VERSION: get('SWAGGER_VERSION').default('0.0.1').asString(),
+}))

@@ -1,1 +1,1 @@
-export * from './ip-secure.middleware'
+export * from './inject-request-ip.middleware'

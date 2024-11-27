@@ -1,1 +1,1 @@
-export * from './storage-type.constants'
+export * from './storage.constants'

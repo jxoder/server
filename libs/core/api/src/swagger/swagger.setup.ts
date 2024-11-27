@@ -1,16 +1,18 @@
 import { INestApplication } from '@nestjs/common'
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
-import { ApiConfig } from '../config'
+import { IApiConfig } from '../config'
 
-export function setupSwagger(app: INestApplication) {
+export function setupSwagger(app: INestApplication, config: IApiConfig) {
   const {
     ENABLED_SWAGGER,
     SWAGGER_TITLE,
     SWAGGER_DESCRIPTION,
     SWAGGER_VERSION,
-  } = ApiConfig
+  } = config
 
-  if (!ENABLED_SWAGGER) return
+  if (!ENABLED_SWAGGER) {
+    return
+  }
 
   const builder = new DocumentBuilder()
     .setTitle(SWAGGER_TITLE)

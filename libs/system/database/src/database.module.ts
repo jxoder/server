@@ -1,46 +1,49 @@
 import { DynamicModule, Module } from '@nestjs/common'
+import { ConfigModule, ConfigService } from '@nestjs/config'
 import { TypeOrmModule } from '@nestjs/typeorm'
-import { SnakeNamingStrategy } from 'typeorm-naming-strategies'
 import { DataSource, DataSourceOptions, EntitySchema } from 'typeorm'
 import {
   addTransactionalDataSource,
   getDataSourceByName,
   initializeTransactionalContext,
 } from 'typeorm-transactional'
-import { IDatabaseConfig } from './interface'
+import { databaseConfig, IDatabaseConfig } from './config'
+import { SnakeNamingStrategy } from 'typeorm-naming-strategies'
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 type TypeORMEntityClassOrSchema = Function | EntitySchema
 
 @Module({})
 export class DatabaseModule {
-  static forRoot(connectOptions: IDatabaseConfig): DynamicModule {
-    initializeTransactionalContext() // init typeorm-transactional
+  static forRoot(): DynamicModule {
+    initializeTransactionalContext()
 
     return {
       global: true,
       module: this,
       imports: [
+        ConfigModule.forFeature(databaseConfig),
         TypeOrmModule.forRootAsync({
-          useFactory: () => {
+          inject: [ConfigService],
+          useFactory: (configService: ConfigService) => {
+            const config = configService.get<IDatabaseConfig>('database', {
+              infer: true,
+            })
             return {
               type: 'postgres',
-              host: connectOptions.HOST,
-              port: connectOptions.PORT,
-              database: connectOptions.NAME,
-              username: connectOptions.USERNAME,
-              password: connectOptions.PASSWORD,
-              schema: connectOptions.SCHEMA,
-              logging: connectOptions.LOGGING ?? ['warn'],
+              url: config.CONNECTION_STRING,
+              schema: config.SCHEMA,
               namingStrategy: new SnakeNamingStrategy(),
               autoLoadEntities: true,
               retryAttempts: 3,
+              // logging: true,
             }
           },
           dataSourceFactory: async (options?: DataSourceOptions) => {
             if (!options) {
-              throw new Error('DataSourceOptions is required')
+              throw new Error('DataSoureOptions is required')
             }
+
             return (
               getDataSourceByName('default') ||
               addTransactionalDataSource(new DataSource(options))

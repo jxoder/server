@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common'
 import { CommonRepository } from '@slibs/database'
-import { EmailAccount } from '../entities'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
+import { EmailAccount } from '../entities'
 
 @Injectable()
 export class EmailAccountRepository extends CommonRepository<

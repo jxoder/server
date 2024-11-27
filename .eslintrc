@@ -2,28 +2,32 @@
   "root": true,
   "env": {
     "node": true,
-    "commonjs": true
+    "commonjs": true,
   },
   "parser": "@typescript-eslint/parser",
-  "plugins": [
-    "@typescript-eslint",
-    "prettier"
-  ],
+  "plugins": ["@typescript-eslint", "prettier"],
   "rules": {
     "prettier/prettier": "error",
     "@typescript-eslint/ban-ts-comment": [
       "error",
       {
-        "ts-ignore": "allow-with-description"
-      }
+        "ts-ignore": "allow-with-description",
+      },
     ],
     "@typescript-eslint/no-explicit-any": ["off"],
-    "@typescript-eslint/no-unused-vars": ["error", {
-      "vars": "all",
-      "args": "after-used",
-      "ignoreRestSiblings": true,
-      "argsIgnorePattern": "^_"
-    }]
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "vars": "all",
+        "args": "after-used",
+        "ignoreRestSiblings": true,
+        "argsIgnorePattern": "^_",
+      },
+    ],
   },
-  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended", "plugin:prettier/recommended"]
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended",
+  ],
 }

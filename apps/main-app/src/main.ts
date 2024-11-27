@@ -1,30 +1,46 @@
-import 'dotenv/config'
-import { NestFactory } from '@nestjs/core'
-import { MainAppModule } from './main-app.module'
-import { MainAppConfig } from './config'
 import { VersioningType } from '@nestjs/common'
+import { ConfigService } from '@nestjs/config'
+import { NestFactory } from '@nestjs/core'
 import { NestExpressApplication } from '@nestjs/platform-express'
-import { setupSwagger } from '@slibs/api'
+import { IApiConfig, setupSwagger } from '@slibs/api'
+import { ICommonConfig } from '@slibs/common'
+import { Request, Response } from 'express'
+import path from 'path'
+import { MainAppModule } from './main-app.module'
 
 async function bootstrap() {
-  const { HOST, PORT, LOG_LEVEL, ORIGINS } = MainAppConfig
-  const app = await NestFactory.create<NestExpressApplication>(MainAppModule, {
-    logger: [LOG_LEVEL],
-  })
-  app.enableVersioning({ type: VersioningType.URI })
-  app.enableCors({ origin: ORIGINS })
+  const app = await NestFactory.create<NestExpressApplication>(MainAppModule)
 
-  setupSwagger(app)
+  const { APP_NAME, ENV, LOG_LEVEL } = app
+    .get(ConfigService)
+    .get<ICommonConfig>('common', { infer: true })
+
+  // disable favicon request
+  app.use('/favicon.ico', (_req: Request, res: Response) =>
+    res.status(204).end(),
+  )
+
+  // set log level
+  app.useLogger([LOG_LEVEL])
+  // enable versioning
+  app.enableVersioning({ type: VersioningType.URI })
+
+  // set ejs view engine
+  app.setViewEngine('ejs')
+  app.setBaseViewsDir(path.join(process.cwd(), 'static', 'views'))
+
+  const apiconfig = app
+    .get(ConfigService)
+    .get<IApiConfig>('api', { infer: true })
+
+  // set swagger
+  setupSwagger(app, apiconfig)
+
+  const { HOST, PORT, HOST_URL } = apiconfig
 
   await app.listen(PORT, HOST)
 
-  return `${HOST}:${PORT}`
+  return `(${ENV})${APP_NAME} is running on ${HOST_URL}`
 }
 
-bootstrap()
-  .then(url =>
-    console.log(
-      `🚀🚀 START SERVER ${MainAppConfig.APP_NAME} (${MainAppConfig.ENV}) => ${url}`,
-    ),
-  )
-  .catch(ex => console.error(ex))
+bootstrap().then(r => console.log(`🚀🚀 ${r}`))

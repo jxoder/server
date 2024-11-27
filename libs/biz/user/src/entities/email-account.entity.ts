@@ -21,10 +21,7 @@ const Description = {
 @Entity()
 @Index(['email'], { unique: true })
 export class EmailAccount extends CommonEntity {
-  @PrimaryGeneratedColumn({
-    type: 'int',
-    comment: Description.id,
-  })
+  @PrimaryGeneratedColumn({ type: 'int', comment: Description.id })
   readonly id: number
 
   @Column({ type: 'varchar', comment: Description.email, nullable: false })

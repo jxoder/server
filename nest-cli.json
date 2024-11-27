@@ -16,157 +16,76 @@
         "tsConfigPath": "apps/main-app/tsconfig.app.json"
       }
     },
-    "gpu-app": {
-      "type": "application",
-      "root": "apps/gpu-app",
-      "entryFile": "main",
-      "sourceRoot": "apps/gpu-app/src",
-      "compilerOptions": {
-        "tsConfigPath": "apps/gpu-app/tsconfig.app.json"
-      }
-    },
     "common": {
       "type": "library",
-      "root": "libs/common",
+      "root": "libs/core/common",
       "entryFile": "index",
-      "sourceRoot": "libs/common/src",
+      "sourceRoot": "libs/core/common/src",
       "compilerOptions": {
-        "tsConfigPath": "libs/common/tsconfig.lib.json"
+        "tsConfigPath": "libs/core/common/tsconfig.lib.json"
       }
     },
     "api": {
       "type": "library",
-      "root": "libs/api",
+      "root": "libs/core/api",
       "entryFile": "index",
-      "sourceRoot": "libs/api/src",
+      "sourceRoot": "libs/core/api/src",
       "compilerOptions": {
-        "tsConfigPath": "libs/api/tsconfig.lib.json"
-      }
-    },
-    "database": {
-      "type": "library",
-      "root": "libs/database",
-      "entryFile": "index",
-      "sourceRoot": "libs/database/src",
-      "compilerOptions": {
-        "tsConfigPath": "libs/database/tsconfig.lib.json"
-      }
-    },
-    "user": {
-      "type": "library",
-      "root": "libs/user",
-      "entryFile": "index",
-      "sourceRoot": "libs/user/src",
-      "compilerOptions": {
-        "tsConfigPath": "libs/user/tsconfig.lib.json"
+        "tsConfigPath": "libs/core/api/tsconfig.lib.json"
       }
     },
     "testing": {
       "type": "library",
-      "root": "libs/testing",
+      "root": "libs/core/testing",
       "entryFile": "index",
-      "sourceRoot": "libs/testing/src",
+      "sourceRoot": "libs/core/testing/src",
       "compilerOptions": {
-        "tsConfigPath": "libs/testing/tsconfig.lib.json"
+        "tsConfigPath": "libs/core/testing/tsconfig.lib.json"
       }
     },
-    "mylab": {
+    "database": {
       "type": "library",
-      "root": "libs/mylab",
+      "root": "libs/system/database",
       "entryFile": "index",
-      "sourceRoot": "libs/mylab/src",
+      "sourceRoot": "libs/system/database/src",
       "compilerOptions": {
-        "tsConfigPath": "libs/mylab/tsconfig.lib.json"
-      }
-    },
-    "storage": {
-      "type": "library",
-      "root": "libs/storage",
-      "entryFile": "index",
-      "sourceRoot": "libs/storage/src",
-      "compilerOptions": {
-        "tsConfigPath": "libs/storage/tsconfig.lib.json"
-      }
-    },
-    "ollama": {
-      "type": "library",
-      "root": "libs/ollama",
-      "entryFile": "index",
-      "sourceRoot": "libs/ollama/src",
-      "compilerOptions": {
-        "tsConfigPath": "libs/ollama/tsconfig.lib.json"
-      }
-    },
-    "openai": {
-      "type": "library",
-      "root": "libs/openai",
-      "entryFile": "index",
-      "sourceRoot": "libs/openai/src",
-      "compilerOptions": {
-        "tsConfigPath": "libs/openai/tsconfig.lib.json"
+        "tsConfigPath": "libs/system/database/tsconfig.lib.json"
       }
     },
     "redis-queue": {
       "type": "library",
-      "root": "libs/redis-queue",
+      "root": "libs/system/redis-queue",
       "entryFile": "index",
-      "sourceRoot": "libs/redis-queue/src",
+      "sourceRoot": "libs/system/redis-queue/src",
       "compilerOptions": {
-        "tsConfigPath": "libs/redis-queue/tsconfig.lib.json"
+        "tsConfigPath": "libs/system/redis-queue/tsconfig.lib.json"
       }
     },
-    "comfy": {
+    "redis": {
       "type": "library",
-      "root": "libs/comfy",
+      "root": "libs/system/redis",
       "entryFile": "index",
-      "sourceRoot": "libs/comfy/src",
+      "sourceRoot": "libs/system/redis/src",
       "compilerOptions": {
-        "tsConfigPath": "libs/comfy/tsconfig.lib.json"
+        "tsConfigPath": "libs/system/redis/tsconfig.lib.json"
       }
     },
-    "app-shared": {
+    "storage": {
       "type": "library",
-      "root": "libs/app-shared",
+      "root": "libs/system/storage",
       "entryFile": "index",
-      "sourceRoot": "libs/app-shared/src",
+      "sourceRoot": "libs/system/storage/src",
       "compilerOptions": {
-        "tsConfigPath": "libs/app-shared/tsconfig.lib.json"
+        "tsConfigPath": "libs/system/storage/tsconfig.lib.json"
       }
     },
-    "imaging": {
+    "user": {
       "type": "library",
-      "root": "libs/imaging",
+      "root": "libs/biz/user",
       "entryFile": "index",
-      "sourceRoot": "libs/imaging/src",
+      "sourceRoot": "libs/biz/user/src",
       "compilerOptions": {
-        "tsConfigPath": "libs/imaging/tsconfig.lib.json"
-      }
-    },
-    "ai-image": {
-      "type": "library",
-      "root": "libs/ai-image",
-      "entryFile": "index",
-      "sourceRoot": "libs/ai-image/src",
-      "compilerOptions": {
-        "tsConfigPath": "libs/ai-image/tsconfig.lib.json"
-      }
-    },
-    "pg-event": {
-      "type": "library",
-      "root": "libs/system/pg-event",
-      "entryFile": "index",
-      "sourceRoot": "libs/system/pg-event/src",
-      "compilerOptions": {
-        "tsConfigPath": "libs/system/pg-event/tsconfig.lib.json"
-      }
-    },
-    "admin-app": {
-      "type": "application",
-      "root": "apps/admin-app",
-      "entryFile": "main",
-      "sourceRoot": "apps/admin-app/src",
-      "compilerOptions": {
-        "tsConfigPath": "apps/admin-app/tsconfig.app.json"
+        "tsConfigPath": "libs/biz/user/tsconfig.lib.json"
       }
     }
   }

@@ -1,2 +1,2 @@
-export * from './redis-queue.module'
 export * from './processor'
+export * from './redis-queue.module'
