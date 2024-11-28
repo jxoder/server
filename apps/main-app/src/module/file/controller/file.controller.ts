@@ -14,7 +14,7 @@ import * as fileType from 'file-type'
 import { UploadPayload } from '../model'
 
 // TODO: need to authorize
-@ApiTags('File')
+@ApiTags('File (Temp)')
 @Controller({ path: 'files' })
 export class FileController {
   constructor(private readonly storageService: StorageService) {}

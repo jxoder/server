@@ -20,7 +20,7 @@ export class AppErrorFilter implements ExceptionFilter {
   private readonly logger = new Logger('Exception')
 
   catch(exception: unknown, host: ArgumentsHost) {
-    process.env.ENV === 'local' && console.error(exception)
+    process.env.ENV === 'local' && console.error('Exception: ', exception)
     const rType = host.getType<string>()
 
     if (!rType.startsWith('http')) {

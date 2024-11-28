@@ -14,12 +14,21 @@ async function bootstrap() {
   const { APP_NAME, ENV, LOG_LEVEL } = app
     .get(ConfigService)
     .get<ICommonConfig>('common', { infer: true })
+  const apiconfig = app
+    .get(ConfigService)
+    .get<IApiConfig>('api', { infer: true })
+
+  // enable cors
+  app.enableCors({
+    origin: apiconfig.ORIGINS.length === 0 ? '*' : apiconfig.ORIGINS,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'Accept'],
+  })
 
   // disable favicon request
   app.use('/favicon.ico', (_req: Request, res: Response) =>
     res.status(204).end(),
   )
-
   // set log level
   app.useLogger([LOG_LEVEL])
   // enable versioning
@@ -28,10 +37,6 @@ async function bootstrap() {
   // set ejs view engine
   app.setViewEngine('ejs')
   app.setBaseViewsDir(path.join(process.cwd(), 'static', 'views'))
-
-  const apiconfig = app
-    .get(ConfigService)
-    .get<IApiConfig>('api', { infer: true })
 
   // set swagger
   setupSwagger(app, apiconfig)
