@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
-import { IUserConfig } from '../config'
 import { JwtUtils } from '@slibs/common'
+import { IUserConfig } from '../config'
 
 export interface ISignedUserJwtPayload {
   id: number // ref user.id

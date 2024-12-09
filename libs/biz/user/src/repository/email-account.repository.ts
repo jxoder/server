@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common'
-import { CommonRepository } from '@slibs/database'
 import { InjectRepository } from '@nestjs/typeorm'
+import { CommonRepository } from '@slibs/database'
 import { Repository } from 'typeorm'
 import { EmailAccount } from '../entities'
 

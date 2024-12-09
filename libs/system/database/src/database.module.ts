@@ -2,13 +2,13 @@ import { DynamicModule, Module } from '@nestjs/common'
 import { ConfigModule, ConfigService } from '@nestjs/config'
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { DataSource, DataSourceOptions, EntitySchema } from 'typeorm'
+import { SnakeNamingStrategy } from 'typeorm-naming-strategies'
 import {
   addTransactionalDataSource,
   getDataSourceByName,
   initializeTransactionalContext,
 } from 'typeorm-transactional'
 import { databaseConfig, IDatabaseConfig } from './config'
-import { SnakeNamingStrategy } from 'typeorm-naming-strategies'
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 type TypeORMEntityClassOrSchema = Function | EntitySchema

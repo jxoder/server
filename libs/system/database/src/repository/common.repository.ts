@@ -1,13 +1,14 @@
 import { Logger } from '@nestjs/common'
+import { ensureIf, ERROR_CODE } from '@slibs/common'
+import { isArray, omitBy } from 'lodash'
 import {
+  DeepPartial,
   FindOptionsWhere,
   ObjectLiteral,
   Repository,
   SelectQueryBuilder,
 } from 'typeorm'
 import { QueryErrorCatcher } from '../decorator'
-import { ensureIf, ERROR_CODE } from '@slibs/common'
-import { omitBy } from 'lodash'
 
 export abstract class CommonRepository<ENTITY extends ObjectLiteral, PK_TYPE> {
   protected readonly logger = new Logger(this.constructor.name)
@@ -16,12 +17,12 @@ export abstract class CommonRepository<ENTITY extends ObjectLiteral, PK_TYPE> {
 
   protected abstract get pkField(): string
 
-  create(partial: Partial<ENTITY>): ENTITY {
+  create(partial: DeepPartial<ENTITY>): ENTITY {
     return this.repository.create(partial as ENTITY)
   }
 
   @QueryErrorCatcher()
-  async insert(partial: Partial<ENTITY>): Promise<PK_TYPE> {
+  async insert(partial: DeepPartial<ENTITY>): Promise<PK_TYPE> {
     const inst = this.create(partial)
     const inserted = await this.repository.insert(inst)
 
@@ -49,15 +50,12 @@ export abstract class CommonRepository<ENTITY extends ObjectLiteral, PK_TYPE> {
     ensureIf(
       Object.keys(omitBy(partial, v => v === undefined)).length > 0,
       ERROR_CODE.NO_UPDATE,
-      { httpStatus: 400 },
     )
 
-    await this.repository
-      .createQueryBuilder()
-      .update()
-      .set({ ...partial })
-      .where(`${this.pkField} = :pk`, { pk })
-      .execute()
+    await this.repository.update(
+      { [this.pkField]: pk } as FindOptionsWhere<ENTITY>,
+      partial,
+    )
   }
 
   async delete(pk: PK_TYPE): Promise<void> {
@@ -66,5 +64,45 @@ export abstract class CommonRepository<ENTITY extends ObjectLiteral, PK_TYPE> {
       .delete()
       .where(`e.${this.pkField} = :pk`, { pk })
       .execute()
+  }
+
+  async query(payload: {
+    filters?: { [key in keyof ENTITY]?: any }
+    order?: { [key: string]: 'DESC' | 'ASC' }
+    pageOpt?: { page?: number; size?: number }
+    decorator?: (qb: SelectQueryBuilder<ENTITY>) => void
+  }): Promise<[ENTITY[], number]> {
+    const take = payload.pageOpt?.size ?? 10
+    const skip = ((payload.pageOpt?.page ?? 1) - 1) * take
+
+    let qb = this.repository.createQueryBuilder('e')
+
+    if (payload.decorator) {
+      payload.decorator(qb)
+    }
+
+    qb = qb.select()
+
+    Object.entries(
+      omitBy(payload.filters ?? {}, v => v === undefined) ?? {},
+    ).forEach(([key, value]) => {
+      if (isArray(value)) {
+        qb.andWhere(`e.${key} IN (:...${key})`, { [key]: value })
+      } else {
+        qb.andWhere(`e.${key} = :${key}`, { [key]: value })
+      }
+    })
+
+    qb = qb.skip(skip).take(take)
+
+    if (!payload.order) {
+      qb = qb.orderBy(`e.${this.pkField}`, 'DESC')
+    } else {
+      Object.entries(payload.order).map(([key, value]) => {
+        qb = qb.addOrderBy(key, value)
+      })
+    }
+
+    return qb.getManyAndCount()
   }
 }

@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common'
-import { EmailAccountRepository, UserRepository } from '../repository'
-import { USER_ROLE } from '../constants'
 import { CryptoUtils, DayUtils, ensureIf, ERROR_CODE } from '@slibs/common'
 import { Transactional } from 'typeorm-transactional'
+import { USER_ROLE } from '../constants'
 import { User } from '../entities'
+import { EmailAccountRepository, UserRepository } from '../repository'
 
 @Injectable()
 export class EmailAccountService {

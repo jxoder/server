@@ -4,7 +4,7 @@ import { DatabaseModule } from '@slibs/database'
 import { userConfig } from './config'
 import { EmailAccount, User } from './entities'
 import { EmailAccountRepository, UserRepository } from './repository'
-import { EmailAccountService, JwtAuthService } from './service'
+import { EmailAccountService, JwtAuthService, UserService } from './service'
 import { UserJwtStrategy } from './strategy'
 
 @Module({
@@ -14,11 +14,13 @@ import { UserJwtStrategy } from './strategy'
   ],
   providers: [
     UserRepository,
+    UserService,
     EmailAccountRepository,
     EmailAccountService,
+
     JwtAuthService,
     UserJwtStrategy,
   ],
-  exports: [EmailAccountService, JwtAuthService],
+  exports: [UserService, EmailAccountService, JwtAuthService],
 })
 export class UserModule {}

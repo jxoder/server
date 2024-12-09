@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common'
 import { PassportStrategy } from '@nestjs/passport'
-import { Strategy } from 'passport-custom'
+import { ensureIf, ERROR_CODE } from '@slibs/common'
 import { Request } from 'express'
+import { Strategy } from 'passport-custom'
 import { UserRepository } from '../repository'
 import { JwtAuthService } from '../service'
-import { ensureIf, ERROR_CODE } from '@slibs/common'
 
 @Injectable()
 export class UserJwtStrategy extends PassportStrategy(Strategy, 'user-jwt') {

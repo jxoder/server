@@ -29,7 +29,7 @@ export class RouterLoggerInterceptor implements NestInterceptor {
       tap(() => {
         const et = new Date().getTime()
         this.logger.log(
-          `Method: ${request.method}; Path: ${request.path}; ExecutionTime: ${et - st}ms; IP: ${request.ipAddress}`,
+          `Method: ${request.method}; Path: ${request.originalUrl}; ExecutionTime: ${et - st}ms; IP: ${request.ipAddress}`,
         )
       }),
     )
