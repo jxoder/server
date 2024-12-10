@@ -8,6 +8,7 @@ import { StorageModule } from '@slibs/storage'
 import { UserModule } from '@slibs/user'
 import {
   EmailAccountController,
+  EmailAccountControllerV1,
   FileController,
   HealthCheckController,
   UserControllerV1,
@@ -30,6 +31,7 @@ import {
     HealthCheckController,
     EmailAccountController,
     UserControllerV1,
+    EmailAccountControllerV1,
 
     // temp controllers
     FileController,

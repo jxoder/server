@@ -30,10 +30,18 @@ export class UserControllerV1 {
     @Query('page', new ParseOptionalIntPipe(1)) page: number,
     @Query('size', new ParseOptionalIntPipe(10)) size: number,
     @Query('role', new ParseEnumArrayPipe(USER_ROLE)) roles: USER_ROLE[],
+    @Query('name') name?: string,
   ) {
     const [users, total] = await this.userService.list({
       filters: { role: roles.length > 0 ? roles : undefined },
       pageOpt: { page, size },
+      decorator: qb => {
+        if (name && name.trim().length > 0) {
+          qb.andWhere(`${qb.alias}.name ILIKE :name`, {
+            name: `${name}%`,
+          })
+        }
+      },
     })
     return { list: users, page, size, total }
   }

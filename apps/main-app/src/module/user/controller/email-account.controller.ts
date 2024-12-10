@@ -1,12 +1,12 @@
 import { Body, Controller, Post } from '@nestjs/common'
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
 import { EmailAccountService, JwtAuthService } from '@slibs/user'
+import { OkResponse } from '../../common'
 import {
   LoginWithEmailPayload,
   SignedUserResponse,
   SignWithEmailPayload,
 } from '../model'
-import { OkResponse } from '../../common'
 
 @ApiTags('Email account')
 @Controller({ path: 'email-account' })

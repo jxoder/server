@@ -1,16 +1,19 @@
 import { Injectable } from '@nestjs/common'
 import { CryptoUtils, DayUtils, ensureIf, ERROR_CODE } from '@slibs/common'
+import { CommonService } from '@slibs/database'
 import { Transactional } from 'typeorm-transactional'
 import { USER_ROLE } from '../constants'
-import { User } from '../entities'
+import { EmailAccount, User } from '../entities'
 import { EmailAccountRepository, UserRepository } from '../repository'
 
 @Injectable()
-export class EmailAccountService {
+export class EmailAccountService extends CommonService<EmailAccount, number> {
   constructor(
     private readonly emailAccountRepository: EmailAccountRepository,
     private readonly userRepository: UserRepository,
-  ) {}
+  ) {
+    super(emailAccountRepository)
+  }
 
   @Transactional()
   async sign(payload: {
