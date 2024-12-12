@@ -1,4 +1,5 @@
 export * from './common'
 export * from './file'
 export * from './health-check'
+export * from './infra-instance'
 export * from './user'

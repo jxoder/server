@@ -37,7 +37,9 @@
       "@slibs/storage": ["libs/system/storage/src"],
       "@slibs/storage/*": ["libs/system/storage/src/*"],
       "@slibs/user": ["libs/biz/user/src"],
-      "@slibs/user/*": ["libs/biz/user/src/*"]
+      "@slibs/user/*": ["libs/biz/user/src/*"],
+      "@slibs/infra-instance": ["libs/biz/infra-instance/src"],
+      "@slibs/infra-instance/*": ["libs/biz/infra-instance/src/*"]
     }
   }
 }

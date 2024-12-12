@@ -11,12 +11,11 @@ import { MainAppModule } from './main-app.module'
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(MainAppModule)
 
-  const { APP_NAME, ENV, LOG_LEVEL } = app
-    .get(ConfigService)
-    .get<ICommonConfig>('common', { infer: true })
-  const apiconfig = app
-    .get(ConfigService)
-    .get<IApiConfig>('api', { infer: true })
+  const config = app.get(ConfigService)
+
+  const { APP_NAME, ENV, LOG_LEVEL } =
+    config.getOrThrow<ICommonConfig>('common')
+  const apiconfig = config.getOrThrow<IApiConfig>('api')
 
   // enable cors
   app.enableCors({

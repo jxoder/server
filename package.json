@@ -45,9 +45,11 @@
     "lodash": "4.17.21",
     "minio": "8.0.2",
     "nestjs-form-data": "1.9.91",
+    "node-ssh": "12.0.5",
     "passport": "0.7.0",
     "passport-custom": "1.1.1",
     "pg": "8.13.1",
+    "ping": "0.4.4",
     "request-ip": "3.3.0",
     "rxjs": "7.8.1",
     "supertest": "7.0.0",
@@ -68,6 +70,7 @@
     "@types/jsonwebtoken": "9.0.7",
     "@types/lodash": "4.17.13",
     "@types/node": "22.8.2",
+    "@types/ping": "0.4.4",
     "@types/request-ip": "0.0.41",
     "@types/supertest": "6.0.2",
     "@types/uuid": "10.0.0",
@@ -117,7 +120,8 @@
       "^@slibs/redis-queue(|/.*)$": "<rootDir>/libs/system/redis-queue/src/$1",
       "^@slibs/redis(|/.*)$": "<rootDir>/libs/system/redis/src/$1",
       "^@slibs/storage(|/.*)$": "<rootDir>/libs/system/storage/src/$1",
-      "^@slibs/user(|/.*)$": "<rootDir>/libs/biz/user/src/$1"
+      "^@slibs/user(|/.*)$": "<rootDir>/libs/biz/user/src/$1",
+      "^@slibs/infra-instance(|/.*)$": "<rootDir>/libs/biz/infra-instance/src/$1"
     }
   }
 }

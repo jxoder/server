@@ -87,6 +87,15 @@
       "compilerOptions": {
         "tsConfigPath": "libs/biz/user/tsconfig.lib.json"
       }
+    },
+    "infra-instance": {
+      "type": "library",
+      "root": "libs/biz/infra-instance",
+      "entryFile": "index",
+      "sourceRoot": "libs/biz/infra-instance/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/biz/infra-instance/tsconfig.lib.json"
+      }
     }
   }
 }
