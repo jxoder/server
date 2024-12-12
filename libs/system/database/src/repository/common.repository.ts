@@ -10,6 +10,13 @@ import {
 } from 'typeorm'
 import { QueryErrorCatcher } from '../decorator'
 
+export interface ICommonQueryPayload<ENTITY extends ObjectLiteral> {
+  filters?: { [key in keyof ENTITY]?: any }
+  order?: { [key: string]: 'DESC' | 'ASC' }
+  pageOpt?: { page?: number; size?: number }
+  decorator?: (qb: SelectQueryBuilder<ENTITY>) => void
+}
+
 export abstract class CommonRepository<ENTITY extends ObjectLiteral, PK_TYPE> {
   protected readonly logger = new Logger(this.constructor.name)
 
@@ -66,12 +73,9 @@ export abstract class CommonRepository<ENTITY extends ObjectLiteral, PK_TYPE> {
       .execute()
   }
 
-  async query(payload: {
-    filters?: { [key in keyof ENTITY]?: any }
-    order?: { [key: string]: 'DESC' | 'ASC' }
-    pageOpt?: { page?: number; size?: number }
-    decorator?: (qb: SelectQueryBuilder<ENTITY>) => void
-  }): Promise<[ENTITY[], number]> {
+  async query(
+    payload: ICommonQueryPayload<ENTITY>,
+  ): Promise<[ENTITY[], number]> {
     const take = payload.pageOpt?.size ?? 10
     const skip = ((payload.pageOpt?.page ?? 1) - 1) * take
 

@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common'
 import { ApiModule } from '@slibs/api'
 import { CommonModule } from '@slibs/common'
 import { DatabaseModule } from '@slibs/database'
+import { InfraInstanceModule } from '@slibs/infra-instance'
 import { RedisModule } from '@slibs/redis'
 import { RedisQueueModule } from '@slibs/redis-queue'
 import { StorageModule } from '@slibs/storage'
@@ -11,6 +12,7 @@ import {
   EmailAccountControllerV1,
   FileController,
   HealthCheckController,
+  InfraInstanceControllerV1,
   UserControllerV1,
 } from './module'
 
@@ -26,12 +28,14 @@ import {
 
     // biz modules
     UserModule,
+    InfraInstanceModule,
   ],
   controllers: [
     HealthCheckController,
     EmailAccountController,
     UserControllerV1,
     EmailAccountControllerV1,
+    InfraInstanceControllerV1,
 
     // temp controllers
     FileController,
