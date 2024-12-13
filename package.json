@@ -46,6 +46,7 @@
     "minio": "8.0.2",
     "nestjs-form-data": "1.9.91",
     "node-ssh": "12.0.5",
+    "openai": "4.76.2",
     "passport": "0.7.0",
     "passport-custom": "1.1.1",
     "pg": "8.13.1",
@@ -121,7 +122,8 @@
       "^@slibs/redis(|/.*)$": "<rootDir>/libs/system/redis/src/$1",
       "^@slibs/storage(|/.*)$": "<rootDir>/libs/system/storage/src/$1",
       "^@slibs/user(|/.*)$": "<rootDir>/libs/biz/user/src/$1",
-      "^@slibs/infra-instance(|/.*)$": "<rootDir>/libs/biz/infra-instance/src/$1"
+      "^@slibs/infra-instance(|/.*)$": "<rootDir>/libs/biz/infra-instance/src/$1",
+      "^@slibs/openai(|/.*)$": "<rootDir>/libs/external/openai/src/$1"
     }
   }
 }

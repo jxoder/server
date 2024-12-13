@@ -39,7 +39,9 @@
       "@slibs/user": ["libs/biz/user/src"],
       "@slibs/user/*": ["libs/biz/user/src/*"],
       "@slibs/infra-instance": ["libs/biz/infra-instance/src"],
-      "@slibs/infra-instance/*": ["libs/biz/infra-instance/src/*"]
+      "@slibs/infra-instance/*": ["libs/biz/infra-instance/src/*"],
+      "@slibs/openai": ["libs/external/openai/src"],
+      "@slibs/openai/*": ["libs/external/openai/src/*"]
     }
   }
 }

@@ -96,6 +96,15 @@
       "compilerOptions": {
         "tsConfigPath": "libs/biz/infra-instance/tsconfig.lib.json"
       }
+    },
+    "openai": {
+      "type": "library",
+      "root": "libs/external/openai",
+      "entryFile": "index",
+      "sourceRoot": "libs/external/openai/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/external/openai/tsconfig.lib.json"
+      }
     }
   }
 }
