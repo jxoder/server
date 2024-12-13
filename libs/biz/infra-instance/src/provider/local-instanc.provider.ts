@@ -3,13 +3,13 @@ import { ConfigService } from '@nestjs/config'
 import {
   CryptoUtils,
   ERROR_CODE,
+  PingUtils,
   RandomUtils,
   throwException,
 } from '@slibs/common'
 import axios from 'axios'
 import { unlink, writeFile } from 'fs-extra'
 import { NodeSSH } from 'node-ssh'
-import ping from 'ping'
 import { IInfraInstanceConfig } from '../config'
 import { ILocalInfraInstanceConfig } from '../interface'
 
@@ -24,8 +24,7 @@ export class LocalInfraInstanceProvider {
   }
 
   async ping(config: ILocalInfraInstanceConfig): Promise<boolean> {
-    const res = await ping.promise.probe(config.ipAddress, { timeout: 1 })
-    return res.alive
+    return PingUtils.ping(config.ipAddress)
   }
 
   async uptime(config: ILocalInfraInstanceConfig) {
