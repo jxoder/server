@@ -1,6 +1,6 @@
 import { Logger } from '@nestjs/common'
 import { DeepPartial, ObjectLiteral, SelectQueryBuilder } from 'typeorm'
-import { CommonRepository } from '../repository'
+import { CommonRepository, ICommonQueryPayload } from '../repository'
 
 export abstract class CommonService<ENTITY extends ObjectLiteral, PK_TYPE> {
   protected readonly logger = new Logger(this.constructor.name)
@@ -38,12 +38,9 @@ export abstract class CommonService<ENTITY extends ObjectLiteral, PK_TYPE> {
     await this.repository.delete(pk)
   }
 
-  async list(payload: {
-    filters?: { [key in keyof ENTITY]?: any }
-    order?: { [key: string]: 'DESC' | 'ASC' }
-    pageOpt?: { page?: number; size?: number }
-    decorator?: (qb: SelectQueryBuilder<ENTITY>) => void
-  }): Promise<[ENTITY[], number]> {
+  async list(
+    payload: ICommonQueryPayload<ENTITY>,
+  ): Promise<[ENTITY[], number]> {
     return this.repository.query(payload)
   }
 }

@@ -1,6 +1,6 @@
 import { Logger } from '@nestjs/common'
 import { ensureIf, ERROR_CODE } from '@slibs/common'
-import { isArray, omitBy } from 'lodash'
+import { omitBy } from 'lodash'
 import {
   DeepPartial,
   FindOptionsWhere,
@@ -11,7 +11,6 @@ import {
 import { QueryErrorCatcher } from '../decorator'
 
 export interface ICommonQueryPayload<ENTITY extends ObjectLiteral> {
-  filters?: { [key in keyof ENTITY]?: any }
   order?: { [key: string]: 'DESC' | 'ASC' }
   pageOpt?: { page?: number; size?: number }
   decorator?: (qb: SelectQueryBuilder<ENTITY>) => void
@@ -86,16 +85,6 @@ export abstract class CommonRepository<ENTITY extends ObjectLiteral, PK_TYPE> {
     }
 
     qb = qb.select()
-
-    Object.entries(
-      omitBy(payload.filters ?? {}, v => v === undefined) ?? {},
-    ).forEach(([key, value]) => {
-      if (isArray(value)) {
-        qb.andWhere(`e.${key} IN (:...${key})`, { [key]: value })
-      } else {
-        qb.andWhere(`e.${key} = :${key}`, { [key]: value })
-      }
-    })
 
     qb = qb.skip(skip).take(take)
 

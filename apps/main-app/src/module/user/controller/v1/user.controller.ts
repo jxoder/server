@@ -33,9 +33,14 @@ export class UserControllerV1 {
     @Query('name') name?: string,
   ) {
     const [users, total] = await this.userService.list({
-      filters: { role: roles.length > 0 ? roles : undefined },
       pageOpt: { page, size },
       decorator: qb => {
+        // role filter
+        if (roles.length > 0) {
+          qb.andWhere(`${qb.alias}.role IN (:...roles)`, { roles })
+        }
+
+        // name filter
         if (name && name.trim().length > 0) {
           qb.andWhere(`${qb.alias}.name ILIKE :name`, {
             name: `${name}%`,

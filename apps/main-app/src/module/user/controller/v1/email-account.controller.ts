@@ -7,7 +7,7 @@ import {
   EmailAccountService,
   USER_ROLE,
 } from '@slibs/user'
-import { EmailAccountListResponse } from '../../model/email-account.response'
+import { EmailAccountListResponse } from '../../model'
 
 @ApiTags('Email Accounts')
 @Controller({ path: 'email-accounts', version: '1' })
