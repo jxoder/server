@@ -1,1 +1,1 @@
-export * from './local-instanc.provider'
+export * from './local-instance.provider'

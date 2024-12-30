@@ -17,6 +17,9 @@ import { ILocalInfraInstanceConfig } from '../interface'
 export class LocalInfraInstanceProvider {
   private readonly logger = new Logger(this.constructor.name)
 
+  // 임시 로컬 캐시
+  private pingCache = new Map<string, { time: number; result: boolean }>()
+
   constructor(private readonly configService: ConfigService) {}
 
   get config() {
@@ -24,7 +27,15 @@ export class LocalInfraInstanceProvider {
   }
 
   async ping(config: ILocalInfraInstanceConfig): Promise<boolean> {
-    return PingUtils.ping(config.ipAddress)
+    const cache = this.pingCache.get(config.ipAddress)
+
+    // cache 10s
+    if (cache && cache.time > Date.now() - 10_000) {
+      return cache.result
+    }
+    const result = await PingUtils.ping(config.ipAddress, 1, 1)
+    this.pingCache.set(config.ipAddress, { time: Date.now(), result })
+    return result
   }
 
   async uptime(config: ILocalInfraInstanceConfig) {
