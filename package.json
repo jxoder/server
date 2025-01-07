@@ -12,7 +12,7 @@
     "migration:gen": "pnpm typeorm migration:generate migrations/migration -p -d ormconfig.ts",
     "migration:run": "pnpm typeorm migration:run -d",
     "migration:revert": "pnpm typeorm migration:revert -d",
-    "db": "docker-compose -f res/docker-compose.yml up"
+    "db": "docker-compose -f res/docker-compose.yml up --build"
   },
   "dependencies": {
     "@bull-board/api": "6.5.3",
@@ -71,6 +71,7 @@
     "@types/jsonwebtoken": "9.0.7",
     "@types/lodash": "4.17.13",
     "@types/node": "22.8.2",
+    "@types/pg": "8.11.10",
     "@types/ping": "0.4.4",
     "@types/request-ip": "0.0.41",
     "@types/supertest": "6.0.2",

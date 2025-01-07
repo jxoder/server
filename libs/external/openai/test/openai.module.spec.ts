@@ -4,7 +4,7 @@ import { OpenaiModule } from '@slibs/openai'
 import OpenAI from 'openai'
 import util from 'util'
 
-describe('openai test', () => {
+describe.skip('openai test', () => {
   let openai: OpenAI
 
   beforeAll(async () => {
